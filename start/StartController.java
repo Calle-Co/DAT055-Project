@@ -2,11 +2,12 @@ package start;
 
 public class StartController {
     
-    private StartModel m;
-    private StartView v;
+    private StartModel model;
+    private StartView view;
 
     public StartController(StartModel m, StartView v){
-        this.m = m;
-        this.v = v;
+        this.model = m;
+        this.view = v;
     }
+    
 }

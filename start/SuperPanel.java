@@ -2,6 +2,6 @@ package start;
 
 import javax.swing.*;
 
-public class SuperPanel extends JPanel {    
-
+public class SuperPanel extends JPanel {
+    
 }
