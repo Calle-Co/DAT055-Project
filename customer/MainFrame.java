@@ -1,4 +1,4 @@
-package main;
+package customer;
 
 import javax.swing.*;
 import java.awt.*;

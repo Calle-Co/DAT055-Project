@@ -1,4 +1,4 @@
-package main;
+package customer;
 
 public class test {
     public static void main(String[] args) {
