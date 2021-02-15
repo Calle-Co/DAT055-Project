@@ -11,6 +11,7 @@ public class Seat extends JButton implements ActionListener {
     private String seat;
     private Boolean booked;
     private Boolean clicked;
+    private Boolean floor;
     private ImageIcon click = new ImageIcon("customer\\Resources\\click.PNG");
     private ImageIcon free  = new ImageIcon("customer\\Resources\\free.PNG");
     private ImageIcon book  = new ImageIcon("customer\\Resources\\booked.PNG");
@@ -24,10 +25,18 @@ public class Seat extends JButton implements ActionListener {
         this.paint(free);
         //setBackground(Color.GREEN);
         setPreferredSize(new Dimension(25,25));
+        setBorderPainted(false);
+        setContentAreaFilled(false);
         this.seat = seat;
         this.booked = false;
         this.clicked = false;
         addActionListener(this);
+    }
+
+    public Seat(){
+        super();
+        floor = true;
+        setPreferredSize(new Dimension(20,20));
     }
 
     /**
