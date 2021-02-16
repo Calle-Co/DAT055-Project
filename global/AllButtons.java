@@ -1,4 +1,4 @@
-package customer;
+package global;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -20,6 +20,14 @@ public class AllButtons extends JButton{
     }
 
     
+    /**
+     * A method for creating specific buttons. The buttons have a hover-effect when you mouse 
+     * over them.
+     * 
+     * @param s The size you want your button to be, can be on off : SMALL, MEDIUM, LARGE.
+     * @param title The text you want on your button.
+     */
+
     public AllButtons(size s, String title){
         
         super(title);
