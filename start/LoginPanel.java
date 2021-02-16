@@ -1,13 +1,14 @@
 package start;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 
-import customer.*;
+import global.*;
 
-public class LoginPanel extends JPanel {
-    public LoginPanel() {
+public class LoginPanel extends JPanel implements ActionListener{
+    public LoginPanel(StartController controller) {
 
 
         setSize(600, 600);
@@ -19,6 +20,13 @@ public class LoginPanel extends JPanel {
         JTextField password = new JTextField();
         AllButtons loginButton = new AllButtons(AllButtons.size.MEDIUM, "Login!");
         AllButtons cancelButton = new AllButtons(AllButtons.size.SMALL, "cancel");
+        cancelButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               controller.updateView("StartPanel");
+            }
+        });
+       
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(4, 1, 0, 10));
@@ -30,7 +38,7 @@ public class LoginPanel extends JPanel {
         centerPanel.add(cancelButton);
         add(centerPanel,BorderLayout.CENTER);
    
-        AllButtons signUpButton = new AllButtons(AllButtons.size.SMALL, "SignUp!");
+        AllButtons signUpButton = new AllButtons(AllButtons.size.MEDIUM, "SignUp!");
         JPanel signupButtonPanel = new JPanel();
         signupButtonPanel.setBackground(c);
         signupButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -39,7 +47,6 @@ public class LoginPanel extends JPanel {
         
         setVisible(true);
 
-       
-        
     }
+    public void actionPerformed(ActionEvent e){}
 }

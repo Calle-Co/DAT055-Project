@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
+
 /**
  * En klass för applikationens alla knappar.
  * Knapparna kommer i tre olika storlekar, small, medium och large.

@@ -12,7 +12,8 @@ import global.AllButtons.size;
 
 
 public class StartPanel extends JPanel implements ActionListener{
-    public StartPanel() {
+    
+    public StartPanel(StartController controller) {
         setSize(600, 600);
         Color c = new Color(211,211,211);
         setBorder(new MatteBorder(200, 0, 0, 0,c));   
@@ -20,9 +21,10 @@ public class StartPanel extends JPanel implements ActionListener{
 
         AllButtons bokaButton = new AllButtons(size.LARGE, "Boka!");
         bokaButton.addActionListener(new ActionListener(){
-           public void actionPerformed(ActionEvent e){
-                System.out.println("Beep");     
-           } 
+            @Override
+            public void actionPerformed(ActionEvent e){
+                controller.updateView("LoginPanel"); 
+            } 
         });
         JPanel bokaButtonPanel = new JPanel();
     
@@ -40,4 +42,5 @@ public class StartPanel extends JPanel implements ActionListener{
         setVisible(true);
         
     }
+    public void actionPerformed(ActionEvent e){}
 }
