@@ -5,13 +5,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SeatsPanel extends JPanel {
-
+    //private JPanel c = new JPanel();
 
     public SeatsPanel() {
         setPreferredSize(new Dimension(200,600));
         setBackground(Color.WHITE);
         setLayout(new GridLayout(10,4));
         insertSeats();
+        
     }
 
     public void insertSeats() {
@@ -24,10 +25,13 @@ public class SeatsPanel extends JPanel {
                     add(new Seat(i + "B"));
                 }
                 if(j == 3) {
-                    add(new Floor());
+                JPanel floor = new JPanel();
+                floor.setPreferredSize(new Dimension(20,20));
+                floor.setBackground(Color.WHITE);
+                    add(floor);
                 }
                 if(j == 4) {
-                    add(new Seat(i + "C"));
+                add(new Seat(i + "C"));
                 }
                 if(j == 5) {
                     add(new Seat(i + "D"));
