@@ -12,7 +12,8 @@ import global.AllButtons.size;
 
 
 public class StartPanel extends JPanel implements ActionListener{
-    private ImageIcon logga = new ImageIcon("global\\Resources\\logga.PNG");
+    
+    private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
 
     public StartPanel(StartController controller) {
         
@@ -44,6 +45,12 @@ public class StartPanel extends JPanel implements ActionListener{
         adminButtonPanel.setBackground(c);
         adminButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         adminButtonPanel.add(adminButton);
+        adminButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               controller.updateView("AdminLoginPanel");
+            }
+        });
         add(adminButtonPanel,BorderLayout.SOUTH);
 
         setVisible(true);
