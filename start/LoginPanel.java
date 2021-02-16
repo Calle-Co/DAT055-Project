@@ -9,7 +9,7 @@ import global.*;
 
 public class LoginPanel extends JPanel implements ActionListener{
 
-    private ImageIcon logga = new ImageIcon("global\\Resources\\logga.PNG");
+    private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
 
     public LoginPanel(StartController controller) {
 
