@@ -7,11 +7,11 @@ import javax.swing.border.MatteBorder;
 
 import global.*;
 
-public class LoginPanel extends JPanel implements ActionListener{
+public class AdminLoginPanel extends JPanel implements ActionListener{
 
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
 
-    public LoginPanel(StartController controller) {
+    public AdminLoginPanel(StartController controller) {
 
 
         setSize(600, 600);
@@ -24,22 +24,10 @@ public class LoginPanel extends JPanel implements ActionListener{
         logoPanel.setBackground(c);
         add(logoPanel,BorderLayout.NORTH);
 
-        JTextField username = new JTextField("Username");
+        JLabel username = new JLabel("Admin",JLabel.CENTER);
+        username.setFont(new Font("Basic", Font.PLAIN,22));
         JTextField password = new JPasswordField("Password");
-
-        username.addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if(username.getText().equalsIgnoreCase("Username")){
-                    username.setText("");
-                }
-            }
-        
-            public void focusLost(FocusEvent e) {
-                if(username.getText().isEmpty()){
-                    username.setText("Username");
-                }
-            }
-        });
+        password.setFont(new Font("Basic", Font.PLAIN,14));
 
         password.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
@@ -71,13 +59,6 @@ public class LoginPanel extends JPanel implements ActionListener{
         centerPanel.add(loginButton);
         centerPanel.add(cancelButton);
         add(centerPanel,BorderLayout.CENTER);
-   
-        AllButtons signUpButton = new AllButtons(AllButtons.size.MEDIUM, "SignUp!");
-        JPanel signupButtonPanel = new JPanel();
-        signupButtonPanel.setBackground(c);
-        signupButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        signupButtonPanel.add(signUpButton);
-        add(signupButtonPanel,BorderLayout.SOUTH);
         setVisible(true);
 
     }

@@ -7,13 +7,13 @@ import java.awt.event.*;
  * This is a Class for representing the seats icons and their functionality
  */
 
-public class Seat extends JButton implements ActionListener {
+public class Seat extends JButton implements ActionListener{
     private String seat;
     private Boolean booked;
     private Boolean clicked;
-    private ImageIcon click = new ImageIcon("customer\\Resources\\click.PNG");
-    private ImageIcon free  = new ImageIcon("customer\\Resources\\free.PNG");
-    private ImageIcon book  = new ImageIcon("customer\\Resources\\booked.PNG");
+    private ImageIcon click = new ImageIcon("customer/Resources/click.PNG");
+    private ImageIcon free  = new ImageIcon("customer/Resources/free.PNG");
+    private ImageIcon book  = new ImageIcon("customer/Resources/booked.PNG");
 
     /**
      * This is the constructor for the seats. It initialises each seat with a name (the seats number ex. 1a) and toggels the other instance-variabels to their start values 
@@ -39,6 +39,7 @@ public class Seat extends JButton implements ActionListener {
         this.clicked = !this.clicked;
         if(this.clicked && !booked) {
             this.paint(click);
+            //notify next panel 
         } 
         else if(this.booked){
             Toolkit.getDefaultToolkit().beep();

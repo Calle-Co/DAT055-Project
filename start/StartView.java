@@ -17,8 +17,10 @@ public class StartView {
         frame.setTitle("CC Airlines");
         StartPanel sp = new StartPanel(controller);
         LoginPanel lp = new LoginPanel(controller);
+        AdminLoginPanel ap = new AdminLoginPanel(controller);
         panels.put("StartPanel", sp);
         panels.put("LoginPanel",lp);
+        panels.put("AdminLoginPanel",ap);
         frame.add(sp);
         frame.pack();
         currentPanel = sp;
