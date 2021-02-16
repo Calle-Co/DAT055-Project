@@ -12,7 +12,6 @@ public class SeatsPanel extends JPanel {
         setBackground(Color.WHITE);
         setLayout(new GridLayout(10,4));
         insertSeats();
-        
     }
 
     public void insertSeats() {

@@ -7,7 +7,7 @@ import java.awt.event.*;
  * This is a Class for representing the seats icons and their functionality
  */
 
-public class Seat extends JButton implements ActionListener {
+public class Seat extends JButton implements ActionListener{
     private String seat;
     private Boolean booked;
     private Boolean clicked;
@@ -39,6 +39,7 @@ public class Seat extends JButton implements ActionListener {
         this.clicked = !this.clicked;
         if(this.clicked && !booked) {
             this.paint(click);
+            //notify next panel 
         } 
         else if(this.booked){
             Toolkit.getDefaultToolkit().beep();
