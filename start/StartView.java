@@ -3,8 +3,8 @@ package start;
 import javax.swing.JPanel;
 
 public class StartView {
-    SuperPanel currentPanel;
-    StartFrame frame;
+    private JPanel currentPanel;
+    private StartFrame frame;
 
     public StartView() {
         init();
@@ -19,7 +19,7 @@ public class StartView {
         currentPanel = sp;
     }
 
-    public void nextPanel(SuperPanel p) {
+    public void nextPanel(JPanel p) {
         frame.remove(currentPanel);
         frame.add(p);
         frame.pack();
