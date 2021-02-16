@@ -2,13 +2,10 @@ package start;
 
 import java.awt.Color;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-
 import java.awt.*;
-
-import customer.AllButtons;
-import customer.AllButtons.size;
+import global.AllButtons;
+import global.AllButtons.size;
 
 
 public class StartPanel extends SuperPanel {
