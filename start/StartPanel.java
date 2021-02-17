@@ -8,8 +8,7 @@ import java.awt.event.*;
 import global.AllButtons;
 import global.AllButtons.size;
 
-
-
+@SuppressWarnings("serial")
 public class StartPanel extends JPanel implements ActionListener{
     
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");

@@ -12,6 +12,7 @@ import javax.swing.UIManager;
  * Knapparna kommer i tre olika storlekar, small, medium och large.
  * Om man hovrar över knapparna så uppstår en liten effekt.
  */
+@SuppressWarnings("serial")
 public class AllButtons extends JButton{
     
     public enum size{
