@@ -7,11 +7,11 @@ import javax.swing.border.MatteBorder;
 
 import global.*;
 
-public class SignupPanel extends JPanel implements ActionListener{
+public class LoginView extends JPanel{
 
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
 
-    public SignupPanel(StartController controller) {
+    public LoginView( ) {
 
 
         setSize(600, 600);
@@ -53,21 +53,22 @@ public class SignupPanel extends JPanel implements ActionListener{
             }
         });
         
-        AllButtons signupButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
-        AllButtons cancelButton = new AllButtons(AllButtons.size.SMALL, "cancel");
-        cancelButton.addActionListener(new ActionListener(){
+        AllButtons loginButton = new AllButtons(AllButtons.size.MEDIUM, "Login!");
+        /*loginButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-               controller.updateView("LoginPanel");
+               controller.bridge();
             }
-        });
+        });*/
+        
 
-        signupButton.addActionListener(new ActionListener(){
+        AllButtons cancelButton = new AllButtons(AllButtons.size.SMALL, "cancel");
+        /*cancelButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-               controller.updateView("LoginPanel");
+               controller.updateView("StartPanel");
             }
-        });
+        });*/
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(4, 1, 0, 10));
@@ -75,11 +76,25 @@ public class SignupPanel extends JPanel implements ActionListener{
         centerPanel.setBackground(c);
         centerPanel.add(username);
         centerPanel.add(password);
-        centerPanel.add(signupButton);
+        centerPanel.add(loginButton);
         centerPanel.add(cancelButton);
         add(centerPanel,BorderLayout.CENTER);
+   
+        AllButtons signUpButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
+
+        /*signUpButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               controller.updateView("SignupPanel");
+            }
+        });*/
+
+        JPanel signupButtonPanel = new JPanel();
+        signupButtonPanel.setBackground(c);
+        signupButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        signupButtonPanel.add(signUpButton);
+        add(signupButtonPanel,BorderLayout.SOUTH);
         setVisible(true);
 
     }
-    public void actionPerformed(ActionEvent e){}
 }

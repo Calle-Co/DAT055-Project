@@ -4,28 +4,26 @@ package start;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
-import java.awt.event.*;
+import java.util.LinkedList;
+
 import global.AllButtons;
 import global.AllButtons.size;
 
 @SuppressWarnings("serial")
-public class StartPanel extends JPanel implements ActionListener{
+public class WelcomeView extends JPanel{
     
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
+    private LinkedList<AllButtons> buttons = new LinkedList<AllButtons>();
 
-    public StartPanel(StartController controller) {
+    public WelcomeView() {
         
         setSize(600, 600);
         Color c = new Color(211,211,211);
         setLayout(new BorderLayout());     
 
         AllButtons bokaButton = new AllButtons(size.LARGE, "Boka!");
-        bokaButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                controller.updateView("LoginPanel"); 
-            } 
-        });
+        buttons.add(bokaButton);
+     
 
         JLabel logo = new JLabel(logga, JLabel.CENTER);
         JPanel logoPanel = new JPanel();
@@ -39,20 +37,35 @@ public class StartPanel extends JPanel implements ActionListener{
         add(bokaButtonPanel,BorderLayout.CENTER);
 
         AllButtons adminButton = new AllButtons(size.MEDIUM, "Admin");
+        buttons.add(adminButton);
         JPanel adminButtonPanel = new JPanel();
         adminButtonPanel.setBackground(c);
         adminButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         adminButtonPanel.add(adminButton);
-        adminButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.updateView("AdminLoginPanel");
-            }
-        });
+     
         add(adminButtonPanel,BorderLayout.SOUTH);
 
         setVisible(true);
         
     }
-    public void actionPerformed(ActionEvent e){}
+
+    public LinkedList getButtons(){
+        return buttons;
+    }
 }
+
+
+  /*  bokaButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                controller.updateView("LoginPanel"); 
+            } 
+        });*/
+
+
+  /*  adminButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               controller.updateView("AdminLoginPanel");
+            }
+        });*/

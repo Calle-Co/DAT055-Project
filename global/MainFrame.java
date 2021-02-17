@@ -12,6 +12,5 @@ public class MainFrame extends JFrame {
         int y = (int) ((dimension.getHeight() - getHeight()) / 2);
         setLocation(x,y);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
-    }
+          }
 }
