@@ -7,11 +7,11 @@ import javax.swing.border.MatteBorder;
 
 import global.*;
 
-public class LoginPanel extends JPanel implements ActionListener{
+public class SignupPanel extends JPanel implements ActionListener{
 
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
 
-    public LoginPanel(StartController controller) {
+    public SignupPanel(StartController controller) {
 
 
         setSize(600, 600);
@@ -53,20 +53,19 @@ public class LoginPanel extends JPanel implements ActionListener{
             }
         });
         
-        AllButtons loginButton = new AllButtons(AllButtons.size.MEDIUM, "Login!");
-        loginButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.bridge();
-            }
-        });
-        
-
+        AllButtons signupButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
         AllButtons cancelButton = new AllButtons(AllButtons.size.SMALL, "cancel");
         cancelButton.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-               controller.updateView("StartPanel");
+               controller.updateView("LoginPanel");
+            }
+        });
+
+        signupButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               controller.updateView("LoginPanel");
             }
         });
         
@@ -76,24 +75,9 @@ public class LoginPanel extends JPanel implements ActionListener{
         centerPanel.setBackground(c);
         centerPanel.add(username);
         centerPanel.add(password);
-        centerPanel.add(loginButton);
+        centerPanel.add(signupButton);
         centerPanel.add(cancelButton);
         add(centerPanel,BorderLayout.CENTER);
-   
-        AllButtons signUpButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
-
-        signUpButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.updateView("SignupPanel");
-            }
-        });
-
-        JPanel signupButtonPanel = new JPanel();
-        signupButtonPanel.setBackground(c);
-        signupButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        signupButtonPanel.add(signUpButton);
-        add(signupButtonPanel,BorderLayout.SOUTH);
         setVisible(true);
 
     }
