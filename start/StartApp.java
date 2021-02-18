@@ -1,11 +1,13 @@
 package start;
 
-public class StartApp {
+public class StartApp  {
+    private static StartController controller;
     public static void main(String[] args) {
         StartModel model = new StartModel();
         StartView view = new StartView();
-        StartController controller = new StartController(model,view);
+        controller = new StartController(model, view);
         view.init(controller);
-
+        
     }
+
 }

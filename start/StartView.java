@@ -18,9 +18,11 @@ public class StartView {
         StartPanel sp = new StartPanel(controller);
         LoginPanel lp = new LoginPanel(controller);
         AdminLoginPanel ap = new AdminLoginPanel(controller);
+        SignupPanel sup = new SignupPanel(controller);
         panels.put("StartPanel", sp);
         panels.put("LoginPanel",lp);
         panels.put("AdminLoginPanel",ap);
+        panels.put("SignupPanel",sup);
         frame.add(sp);
         frame.pack();
         currentPanel = sp;
