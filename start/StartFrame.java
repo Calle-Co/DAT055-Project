@@ -3,6 +3,7 @@ package start;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class StartFrame extends JFrame {
     public StartFrame() {
         setPreferredSize(new Dimension(600,600));

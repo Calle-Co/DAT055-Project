@@ -3,6 +3,7 @@ package global;
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
     public MainFrame() {
         setPreferredSize(new Dimension(1200,800));
