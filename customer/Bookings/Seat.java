@@ -1,4 +1,4 @@
-package customer;
+package customer.Bookings;
 
 import javax.swing.*;
 import java.awt.*;
