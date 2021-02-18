@@ -1,22 +1,20 @@
 package start;
 
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.Color;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 import global.AllButtons;
 import global.AllButtons.size;
 
 @SuppressWarnings("serial")
 public class WelcomeView extends JPanel{
-    
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
-    private LinkedList<AllButtons> buttons = new LinkedList<AllButtons>();
+    private ArrayList<AllButtons> buttons = new ArrayList<>();
 
     public WelcomeView() {
-        
         setSize(600, 600);
         Color c = new Color(211,211,211);
         setLayout(new BorderLayout());     
@@ -24,7 +22,6 @@ public class WelcomeView extends JPanel{
         AllButtons bokaButton = new AllButtons(size.LARGE, "Boka!");
         buttons.add(bokaButton);
      
-
         JLabel logo = new JLabel(logga, JLabel.CENTER);
         JPanel logoPanel = new JPanel();
         logoPanel.add(logo);
@@ -42,30 +39,16 @@ public class WelcomeView extends JPanel{
         adminButtonPanel.setBackground(c);
         adminButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         adminButtonPanel.add(adminButton);
-     
         add(adminButtonPanel,BorderLayout.SOUTH);
 
         setVisible(true);
-        
     }
-
-    public LinkedList getButtons(){
-        return buttons;
+    /*
+    public void addButtonListener(ActionListener al) {
+        for(JButton b : buttons) {
+            b.addActionListener(al);
+        }
     }
+    */
+    public ArrayList<AllButtons> getButtons() { return buttons; }
 }
-
-
-  /*  bokaButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                controller.updateView("LoginPanel"); 
-            } 
-        });*/
-
-
-  /*  adminButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.updateView("AdminLoginPanel");
-            }
-        });*/

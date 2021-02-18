@@ -4,7 +4,7 @@ import start.*;
 import customer.*;
 import admin.*;
 
-public class App  {
+public class App {
     private StartFrame startFrame;
     private MainFrame mainFrame; 
 

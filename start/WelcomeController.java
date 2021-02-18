@@ -1,14 +1,28 @@
 package start;
+
+import javax.swing.JButton;
+
+import global.AllButtons;
+
 import java.awt.event.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
-public class WelcomeController{
-
+public class WelcomeController {
     private StartModel model;
     private WelcomeView view;
-public WelcomeController(StartModel m, WelcomeView v){
-    this.model = m;
-    this.view = v;
-}
-    
+    //private JButton b;
+    private ArrayList<AllButtons> buttons = new ArrayList<>();
+
+    public WelcomeController(StartModel m, WelcomeView v){
+        this.model = m;
+        this.view = v;
+        //b = new JButton();
+        buttons = view.getButtons();
+    }
+
+    public void addButtonListener(ActionListener al) {
+        for(JButton b : buttons) {
+            b.addActionListener(al);
+        }
+    }
 }
