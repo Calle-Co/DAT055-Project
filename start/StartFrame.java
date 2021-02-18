@@ -1,20 +1,26 @@
 package start;
 
 import javax.swing.*;
+
+import global.Observable;
+import global.Observer;
+
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class StartFrame extends JFrame {
+public class StartFrame extends JFrame implements Observable {
   private JPanel currentView;
   private HashMap<String, JPanel> views;
+  private Observer observer;
 
   public StartFrame() {
-    setPreferredSize(new Dimension(600,600));
+    setPreferredSize(new Dimension(600, 600));
     pack();
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (int) ((dimension.getWidth() - getWidth()) / 2);
     int y = (int) ((dimension.getHeight() - getHeight()) / 2);
-    setLocation(x,y);
+    setLocation(x, y);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setTitle("CC Airlines");
     views = new HashMap<>();
@@ -23,32 +29,62 @@ public class StartFrame extends JFrame {
 
   public void init() {
     StartModel sModel = new StartModel();
-    
+
     WelcomeView wView = new WelcomeView();
     WelcomeController wController = new WelcomeController(sModel, wView);
     wController.addButtonListener(e -> {
-      String s = ((JButton)e.getSource()).getText();
-      if(s == "Boka!") {
+      String s = ((JButton) e.getSource()).getText();
+      if (s == "Boka!") {
         nextView(views.get("LoginView"));
       }
-      if(s == "Admin") {
+      if (s == "Admin") {
         nextView(views.get("AdminLoginView"));
       }
     });
 
     LoginView lView = new LoginView();
-    LoginController cController = new LoginController(sModel, lView);
+    LoginController lController = new LoginController(sModel, lView);
+    lController.addButtonListener(e -> {
+      String s = ((JButton) e.getSource()).getText();
+      if (s == "Login!") {
+        notifyObservers("cLogin");
+      }
+      if (s == "cancel") {
+        nextView(views.get("WelcomeView"));
+      }
+      if (s == "Signup!") {
+        nextView(views.get("SignupView"));
+      }
+    });
 
     AdminLoginView aView = new AdminLoginView();
     AdminLoginController aController = new AdminLoginController(sModel, aView);
+    aController.addButtonListener(e -> {
+      String s = ((JButton) e.getSource()).getText();
+      if (s == "Login!") {
+        notifyObservers("aLogin");
+      }
+      if (s == "cancel") {
+        nextView(views.get("WelcomeView"));
+      }
+    });
 
     SignupView sView = new SignupView();
-    SignupController sController= new SignupController(sModel, sView);
+    SignupController sController = new SignupController(sModel, sView);
+    sController.addButtonListener(e -> {
+      String s = ((JButton) e.getSource()).getText();
+      if (s == "Signup!") {
+        nextView(views.get("LoginView"));
+      }
+      if (s == "cancel") {
+        nextView(views.get("LoginView"));
+      }
+    });
 
     views.put("WelcomeView", wView);
-    views.put("LoginView",lView);
-    views.put("AdminLoginView",aView);
-    views.put("SignupView",sView);
+    views.put("LoginView", lView);
+    views.put("AdminLoginView", aView);
+    views.put("SignupView", sView);
 
     add(wView);
     pack();
@@ -62,5 +98,20 @@ public class StartFrame extends JFrame {
     view.setVisible(true);
     pack();
     currentView = view;
+  }
+
+  @Override
+  public void addObserver(Observer observer) {
+    this.observer = observer;
+  }
+
+  @Override
+  public void removeObserver() {
+    this.observer = null;
+  }
+
+  @Override
+  public void notifyObservers(String message) {
+    this.observer.update(message);
   }
 }

@@ -2,6 +2,8 @@ package start;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 
@@ -10,6 +12,7 @@ import global.*;
 public class LoginView extends JPanel{
 
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
+    private ArrayList<AllButtons> buttons = new ArrayList<>();
 
     public LoginView( ) {
 
@@ -54,21 +57,11 @@ public class LoginView extends JPanel{
         });
         
         AllButtons loginButton = new AllButtons(AllButtons.size.MEDIUM, "Login!");
-        /*loginButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.bridge();
-            }
-        });*/
+        buttons.add(loginButton);
         
 
         AllButtons cancelButton = new AllButtons(AllButtons.size.SMALL, "cancel");
-        /*cancelButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.updateView("StartPanel");
-            }
-        });*/
+        buttons.add(cancelButton);
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(4, 1, 0, 10));
@@ -81,13 +74,7 @@ public class LoginView extends JPanel{
         add(centerPanel,BorderLayout.CENTER);
    
         AllButtons signUpButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
-
-        /*signUpButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.updateView("SignupPanel");
-            }
-        });*/
+        buttons.add(signUpButton);
 
         JPanel signupButtonPanel = new JPanel();
         signupButtonPanel.setBackground(c);
@@ -97,4 +84,6 @@ public class LoginView extends JPanel{
         setVisible(true);
 
     }
+
+    public ArrayList<AllButtons> getButtons() { return buttons; }
 }

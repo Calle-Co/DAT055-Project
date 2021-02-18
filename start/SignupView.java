@@ -2,18 +2,18 @@ package start;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 
 import global.*;
 
 public class SignupView extends JPanel{
-
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
+    private ArrayList<AllButtons> buttons = new ArrayList<>();
 
     public SignupView() {
-
-
         setSize(600, 600);
         Color c = new Color(211,211,211);
         setLayout(new BorderLayout());
@@ -54,20 +54,9 @@ public class SignupView extends JPanel{
         });
         
         AllButtons signupButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
+        buttons.add(signupButton);
         AllButtons cancelButton = new AllButtons(AllButtons.size.SMALL, "cancel");
-        /*cancelButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.updateView("LoginPanel");
-            }
-        });*/
-
-       /* signupButton.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               controller.updateView("LoginPanel");
-            }
-        });*/
+        buttons.add(cancelButton);
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(4, 1, 0, 10));
@@ -79,6 +68,7 @@ public class SignupView extends JPanel{
         centerPanel.add(cancelButton);
         add(centerPanel,BorderLayout.CENTER);
         setVisible(true);
-
     }
+
+    public ArrayList<AllButtons> getButtons() { return buttons; }
 }

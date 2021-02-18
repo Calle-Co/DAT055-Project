@@ -10,13 +10,11 @@ import java.util.ArrayList;
 public class WelcomeController {
     private StartModel model;
     private WelcomeView view;
-    //private JButton b;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
     public WelcomeController(StartModel m, WelcomeView v){
         this.model = m;
         this.view = v;
-        //b = new JButton();
         buttons = view.getButtons();
     }
 
