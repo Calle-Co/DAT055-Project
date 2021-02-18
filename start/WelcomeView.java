@@ -43,12 +43,6 @@ public class WelcomeView extends JPanel{
 
         setVisible(true);
     }
-    /*
-    public void addButtonListener(ActionListener al) {
-        for(JButton b : buttons) {
-            b.addActionListener(al);
-        }
-    }
-    */
+   
     public ArrayList<AllButtons> getButtons() { return buttons; }
 }
