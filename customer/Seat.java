@@ -1,5 +1,4 @@
-package customer.Bookings;
-
+package customer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -39,7 +38,6 @@ public class Seat extends JButton implements ActionListener{
         this.clicked = !this.clicked;
         if(this.clicked && !booked) {
             this.paint(click);
-            //notify next panel 
         } 
         else if(this.booked){
             Toolkit.getDefaultToolkit().beep();
@@ -55,6 +53,7 @@ public class Seat extends JButton implements ActionListener{
     public void colorStatus() {
         if(booked) {
             this.paint(book);
+            this.clicked = !this.clicked;
         } else {
             this.paint(free);
         }
@@ -89,5 +88,8 @@ public class Seat extends JButton implements ActionListener{
      */
     public String getSeat() {
         return this.seat;
+    }
+    public Boolean getClick(){
+        return this.clicked;
     }
 }

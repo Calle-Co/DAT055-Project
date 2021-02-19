@@ -1,12 +1,11 @@
-package customer.Bookings;
+package customer;
 
 import javax.swing.*;
-
 import java.awt.*;
 
-public class infoPopup extends JPanel {
+public class InfoPanel extends JPanel {
     
-    public infoPopup(String nr){
+    public InfoPanel(String nr){
         JPanel centerPanel = new JPanel();
         setPreferredSize(new Dimension(200,120));
         JTextField name = new JTextField();
@@ -41,14 +40,5 @@ public class infoPopup extends JPanel {
         add(seatLabel);
         add(centerPanel);
         setVisible(true);            
-    }
-
-    public static void main(String args[]){
-        JFrame frame = new JFrame();
-        frame.setPreferredSize(new Dimension(200,120));
-        frame.add(new infoPopup("1a"));
-        frame.pack();
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }
