@@ -12,6 +12,8 @@ import global.*;
 public class SignupView extends JPanel{
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
+    private JTextField username;
+    private JTextField password;
 
     public SignupView() {
         setSize(600, 600);
@@ -24,8 +26,8 @@ public class SignupView extends JPanel{
         logoPanel.setBackground(c);
         add(logoPanel,BorderLayout.NORTH);
 
-        JTextField username = new JTextField("Username");
-        JTextField password = new JPasswordField("Password");
+        username = new JTextField("Username");
+        password = new JPasswordField("Password");
 
         username.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
@@ -70,5 +72,13 @@ public class SignupView extends JPanel{
         setVisible(true);
     }
 
+    public String getPassword(){
+        return password.getText();
+    }
+    public String getUsername(){
+        return username.getText();
+    }
+
     public ArrayList<AllButtons> getButtons() { return buttons; }
+
 }

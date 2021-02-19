@@ -6,9 +6,12 @@ import global.Observable;
 import global.Observer;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
+@SuppressWarnings("serial")
 public class StartFrame extends JFrame implements Observable {
   private JPanel currentView;
   private HashMap<String, JPanel> views;
@@ -47,13 +50,13 @@ public class StartFrame extends JFrame implements Observable {
     lController.addButtonListener(e -> {
       String s = ((JButton) e.getSource()).getText();
       if (s == "Login!") {
-        notifyObservers("cLogin");
+		  notifyObservers("cLogin");
       }
       if (s == "cancel") {
-        nextView(views.get("WelcomeView"));
+    	  nextView(views.get("WelcomeView"));
       }
       if (s == "Signup!") {
-        nextView(views.get("SignupView"));
+          nextView(views.get("SignupView"));
       }
     });
 
@@ -74,6 +77,19 @@ public class StartFrame extends JFrame implements Observable {
     sController.addButtonListener(e -> {
       String s = ((JButton) e.getSource()).getText();
       if (s == "Signup!") {
+        try {
+			// This place every new user in a file, with username and password
+			// seperated by a blankspace, and each user on a new line
+        	BufferedWriter bw = new BufferedWriter(new FileWriter("start/userInfo/userFile.txt",true));
+          	bw.append(sView.getUsername());
+			bw.append(' ');  
+			bw.append(sView.getPassword());  
+			bw.append("\n");
+          	bw.close();
+			  
+        } catch (IOException ex){
+          	ex.printStackTrace();
+        }  
         nextView(views.get("LoginView"));
       }
       if (s == "cancel") {
