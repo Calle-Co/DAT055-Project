@@ -91,6 +91,10 @@ public class BookingView extends JPanel{
             }
         }
     }
+
+    public HashMap<String, InfoPanel> getInfo(){
+        return info;
+    }
     
     public void addSeatListener(ActionListener al) {
         for(Seat s : seats) {
