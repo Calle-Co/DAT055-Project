@@ -18,18 +18,17 @@ public class BookingView extends JPanel{
    
     public BookingView(){
         bokaButton = new AllButtons(size.MEDIUM, "Boka!");
-        info = new HashMap<>();
         sPanel = new JPanel();
         iHolder = new JPanel();
+        info = new HashMap<>();
         seats = new ArrayList<>();
-
+        initSeats();
         this.setPreferredSize(new Dimension(800,800));
         iHolder.setLayout(new GridLayout(4,1,0,0));
         iHolder.setPreferredSize(new Dimension(200, 600));
         iHolder.setVisible(true);
         iHolder.setBackground(Color.GREEN);
         this.setLayout(new BorderLayout());
-        initSeats();
         this.add(sPanel, BorderLayout.WEST);
         this.add(bokaButton, BorderLayout.SOUTH);
         this.add(iHolder, BorderLayout.EAST);
