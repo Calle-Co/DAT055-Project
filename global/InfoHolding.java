@@ -2,6 +2,8 @@ package global;
 
 /**
  * Simple way of representing a person who is a part of a booking
+ * @author Simon Länsberg
+ * @version 2021-02-22
  */
 public class InfoHolding {
     private String owner = null;

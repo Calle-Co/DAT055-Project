@@ -2,6 +2,7 @@ package start;
 
 import javax.swing.*;
 
+import global.LoadingView;
 import global.Observable;
 import global.Observer;
 

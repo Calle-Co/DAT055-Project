@@ -2,12 +2,14 @@ package global;
 
 import start.*;
 import customer.*;
-import admin.*;
 
-public class App implements Observer {
-    private static StartFrame startFrame;
-    private static CustomerFrame customerFrame;
-    private static AdminFrame adminFrame;
+import java.util.concurrent.TimeUnit;
+
+import admin.*;
+    public class App implements Observer {
+        private static StartFrame startFrame;
+        private static CustomerFrame customerFrame;
+        private static AdminFrame adminFrame;
 
     public App() {
         startFrame = new StartFrame();
@@ -23,8 +25,12 @@ public class App implements Observer {
 
     private void customerLogin() {
         System.out.println("inloggad customer");
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
         startFrame.setVisible(false);
-        // loading...
         customerFrame.setVisible(true);
     }
 

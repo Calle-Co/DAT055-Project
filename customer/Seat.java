@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 /**
  * This is a Class for representing the seats icons and their functionality
+ * @author Simon Länsberg, William Husar
+ * @version 2021-02-15
  */
 
 public class Seat extends JButton implements ActionListener{
