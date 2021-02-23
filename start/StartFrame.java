@@ -73,25 +73,6 @@ public class StartFrame extends JFrame implements Observable {
       }
       });
 
-<<<<<<< Updated upstream
-      SignupView sView = new SignupView();
-      SignupController sController = new SignupController(sModel, sView);
-      sController.addButtonListener(e -> {
-      String s = ((JButton) e.getSource()).getText();
-      if (s == "Signup!") {
-        try {
-			// This place every new user in a file, with username and password
-			// seperated by a blankspace, and each user on a new line
-        	BufferedWriter bw = new BufferedWriter(new FileWriter("start/userInfo/userFile.txt",true));
-          	bw.append(sView.getUsername());
-			  bw.append(' ');  
-		 	  bw.append(sView.getPassword());  
-			  bw.append("\n");
-      	bw.close();
-			  
-        } catch (IOException ex){
-          	ex.printStackTrace();
-=======
     SignupView sView = new SignupView();
     SignupModel suModel = new SignupModel();
     SignupController sController = new SignupController(suModel, sView);
@@ -100,7 +81,6 @@ public class StartFrame extends JFrame implements Observable {
       	if (s == "Signup!") {
             if(sController.signUp(sView.getUsername(), sView.getPassword()))
                 nextView(views.get("LoginView"));
->>>>>>> Stashed changes
         }  
         if (s == "cancel") {
             nextView(views.get("LoginView"));
