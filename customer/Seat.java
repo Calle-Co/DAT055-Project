@@ -75,6 +75,7 @@ public class Seat extends JButton implements ActionListener{
      */
     public void setStatus(Boolean status) {
         this.booked = status;
+        this.clicked = false;
         colorStatus();
     }
 

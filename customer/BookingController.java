@@ -13,6 +13,7 @@ public class BookingController {
     private BookingView view;
     private ArrayList<Seat> seats;
     private static boolean ok = false;
+    private static boolean readyForNew = true;
     private static ArrayList<InfoHolding> people = new ArrayList<>();
     private static HashMap<String, InfoPanel> info;
 
@@ -35,44 +36,56 @@ public class BookingController {
 
         view.addButtonListener(e -> {
         info = view.getInfo();
+        if (readyForNew) {
         for(Seat s: seats){
-            toSave(s.getSeat());
+                toSave(s.getSeat());
+            }
         }
         if(ok){
+            System.out.println("Text OK!");
             String text = "Are you sure you whish to Book the following seats? \n";
             Iterator<InfoHolding> iter = people.iterator(); 
             while(iter.hasNext()){
                 InfoHolding tmp = iter.next();
+                System.out.println(tmp.getSeat());
                 text += tmp.getSeat();
             }
+            System.out.println(text);
+            System.out.println("Säten klara!");
             int reply = JOptionPane.showConfirmDialog(null, 
             text,
             "OKEY?", 
             JOptionPane.YES_NO_OPTION);
 
             if( reply == JOptionPane.YES_OPTION){
+                System.out.println("YES!");
                 for(Seat s: seats){
+                    System.out.println("DEBUG: "+s.getSeat());
                     s.setStatus(true);
                     view.removeInfo(s.getSeat());
                 }
                 seats.clear();
                 text = "";
                 toUpdate();
+                readyForNew = true;
             }
             else if(reply == JOptionPane.NO_OPTION){ 
-                seats.clear();
+                System.out.println("NO!");
                 text = "";
-                toUpdate();
+                System.out.println(text);
+                readyForNew = false;
             }
             
         }
         else{
+            System.out.println("Text FEL!");
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, 
                 "YOU NEED TO SELECT A SEAT AND FILL BOTH BOXES BEFORE YOU BOOK", 
                 "OKEY?", 
                 JOptionPane.WARNING_MESSAGE);
             }
+            System.out.println("KLART!");
         });
     }
 
