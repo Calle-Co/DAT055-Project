@@ -9,6 +9,7 @@ public class InfoHolding {
     private String owner = null;
     private String age = null;
     private String name = null;
+    private String seat = null;
 
     /**
      * The constructor is used to create a new representation of a person
@@ -16,10 +17,11 @@ public class InfoHolding {
      * @param age Age of th person
      * @param owner Username of the "main" person who peforms the booking
      */
-    public InfoHolding(String name, String age, String owner) {
+    public InfoHolding(String name, String age, String owner, String seat) {
         this.name = name;
         this.age  = age;
         this.owner = owner;
+        this.seat = seat;
     }
 
     /**
@@ -36,6 +38,10 @@ public class InfoHolding {
      */
     public String getAge(){
         return this.age;       
+    }
+
+    public String getSeat(){
+        return this.seat;
     }
 
     /**

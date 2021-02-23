@@ -1,13 +1,18 @@
 package customer;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
 import global.InfoHolding;
 import java.awt.*;
 public class BookingController {
     private BookingView view;
     private ArrayList<Seat> seats;
-    private static boolean ok = true;
+    private static boolean ok = false;
     private static ArrayList<InfoHolding> people = new ArrayList<>();
     private static HashMap<String, InfoPanel> info;
 
@@ -34,21 +39,40 @@ public class BookingController {
             toSave(s.getSeat());
         }
         if(ok){
-            for(Seat s: seats){
-                s.setStatus(true);
-                view.removeInfo(s.getSeat());
+            String text = "Are you sure you whish to Book the following seats? \n";
+            Iterator<InfoHolding> iter = people.iterator(); 
+            while(iter.hasNext()){
+                InfoHolding tmp = iter.next();
+                text += tmp.getSeat();
             }
-            seats.clear();
-            toUpdate();
+            int reply = JOptionPane.showConfirmDialog(null, 
+            text,
+            "OKEY?", 
+            JOptionPane.YES_NO_OPTION);
+
+            if( reply == JOptionPane.YES_OPTION){
+                for(Seat s: seats){
+                    s.setStatus(true);
+                    view.removeInfo(s.getSeat());
+                }
+                seats.clear();
+                text = "";
+                toUpdate();
+            }
+            else if(reply == JOptionPane.NO_OPTION){ 
+                seats.clear();
+                text = "";
+                toUpdate();
+            }
+            
         }
         else{
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, 
-                "YOU NEED HELP", 
+                "YOU NEED TO SELECT A SEAT AND FILL BOTH BOXES BEFORE YOU BOOK", 
                 "OKEY?", 
                 JOptionPane.WARNING_MESSAGE);
             }
-            
         });
     }
 
@@ -59,9 +83,9 @@ public class BookingController {
     public static void toSave(String key){
         String name = info.get(key).getName();
         String age  = info.get(key).getAge();
-        if(!name.isEmpty() && !age.isEmpty()){
+        if(!name.isEmpty() && !age.isEmpty() && !info.isEmpty()){
             ok = true;
-            InfoHolding nyP = new InfoHolding(name, age, "test");
+            InfoHolding nyP = new InfoHolding(name, age, "test", key);
             people.add(nyP);
         }
         else{
