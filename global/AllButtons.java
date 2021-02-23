@@ -11,6 +11,8 @@ import javax.swing.UIManager;
  * En klass för applikationens alla knappar.
  * Knapparna kommer i tre olika storlekar, small, medium och large.
  * Om man hovrar över knapparna så uppstår en liten effekt.
+ * @author Carl Classon
+ * @version 2021-02-
  */
 @SuppressWarnings("serial")
 public class AllButtons extends JButton{

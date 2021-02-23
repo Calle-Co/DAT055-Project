@@ -8,6 +8,10 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Simon Länsberg, William Husar
+ * @version 2021-02-23
+ */
 public class BookingView extends JPanel{
     private Seat currentSeat;
     private AllButtons bokaButton;
@@ -27,7 +31,7 @@ public class BookingView extends JPanel{
         iHolder.setLayout(new GridLayout(4,1,0,0));
         iHolder.setPreferredSize(new Dimension(200, 600));
         iHolder.setVisible(true);
-        iHolder.setBackground(Color.GREEN);
+        iHolder.setBackground(Color.WHITE);
         this.setLayout(new BorderLayout());
         this.add(sPanel, BorderLayout.WEST);
         this.add(bokaButton, BorderLayout.SOUTH);

@@ -1,0 +1,2 @@
+All Resources where created for the use in this application and only in this application.
+Author Simon Länsberg

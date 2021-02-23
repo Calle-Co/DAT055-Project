@@ -2,13 +2,14 @@ package start;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.Color;
 import java.util.ArrayList;
-
 import global.AllButtons;
 import global.AllButtons.size;
-
+/**
+ * @author 
+ * @version 2021-02-
+ */
 @SuppressWarnings("serial")
 public class WelcomeView extends JPanel{
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
