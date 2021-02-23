@@ -5,14 +5,15 @@ import javax.swing.JButton;
 import global.AllButtons;
 
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SignupController {
-    private StartModel model;
+    private SignupModel model;
     private SignupView view;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
-    public SignupController(StartModel m, SignupView v){
+    public SignupController(SignupModel m, SignupView v){
         this.model = m;
         this.view = v;
         buttons = view.getButtons();
@@ -22,5 +23,18 @@ public class SignupController {
         for(JButton b : buttons) {
             b.addActionListener(al);
         }
+    }
+
+    public boolean signUp(String username, String password){
+        try{
+            model.signUp(username,password); 
+        } catch (SQLException e){    
+            view.errorPanel();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

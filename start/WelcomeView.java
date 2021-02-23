@@ -6,9 +6,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import global.AllButtons;
 import global.AllButtons.size;
+
 /**
- * @author 
- * @version 2021-02-
+ * En klass för Välkomstpanelen.
+ * @author Carl Classon
+ * @version 2021-02-16
  */
 @SuppressWarnings("serial")
 public class WelcomeView extends JPanel{

@@ -73,6 +73,7 @@ public class StartFrame extends JFrame implements Observable {
       }
       });
 
+<<<<<<< Updated upstream
       SignupView sView = new SignupView();
       SignupController sController = new SignupController(sModel, sView);
       sController.addButtonListener(e -> {
@@ -90,12 +91,20 @@ public class StartFrame extends JFrame implements Observable {
 			  
         } catch (IOException ex){
           	ex.printStackTrace();
+=======
+    SignupView sView = new SignupView();
+    SignupModel suModel = new SignupModel();
+    SignupController sController = new SignupController(suModel, sView);
+    sController.addButtonListener(e -> {
+    	String s = ((JButton) e.getSource()).getText();
+      	if (s == "Signup!") {
+            if(sController.signUp(sView.getUsername(), sView.getPassword()))
+                nextView(views.get("LoginView"));
+>>>>>>> Stashed changes
         }  
-        nextView(views.get("LoginView"));
-      }
-      if (s == "cancel") {
-        nextView(views.get("LoginView"));
-      }
+        if (s == "cancel") {
+            nextView(views.get("LoginView"));
+        }
     });
 
     views.put("WelcomeView", wView);

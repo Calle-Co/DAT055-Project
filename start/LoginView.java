@@ -9,6 +9,7 @@ import javax.swing.border.MatteBorder;
 
 import global.*;
 
+
 public class LoginView extends JPanel{
 
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");

@@ -12,7 +12,11 @@ import javax.swing.UIManager;
  * Knapparna kommer i tre olika storlekar, small, medium och large.
  * Om man hovrar över knapparna så uppstår en liten effekt.
  * @author Carl Classon
+<<<<<<< Updated upstream
  * @version 2021-02-
+=======
+ * @version 2021-02-16
+>>>>>>> Stashed changes
  */
 @SuppressWarnings("serial")
 public class AllButtons extends JButton{
@@ -23,13 +27,15 @@ public class AllButtons extends JButton{
         LARGE
     }
 
-    
     /**
      * A method for creating specific buttons. The buttons have a hover-effect when you mouse 
      * over them.
      * 
-     * @param s The size you want your button to be, can be on off : SMALL, MEDIUM, LARGE.
-     * @param title The text you want on your button.
+     * En metod för att skapa specifika knappar. Knapparna har en liten effekt när man 
+     * för muspekaren över dem.
+     * 
+     * @param s Storleken du vill ha på din knapp, kan vara någon av : SMALL, MEDIUM, LARGE.
+     * @param title Texten du vill ha på din knapp
      */
 
     public AllButtons(size s, String title){
