@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.*;
@@ -28,6 +29,8 @@ public class HomeView extends JPanel {
 
     JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
     JFormattedTextField dateField2 = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
+
+    private ArrayList<AllButtons> buttons = new ArrayList<>();
 
     public HomeView() {
 
@@ -242,7 +245,11 @@ public class HomeView extends JPanel {
             logoPanel.add(logo);
             add(logoPanel);
 
+
+
         }
+
+        public ArrayList<AllButtons> getButtons() { return buttons; }
 
 
     }

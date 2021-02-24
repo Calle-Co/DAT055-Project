@@ -34,7 +34,26 @@ public class CustomerFrame implements Observable {
     }
 
     public void init() {
+        CustomerModel cModel = new CustomerModel();
 
+        HomeView chView = new HomeView();
+        HomeController wController = new HomeController(cModel, chView);
+        /*wController.addButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText();
+            if (s == "Boka!") {
+              nextView(views.get("LoginView"));
+            }
+            if (s == "Admin") {
+              nextView(views.get("AdminLoginView"));
+            }
+        });*/
+
+
+        views.put("HomeView", chView);
+
+        customerFrame.add(chView);
+        customerFrame.pack();
+        currentView = chView;
     }
 
     public void nextView(JPanel view) {
