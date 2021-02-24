@@ -53,25 +53,25 @@ public class StartFrame implements Observable {
         LoginModel lModel = new LoginModel();
         LoginController lController = new LoginController(lModel, lView);
         lController.addButtonListener(e -> {
-          String s = ((JButton) e.getSource()).getText();
-          if (s == "Login!") {
-            nextView(new LoadingView());
-            Timer t = new Timer(2000, new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    notifyObservers("cLogin");
+            String s = ((JButton) e.getSource()).getText();
+            if (s == "Login!") {
+                if(lController.userLogin(lView.getUsername(), lView.getPassword())) {
+                    nextView(new LoadingView());
+                    Timer t = new Timer(2000, new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            notifyObservers("cLogin");
+                        }
+                    });
+                    t.setRepeats(false);
+                    t.start();
                 }
-            });
-            t.setRepeats(false);
-            t.start();
-	    	    if(lController.userLogin(lView.getUsername(), lView.getPassword()))
-                    notifyObservers("cLogin");
-          }
-          if (s == "cancel") {
-        	nextView(views.get("WelcomeView"));
-          }
-          if (s == "Signup!") {
-            nextView(views.get("SignupView"));
-          }
+            }
+            if (s == "cancel") {
+        	    nextView(views.get("WelcomeView"));
+            }
+            if (s == "Signup!") {
+                nextView(views.get("SignupView"));
+            }
         });
 
         AdminLoginView aView = new AdminLoginView();
