@@ -12,6 +12,7 @@ import java.awt.*;
 public class BookingController {
     private BookingView view;
     private ArrayList<Seat> seats;
+    private static String text;
     private static boolean ok = false;
     private static boolean readyForNew = true;
     private static ArrayList<InfoHolding> people = new ArrayList<>();
@@ -42,25 +43,14 @@ public class BookingController {
             }
         }
         if(ok){
-            System.out.println("Text OK!");
-            String text = "Are you sure you whish to Book the following seats? \n";
-            Iterator<InfoHolding> iter = people.iterator(); 
-            while(iter.hasNext()){
-                InfoHolding tmp = iter.next();
-                System.out.println(tmp.getSeat());
-                text += tmp.getSeat();
-            }
-            System.out.println(text);
-            System.out.println("Säten klara!");
+            text = "Are you sure you whish to Book";
             int reply = JOptionPane.showConfirmDialog(null, 
             text,
             "OKEY?", 
             JOptionPane.YES_NO_OPTION);
 
             if( reply == JOptionPane.YES_OPTION){
-                System.out.println("YES!");
                 for(Seat s: seats){
-                    System.out.println("DEBUG: "+s.getSeat());
                     s.setStatus(true);
                     view.removeInfo(s.getSeat());
                 }
@@ -70,12 +60,9 @@ public class BookingController {
                 readyForNew = true;
             }
             else if(reply == JOptionPane.NO_OPTION){ 
-                System.out.println("NO!");
                 text = "";
-                System.out.println(text);
                 readyForNew = false;
-            }
-            
+            }   
         }
         else{
             System.out.println("Text FEL!");
@@ -84,13 +71,11 @@ public class BookingController {
                 "YOU NEED TO SELECT A SEAT AND FILL BOTH BOXES BEFORE YOU BOOK", 
                 "OKEY?", 
                 JOptionPane.WARNING_MESSAGE);
+                text = "";
             }
-            System.out.println("KLART!");
         });
     }
-
     public void toPrint(String s){
-    System.out.println(s);
     }
 
     public static void toSave(String key){
@@ -111,7 +96,6 @@ public class BookingController {
         for(InfoHolding p : people){
         total += p.toPrint()+ "\n";
         }
-        System.out.println(total);
         test.updateDisplay(total);
     }
 }

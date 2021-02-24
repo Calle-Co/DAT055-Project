@@ -5,6 +5,10 @@ import java.awt.*;
 import java.util.ArrayList;
 import global.*;
 
+/**
+ * @author Simon Länsberg, William Husar
+ * @version 2021-02-22
+ */
 public class InfoPanel extends JPanel {
     private JTextField name = new JTextField();
     private JTextField age = new JTextField();
