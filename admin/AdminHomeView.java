@@ -3,11 +3,9 @@ package admin;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 
-import global.*;
 import global.AllButtons;
 import global.AllButtons.size;
 
-import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -15,63 +13,37 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
 
 public class AdminHomeView extends JPanel{
-    //private JFrame f;
-
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
 
-    private JPanel contentPanel;
-    private JPanel menuPanel;
-    private JPanel sidePanel;
-    private JPanel mainPanel;
-    private JPanel lowerPanel;
-    private JPanel inside;
-    private JLabel date;
-    private AllButtons homeButton;
-    private AllButtons bookingButton;
-    private AllButtons logoutButton;
-    private AllButtons helpButton;
-
-    private AllButtons destinations;
-    private AllButtons customers;
-    private AllButtons flights;
-
-    private JLabel ex1;
-    private JLabel ex2;
-    private JLabel ex3;
-    private JLabel ex4;
-    private JLabel random;
-
-
     public AdminHomeView(){
-        contentPanel = new JPanel();
+        JPanel contentPanel = new JPanel();
 
-        menuPanel = new JPanel();
-        sidePanel = new JPanel();
-        mainPanel = new JPanel();
-        lowerPanel = new JPanel();
-        inside = new JPanel();
+        JPanel menuPanel = new JPanel();
+        JPanel sidePanel = new JPanel();
+        JPanel mainPanel = new JPanel();
+        JPanel lowerPanel = new JPanel();
+        JPanel inside = new JPanel();
 
-        date = new JLabel("--date and time--");
-        homeButton = new AllButtons(size.MEDIUM, "Home");
-        bookingButton = new AllButtons(size.MEDIUM, "Bookings");
-        logoutButton = new AllButtons(size.MEDIUM, "Logout");
-        helpButton = new AllButtons(size.MEDIUM, "Help");
+        JLabel date = new JLabel("--date and time--");
+        AllButtons homeButton = new AllButtons(size.MEDIUM, "Home");
+        AllButtons bookingButton = new AllButtons(size.MEDIUM, "Bookings");
+        AllButtons logoutButton = new AllButtons(size.MEDIUM, "Logout");
+        AllButtons helpButton = new AllButtons(size.MEDIUM, "Help");
         JLabel logo = new JLabel(logga, JLabel.CENTER);
        
-        ex1 = new JLabel("ex1");
-        ex2 = new JLabel("ex2");
-        ex3 = new JLabel("ex3");
-        ex4 = new JLabel("ex4");
+        JLabel ex1 = new JLabel("ex1");
+        JLabel ex2 = new JLabel("ex2");
+        JLabel ex3 = new JLabel("ex3");
+        JLabel ex4 = new JLabel("ex4");
 
-        destinations = new AllButtons(size.LARGE, "Destinations");
-        customers = new AllButtons(size.LARGE, "Clients");
-        flights = new AllButtons(size.LARGE, "Flights");
+        AllButtons destinations = new AllButtons(size.LARGE, "Destinations");
+        AllButtons customers = new AllButtons(size.LARGE, "Clients");
+        AllButtons flights = new AllButtons(size.LARGE, "Flights");
 
-        random = new JLabel("Whatever YOU WANT!");
+        JLabel random = new JLabel("Whatever YOU WANT!");
 
         menuPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -89,24 +61,18 @@ public class AdminHomeView extends JPanel{
         inside.add(ex4);
         
         sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
-        //sidePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        //sidePanel.add(Box.createRigidArea(new Dimension(5,0)));
-        //sidePanel.setPreferredSize(new Dimension(400, 100));
-        //sidePanel.setMaximumSize(new Dimension(400, 100));
 
-        //Border margin = new EmptyBorder(10, 10, 5, 10);
-        //sidePanel.setBorder(margin);
-        //sidePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Border margin = new EmptyBorder(20, 20, 5, 10);
+        sidePanel.setBorder(margin);
         sidePanel.add(inside);
- 
-        mainPanel.setLayout(new GridLayout(3, 1));
+
+        mainPanel.setLayout(new GridLayout(3,1));
         mainPanel.add(destinations);
         mainPanel.add(customers);
         mainPanel.add(flights);
 
         lowerPanel.setLayout(new FlowLayout());
         lowerPanel.add(random);
-
         
         contentPanel.setLayout(new BorderLayout());
         contentPanel.add(menuPanel, BorderLayout.NORTH);
@@ -115,8 +81,7 @@ public class AdminHomeView extends JPanel{
         contentPanel.add(lowerPanel, BorderLayout.SOUTH);
         
         add(contentPanel);
-        setVisible(true);
-       
+        setVisible(true); 
     }
 
     public ArrayList<AllButtons> getButtons() { return buttons; }

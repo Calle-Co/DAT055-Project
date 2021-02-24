@@ -28,9 +28,15 @@ public class AdminLoginController {
 
     public boolean adminLogin(String password){
         try{
-            return model.adminLogin(password); 
+            if(model.adminLogin(password)){
+                return true;
+            } else {
+                view.errorPanel();
+                return false;
+            }
+
         } catch (SQLException e){    
-            //view.errorPanel();
+            
             e.printStackTrace();
             return false;
         } catch (ClassNotFoundException e) {

@@ -38,6 +38,7 @@ public class SignupController {
             e.printStackTrace();
             return false;
         }
+        view.successPanel();
         return true;
     }
 }
