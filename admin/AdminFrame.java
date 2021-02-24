@@ -34,7 +34,28 @@ public class AdminFrame implements Observable {
     }
 
     public void init() {
+        AdminModel aModel = new AdminModel();
 
+        AdminHomeView hView = new AdminHomeView();
+        AdminHomeController hController = new AdminHomeController(aModel, hView);
+        hController.addButtonListener(e -> {
+        String s = ((JButton) e.getSource()).getText();
+            if (s == "Destinations") {
+                nextView(views.get("DestinationView"));
+          }
+            if (s == "Clients") {
+        	    nextView(views.get("ClientInfoView"));
+          }
+            if (s == "Flights") {
+                nextView(views.get("FlightsView"));
+          }
+        });
+
+        views.put("AdminHomeView", hView);
+
+        adminFrame.add(hView);
+        adminFrame.pack();
+        currentView = hView;
     }
 
     public void nextView(JPanel view) {
