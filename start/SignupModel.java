@@ -1,17 +1,20 @@
 package start;
 
-import java.sql.*; // JDBC stuff.
+import java.sql.*;
 import java.util.Properties;
 
+/**
+ * @author Carl Classon, William Husar
+ * @version 2021-02-24
+ */
 public class SignupModel {
-    public SignupModel(){ }
-    static final String DATABASE = "jdbc:postgresql://dat055-db-4930.postgresql.dbs.scalingo.com:32956/dat055_db_4930";
-    static final String USERNAME = "postgres";
-    static final String PASSWORD = "postgres";
-
-    // This is the JDBC connection object you will be using in your methods.
+    private static final String DATABASE = "jdbc:postgresql://dat055-db-4930.postgresql.dbs.scalingo.com:32956/dat055_db_4930";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "postgres";
     private Connection conn;
 
+    public SignupModel() { }
+    
     public void DatabaseConnection() throws SQLException, ClassNotFoundException {
         DatabaseConnection(DATABASE, USERNAME, PASSWORD);  
     }
@@ -39,6 +42,7 @@ public class SignupModel {
         }
         conn.close();   
     }
+
     // Detta är taget från Lab4 i kursen TDA357 (Databaser)
     public String getError(SQLException e){
         String message = e.getMessage();
@@ -47,6 +51,5 @@ public class SignupModel {
         message = message.replace("\"","\\\"");
         return message;
     }
-
 }
 
