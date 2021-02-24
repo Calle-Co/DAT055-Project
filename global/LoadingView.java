@@ -1,12 +1,14 @@
 package global;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class LoadingView extends JPanel {
 
     public LoadingView(){
         
+        setSize(600, 600);
         JPanel topPanel = new JPanel();
         topPanel.setBackground(Color.white);
         JLabel label = new JLabel("Loading...");
@@ -21,11 +23,17 @@ public class LoadingView extends JPanel {
         iconLabel.setIcon(imageIcon);
         centerPanel.add(iconLabel);
         centerPanel.setVisible(true);
+
+        JPanel test = new JPanel();
+        test.setLayout(new BorderLayout());
+        test.setBorder(new EmptyBorder(150, 0, 0, 0));
+        test.setBackground(Color.WHITE);
     
         setBackground(Color.WHITE);
         setLayout(new BorderLayout());
-        add(topPanel, BorderLayout.NORTH);
-        add(centerPanel, BorderLayout.CENTER);
+        test.add(topPanel, BorderLayout.NORTH);
+        test.add(centerPanel, BorderLayout.CENTER);
+        add(test, BorderLayout.CENTER);
         setVisible(true);
           
     }

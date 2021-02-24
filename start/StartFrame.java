@@ -3,6 +3,7 @@ package start;
 import javax.swing.*;
 import global.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.util.HashMap;
 
 /**
@@ -53,10 +54,17 @@ public class StartFrame implements Observable {
         lController.addButtonListener(e -> {
           String s = ((JButton) e.getSource()).getText();
           if (s == "Login!") {
-	    	      notifyObservers("cLogin");
+            nextView(new LoadingView());
+            Timer t = new Timer(2000, new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    notifyObservers("cLogin");
+                }
+            });
+            t.setRepeats(false);
+            t.start();
           }
           if (s == "cancel") {
-        	    nextView(views.get("WelcomeView"));
+        	nextView(views.get("WelcomeView"));
           }
           if (s == "Signup!") {
             nextView(views.get("SignupView"));
@@ -71,7 +79,7 @@ public class StartFrame implements Observable {
             notifyObservers("aLogin");
         }
         if (s == "cancel") {
-          nextView(views.get("WelcomeView"));
+            nextView(views.get("WelcomeView"));
         }
         });
 

@@ -3,7 +3,6 @@ package global;
 import start.*;
 import customer.*;
 import admin.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author William Husar, Simon Länsberg
@@ -30,11 +29,6 @@ public class App implements Observer {
 
     private void customerLogin() {
         System.out.println("inloggad customer");
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException ie) {
-            Thread.currentThread().interrupt();
-        }
         startFrame.frameSetVisible(false);
         customerFrame.frameSetVisible(true);
     }

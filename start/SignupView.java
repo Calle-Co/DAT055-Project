@@ -62,7 +62,7 @@ public class SignupView extends JPanel{
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(4, 1, 0, 10));
-        centerPanel.setBorder(new MatteBorder(0, 200, 100, 200,c));
+        centerPanel.setBorder(new MatteBorder(0, 200, 100, 200, c));
         centerPanel.setBackground(c);
         centerPanel.add(username);
         centerPanel.add(password);
