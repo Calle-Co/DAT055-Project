@@ -76,6 +76,10 @@ public class SignupView extends JPanel{
         String s = "That username already exist!\n" + "Try " + getUsername() + "1 instead!";
         JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
     }
+    public void successPanel(){
+        String s = "Signup succeeded!\nPress ok to return to login screen:";
+        JOptionPane.showMessageDialog(this, s, "Success!", JOptionPane.INFORMATION_MESSAGE);
+    }
 
     public String getPassword(){
         return password.getText();
