@@ -41,10 +41,10 @@ public class StartFrame implements Observable {
         WelcomeController wController = new WelcomeController(sModel, wView);
         wController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText();
-            if (s == "Boka!") {
+            if (s.equals("Boka!")){
               nextView(views.get("LoginView"));
             }
-            if (s == "Admin") {
+            if (s.equals("Admin")) {
               nextView(views.get("AdminLoginView"));
             }
         });
@@ -54,22 +54,32 @@ public class StartFrame implements Observable {
         LoginController lController = new LoginController(lModel, lView);
         lController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText();
-            if (s == "Login!") {
+            if (s.equals("Login!")) {
                 if(lController.userLogin(lView.getUsername(), lView.getPassword())) {
                     nextView(new LoadingView());
-                    Timer t = new Timer(2000, new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
+                     
+                    Thread t2 = new Thread(new Runnable(){
+
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            
+                            try {
+                                Thread.sleep(2000);
+                            } catch (Exception e) {
+                            }
                             notifyObservers("cLogin");
                         }
+
+                        
                     });
-                    t.setRepeats(false);
-                    t.start();
+                    t2.start();
                 }
             }
-            if (s == "cancel") {
+            if (s.equals("cancel")) {
         	    nextView(views.get("WelcomeView"));
             }
-            if (s == "Signup!") {
+            if (s.equals("Signup!")) {
                 nextView(views.get("SignupView"));
             }
         });
@@ -79,19 +89,28 @@ public class StartFrame implements Observable {
         AdminLoginController aController = new AdminLoginController(aModel, aView);
         aController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
-        if (s == "Login!") {
+        if (s.equals("Login!")) {
             if(aController.adminLogin(aView.getPassword())){
                 nextView(new LoadingView());
-                    Timer t = new Timer(2000, new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            notifyObservers("aLogin");
+                Thread t2 = new Thread(new Runnable(){
+
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        
+                        try {
+                            Thread.sleep(2000);
+                        } catch (Exception e) {
                         }
-                    });
-                    t.setRepeats(false);
-                    t.start();
+                        notifyObservers("aLogin");
+                    }
+
+                    
+                });
+                t2.start();
             }   
         }
-        if (s == "cancel") {
+        if (s.equals("cancel")){
             nextView(views.get("WelcomeView"));
         }
         });
@@ -101,13 +120,13 @@ public class StartFrame implements Observable {
         SignupController sController = new SignupController(suModel, sView);
         sController.addButtonListener(e -> {
         	String s = ((JButton) e.getSource()).getText();
-          	if (s == "Signup!") {
+          	if (s.equals("Signup!")) {
                 // Om namnet är tillgängligt kommer man tillbaka till Login.
                 // Annars stannar man kvar i Signup  
                 if(sController.signUp(sView.getUsername(), sView.getPassword()))
                     nextView(views.get("LoginView"));
             }  
-            if (s == "cancel") {
+            if (s.equals("cancel")) {
                 nextView(views.get("LoginView"));
             }
         });
