@@ -42,7 +42,7 @@ public class BookingController {
             }
         }
         if(ok){
-            text = "Are you sure you whish to Book";
+            text = "Are you sure you wish to Book";
             int reply = JOptionPane.showConfirmDialog(null, 
             text,
             "OKEY?", 
@@ -87,6 +87,10 @@ public class BookingController {
         else{
             ok = false;
         }
+    }
+
+    public void freeSeats(){
+        
     }
 
     public static void toUpdate(){
