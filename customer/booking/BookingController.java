@@ -12,6 +12,7 @@ import java.awt.*;
  */
 public class BookingController {
     private BookingView view;
+    private BookingModel model;
     private ArrayList<Seat> seats;
     private static String text;
     private static boolean ok = false;
@@ -19,7 +20,8 @@ public class BookingController {
     private static ArrayList<InfoHolding> people = new ArrayList<>();
     private static HashMap<String, InfoPanel> info;
 
-    public BookingController(BookingView view){
+    public BookingController(BookingModel model, BookingView view){
+        this.model = model;
         this.view = view;
         seats = new ArrayList<>();
         view.addSeatListener(e -> {

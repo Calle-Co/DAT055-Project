@@ -14,11 +14,12 @@ import java.util.ArrayList;
 public class WelcomeController {
     private StartModel model;
     private WelcomeView view;
-    private ArrayList<AllButtons> buttons = new ArrayList<>();
+    private ArrayList<AllButtons> buttons;
 
     public WelcomeController(StartModel m, WelcomeView v){
         this.model = m;
         this.view = v;
+        buttons = new ArrayList<>();
         buttons = view.getButtons();
     }
 

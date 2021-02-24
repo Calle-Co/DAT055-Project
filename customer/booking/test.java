@@ -12,7 +12,8 @@ public class test {
     private static JTextArea text = new JTextArea();
     public static void main(String[] args) {
         BookingView v = new BookingView();
-        BookingController c = new BookingController(v);
+        BookingModel m = new BookingModel();
+        BookingController c = new BookingController(m,v);
         initAdmin();
         JFrame frame = new JFrame();
         frame.setLayout(new BorderLayout());

@@ -6,7 +6,9 @@ import java.awt.*;
 public class FlightTest {
     public static void main(String[] args) {
         FlightView v = new FlightView();
-        FlightController c = new FlightController(v);
+        FlightModel m = new FlightModel();
+        FlightController c = new FlightController(m,v);
+        c.flightTest("Gothenburg", "London", "2021-06-20");
         JFrame frame = new JFrame();
         frame.setLayout(new BorderLayout());
         frame.add(v, BorderLayout.CENTER);
