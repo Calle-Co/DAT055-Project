@@ -59,6 +59,11 @@ public class AdminLoginView extends JPanel {
         setVisible(true);
     }
 
+    
+    public void errorPanel(){
+        JOptionPane.showMessageDialog(this, "Wrong password!\nTry again", "Error!", JOptionPane.ERROR_MESSAGE);
+    }
+
     public String getPassword(){ return password.getText(); }
     public ArrayList<AllButtons> getButtons() { return buttons; }
 }
