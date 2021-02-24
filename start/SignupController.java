@@ -7,7 +7,10 @@ import global.AllButtons;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+/**
+ * @author William Husar, Simon Länsberg, Carl Classon
+ * @version 2021-02-24
+ */
 public class SignupController {
     private SignupModel model;
     private SignupView view;

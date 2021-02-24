@@ -3,6 +3,8 @@ package customer;
 import global.*;
 import global.AllButtons.size;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -10,7 +12,7 @@ import java.util.HashMap;
 
 /**
  * @author Simon Länsberg, William Husar
- * @version 2021-02-23
+ * @version 2021-02-24
  */
 public class BookingView extends JPanel{
     private Seat currentSeat;
@@ -27,15 +29,19 @@ public class BookingView extends JPanel{
         info = new HashMap<>();
         seats = new ArrayList<>();
         initSeats();
-        this.setPreferredSize(new Dimension(800,800));
+        this.setPreferredSize(new Dimension(500,800));
+        this.setBorder(new EmptyBorder(6,6,6,6));
+        this.setLayout(new BorderLayout(10,10));
+        this.setBackground(Color.WHITE);
         iHolder.setLayout(new GridLayout(4,1,0,0));
         iHolder.setPreferredSize(new Dimension(200, 600));
         iHolder.setVisible(true);
         iHolder.setBackground(Color.WHITE);
-        this.setLayout(new BorderLayout());
+        //this.setLayout(new BorderLayout());
         this.add(sPanel, BorderLayout.WEST);
         this.add(bokaButton, BorderLayout.SOUTH);
-        this.add(iHolder, BorderLayout.EAST);
+        this.add(iHolder, BorderLayout.CENTER);
+        
     }
 
     public void addInfo(String s){

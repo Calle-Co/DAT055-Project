@@ -2,13 +2,14 @@ package customer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-
 import global.InfoHolding;
 import java.awt.*;
+
+/**
+ * @author Simon Länsberg, William Husar
+ * @version 2021-02-24
+ */
 public class BookingController {
     private BookingView view;
     private ArrayList<Seat> seats;
@@ -24,12 +25,10 @@ public class BookingController {
         view.addSeatListener(e -> {
         String s = ((Seat) e.getSource()).getSeat();
             if(!((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
-                System.out.println("yeåå");
                 view.addInfo(s);
                 seats.add((Seat) e.getSource());
             }
             else if(((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
-                System.out.println("neåå");
                 view.removeInfo(s);
                 seats.remove((Seat) e.getSource());
             }
@@ -38,7 +37,7 @@ public class BookingController {
         view.addButtonListener(e -> {
         info = view.getInfo();
         if (readyForNew) {
-        for(Seat s: seats){
+            for(Seat s: seats){
                 toSave(s.getSeat());
             }
         }
@@ -65,13 +64,12 @@ public class BookingController {
             }   
         }
         else{
-            System.out.println("Text FEL!");
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, 
                 "YOU NEED TO SELECT A SEAT AND FILL BOTH BOXES BEFORE YOU BOOK", 
                 "OKEY?", 
                 JOptionPane.WARNING_MESSAGE);
-                text = "";
+            text = "";
             }
         });
     }

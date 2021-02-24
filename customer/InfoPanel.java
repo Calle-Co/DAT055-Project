@@ -20,6 +20,8 @@ public class InfoPanel extends JPanel {
         JLabel seatLabel = new JLabel("Seat " + nr, JLabel.CENTER);
         JLabel nameLabel = new JLabel("Name: " , JLabel.RIGHT);
         JLabel ageLabel = new JLabel("Age: ", JLabel.RIGHT);
+        seatLabel.setBackground(Color.WHITE);
+        centerPanel.setBackground(Color.WHITE);
         setLayout(new GridLayout(2, 1, 0, 0));
         //Cover your eyes and keep moving :)
         centerPanel.setLayout(new GridBagLayout());
@@ -46,6 +48,7 @@ public class InfoPanel extends JPanel {
         centerPanel.add(age,c);
         add(seatLabel);
         add(centerPanel);
+        setBackground(Color.WHITE);
         setVisible(true);
     }
 
