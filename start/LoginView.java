@@ -16,6 +16,8 @@ public class LoginView extends JPanel{
 
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
+    private JTextField username;
+    private JTextField password;
 
     public LoginView( ) {
 
@@ -30,8 +32,8 @@ public class LoginView extends JPanel{
         logoPanel.setBackground(c);
         add(logoPanel,BorderLayout.NORTH);
 
-        JTextField username = new JTextField("Username");
-        JTextField password = new JPasswordField("Password");
+        username = new JTextField("Username");
+        password = new JPasswordField("Password");
 
         username.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
@@ -88,5 +90,7 @@ public class LoginView extends JPanel{
 
     }
 
+    public String getPassword(){ return password.getText(); }
+    public String getUsername(){ return username.getText(); }
     public ArrayList<AllButtons> getButtons() { return buttons; }
 }

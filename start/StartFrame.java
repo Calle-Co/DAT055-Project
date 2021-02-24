@@ -50,7 +50,8 @@ public class StartFrame implements Observable {
         });
 
         LoginView lView = new LoginView();
-        LoginController lController = new LoginController(sModel, lView);
+        LoginModel lModel = new LoginModel();
+        LoginController lController = new LoginController(lModel, lView);
         lController.addButtonListener(e -> {
           String s = ((JButton) e.getSource()).getText();
           if (s == "Login!") {
@@ -62,6 +63,8 @@ public class StartFrame implements Observable {
             });
             t.setRepeats(false);
             t.start();
+	    	    if(lController.userLogin(lView.getUsername(), lView.getPassword()))
+                    notifyObservers("cLogin");
           }
           if (s == "cancel") {
         	nextView(views.get("WelcomeView"));
@@ -72,11 +75,14 @@ public class StartFrame implements Observable {
         });
 
         AdminLoginView aView = new AdminLoginView();
-        AdminLoginController aController = new AdminLoginController(sModel, aView);
+        AdminLoginModel aModel = new AdminLoginModel();
+        AdminLoginController aController = new AdminLoginController(aModel, aView);
         aController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
         if (s == "Login!") {
-            notifyObservers("aLogin");
+            if(aController.adminLogin(aView.getPassword())){
+                notifyObservers("aLogin");
+            }   
         }
         if (s == "cancel") {
             nextView(views.get("WelcomeView"));
@@ -89,6 +95,8 @@ public class StartFrame implements Observable {
         sController.addButtonListener(e -> {
         	String s = ((JButton) e.getSource()).getText();
           	if (s == "Signup!") {
+                // Om namnet är tillgängligt kommer man tillbaka till Login.
+                // Annars stannar man kvar i Signup  
                 if(sController.signUp(sView.getUsername(), sView.getPassword()))
                     nextView(views.get("LoginView"));
             }  

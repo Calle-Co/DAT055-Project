@@ -5,18 +5,19 @@ import javax.swing.JButton;
 import global.AllButtons;
 
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author William Husar, Simon Länsberg
+ * @author William Husar, Simon Länsberg, Carl Classon
  * @version 2021-02-24
  */
 public class LoginController {
-    private StartModel model;
+    private LoginModel model;
     private LoginView view;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
-    public LoginController(StartModel m, LoginView v){
+    public LoginController(LoginModel m, LoginView v){
         this.model = m;
         this.view = v;
         buttons = view.getButtons();
@@ -25,6 +26,19 @@ public class LoginController {
     public void addButtonListener(ActionListener al) {
         for(JButton b : buttons) {
             b.addActionListener(al);
+        }
+    }
+
+    public boolean userLogin(String username,String password){
+        try{
+            return model.userLogin(username,password); 
+        } catch (SQLException e){    
+            //view.errorPanel();
+            e.printStackTrace();
+            return false;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

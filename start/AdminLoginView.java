@@ -12,6 +12,7 @@ import global.*;
 public class AdminLoginView extends JPanel {
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
+    private JTextField password;
 
     public AdminLoginView( ) {
         setSize(600, 600);
@@ -26,7 +27,7 @@ public class AdminLoginView extends JPanel {
 
         JLabel username = new JLabel("Admin",JLabel.CENTER);
         username.setFont(new Font("Basic", Font.PLAIN,22));
-        JTextField password = new JPasswordField("Password");
+        password = new JPasswordField("Password");
         password.setFont(new Font("Basic", Font.PLAIN,14));
 
         password.addFocusListener(new FocusListener() {
@@ -58,5 +59,6 @@ public class AdminLoginView extends JPanel {
         setVisible(true);
     }
 
+    public String getPassword(){ return password.getText(); }
     public ArrayList<AllButtons> getButtons() { return buttons; }
 }
