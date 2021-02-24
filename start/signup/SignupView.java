@@ -1,4 +1,4 @@
-package start;
+package start.signup;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,12 +9,13 @@ import javax.swing.border.MatteBorder;
 
 import global.*;
 
-public class AdminLoginView extends JPanel {
+public class SignupView extends JPanel{
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
+    private JTextField username;
     private JTextField password;
 
-    public AdminLoginView( ) {
+    public SignupView() {
         setSize(600, 600);
         Color c = new Color(211,211,211);
         setLayout(new BorderLayout());
@@ -25,10 +26,22 @@ public class AdminLoginView extends JPanel {
         logoPanel.setBackground(c);
         add(logoPanel,BorderLayout.NORTH);
 
-        JLabel username = new JLabel("Admin",JLabel.CENTER);
-        username.setFont(new Font("Basic", Font.PLAIN,22));
+        username = new JTextField("Username");
         password = new JPasswordField("Password");
-        password.setFont(new Font("Basic", Font.PLAIN,14));
+
+        username.addFocusListener(new FocusListener() {
+            public void focusGained(FocusEvent e) {
+                if(username.getText().equalsIgnoreCase("Username")){
+                    username.setText("");
+                }
+            }
+        
+            public void focusLost(FocusEvent e) {
+                if(username.getText().isEmpty()){
+                    username.setText("Username");
+                }
+            }
+        });
 
         password.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
@@ -42,30 +55,41 @@ public class AdminLoginView extends JPanel {
             }
         });
         
-        AllButtons loginButton = new AllButtons(AllButtons.size.MEDIUM, "Login!");
-        buttons.add(loginButton);
+        AllButtons signupButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
+        buttons.add(signupButton);
         AllButtons cancelButton = new AllButtons(AllButtons.size.SMALL, "cancel");
         buttons.add(cancelButton);
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(4, 1, 0, 10));
-        centerPanel.setBorder(new MatteBorder(0, 200, 100, 200,c));
+        centerPanel.setBorder(new MatteBorder(0, 200, 100, 200, c));
         centerPanel.setBackground(c);
         centerPanel.add(username);
         centerPanel.add(password);
-        centerPanel.add(loginButton);
+        centerPanel.add(signupButton);
         centerPanel.add(cancelButton);
         add(centerPanel,BorderLayout.CENTER);
         setVisible(true);
     }
 
-    
     public void errorPanel(){
         //Liten beep :)
         java.awt.Toolkit.getDefaultToolkit().beep();
-        JOptionPane.showMessageDialog(this, "Wrong password!\nTry again", "Error!", JOptionPane.ERROR_MESSAGE);
+        String s = "That username already exist!\n" + "Try " + getUsername() + "1 instead!";
+        JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
+    }
+    public void successPanel(){
+        String s = "Signup succeeded!\nPress ok to return to login screen:";
+        JOptionPane.showMessageDialog(this, s, "Success!", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public String getPassword(){ return password.getText(); }
+    public String getPassword(){
+        return password.getText();
+    }
+    public String getUsername(){
+        return username.getText();
+    }
+
     public ArrayList<AllButtons> getButtons() { return buttons; }
+
 }

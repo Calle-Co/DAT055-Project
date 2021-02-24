@@ -1,4 +1,4 @@
-package start;
+package start.signup;
 
 import java.sql.*;
 import global.ServerConnection;

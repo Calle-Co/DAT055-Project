@@ -1,5 +1,10 @@
 package start;
 
+import start.login.*;
+import start.adminLogin.*;
+import start.signup.*;
+import start.welcome.*;
+
 import javax.swing.*;
 import global.*;
 import java.awt.*;

@@ -1,4 +1,4 @@
-package start;
+package start.login;
 import java.sql.*;
 import global.ServerConnection;
 

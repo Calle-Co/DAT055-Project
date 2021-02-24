@@ -1,8 +1,9 @@
-package start;
+package start.welcome;
 
 import javax.swing.JButton;
 
 import global.AllButtons;
+import start.StartModel;
 
 import java.awt.event.*;
 import java.util.ArrayList;

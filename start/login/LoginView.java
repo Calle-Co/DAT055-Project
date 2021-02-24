@@ -1,4 +1,4 @@
-package start;
+package start.login;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,13 +9,19 @@ import javax.swing.border.MatteBorder;
 
 import global.*;
 
-public class SignupView extends JPanel{
+/**
+ * @author Anna Manfredsson
+ */
+public class LoginView extends JPanel{
+
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private JTextField username;
     private JTextField password;
 
-    public SignupView() {
+    public LoginView( ) {
+
+
         setSize(600, 600);
         Color c = new Color(211,211,211);
         setLayout(new BorderLayout());
@@ -55,41 +61,43 @@ public class SignupView extends JPanel{
             }
         });
         
-        AllButtons signupButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
-        buttons.add(signupButton);
+        AllButtons loginButton = new AllButtons(AllButtons.size.MEDIUM, "Login!");
+        buttons.add(loginButton);
+        
+
         AllButtons cancelButton = new AllButtons(AllButtons.size.SMALL, "cancel");
         buttons.add(cancelButton);
         
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(4, 1, 0, 10));
-        centerPanel.setBorder(new MatteBorder(0, 200, 100, 200, c));
+        centerPanel.setBorder(new MatteBorder(0, 200, 100, 200,c));
         centerPanel.setBackground(c);
         centerPanel.add(username);
         centerPanel.add(password);
-        centerPanel.add(signupButton);
+        centerPanel.add(loginButton);
         centerPanel.add(cancelButton);
         add(centerPanel,BorderLayout.CENTER);
+   
+        AllButtons signUpButton = new AllButtons(AllButtons.size.MEDIUM, "Signup!");
+        buttons.add(signUpButton);
+
+        JPanel signupButtonPanel = new JPanel();
+        signupButtonPanel.setBackground(c);
+        signupButtonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        signupButtonPanel.add(signUpButton);
+        add(signupButtonPanel,BorderLayout.SOUTH);
         setVisible(true);
+
     }
 
     public void errorPanel(){
         //Liten beep :)
         java.awt.Toolkit.getDefaultToolkit().beep();
-        String s = "That username already exist!\n" + "Try " + getUsername() + "1 instead!";
+        String s = "The username or password is incorrect!";
         JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
     }
-    public void successPanel(){
-        String s = "Signup succeeded!\nPress ok to return to login screen:";
-        JOptionPane.showMessageDialog(this, s, "Success!", JOptionPane.INFORMATION_MESSAGE);
-    }
 
-    public String getPassword(){
-        return password.getText();
-    }
-    public String getUsername(){
-        return username.getText();
-    }
-
+    public String getPassword(){ return password.getText(); }
+    public String getUsername(){ return username.getText(); }
     public ArrayList<AllButtons> getButtons() { return buttons; }
-
 }
