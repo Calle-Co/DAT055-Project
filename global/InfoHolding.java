@@ -40,6 +40,10 @@ public class InfoHolding {
         return this.age;       
     }
 
+    /**
+     * Getter function for the seat number
+     * @return Returns the seatnumber
+     */
     public String getSeat(){
         return this.seat;
     }
