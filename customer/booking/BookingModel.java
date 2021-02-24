@@ -1,4 +1,4 @@
-package customer;
+package customer.booking;
 
 /**
  * @author Simon Länsberg, William Husar

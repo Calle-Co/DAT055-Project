@@ -1,4 +1,4 @@
-package customer;
+package customer.home;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -19,7 +19,7 @@ public class HomeView extends JPanel {
     JComboBox combobox1;
     JComboBox combobox2;
 
-    private ImageIcon logga = new ImageIcon("global/Resources/smalllogga.PNG");
+    private ImageIcon logga = new ImageIcon("global/resources/smalllogga.PNG");
 
     public final static int ONE_SECOND = 1000;
     private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");

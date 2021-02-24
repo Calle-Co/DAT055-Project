@@ -1,4 +1,4 @@
-package customer;
+package customer.flight;
 
 import java.awt.Dimension;
 import java.awt.*;

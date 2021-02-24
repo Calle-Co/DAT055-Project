@@ -1,4 +1,4 @@
-package customer;
+package customer.home;
 
 import java.awt.Dimension;
 

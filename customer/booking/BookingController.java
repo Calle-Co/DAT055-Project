@@ -1,4 +1,4 @@
-package customer;
+package customer.booking;
 
 import java.util.ArrayList;
 import java.util.HashMap;

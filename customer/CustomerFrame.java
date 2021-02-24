@@ -4,6 +4,9 @@ import javax.swing.*;
 import global.*;
 import java.awt.*;
 import java.util.HashMap;
+import customer.home.*;
+import customer.flight.*;
+import customer.booking.*;
 
 /**
  * @author William Husar
@@ -34,10 +37,9 @@ public class CustomerFrame implements Observable {
     }
 
     public void init() {
-        CustomerModel cModel = new CustomerModel();
-
         HomeView chView = new HomeView();
-        HomeController wController = new HomeController(cModel, chView);
+        HomeModel hModel = new HomeModel();
+        HomeController wController = new HomeController(hModel, chView);
         /*wController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText();
             if (s == "Boka!") {

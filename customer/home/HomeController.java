@@ -1,4 +1,4 @@
-package customer;
+package customer.home;
 
 import javax.swing.JButton;
 
@@ -8,11 +8,11 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class HomeController {
-    private CustomerModel model;
+    private HomeModel model;
     private HomeView view;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
-    public HomeController(CustomerModel m, HomeView v){
+    public HomeController(HomeModel m, HomeView v){
         this.model = m;
         this.view = v;
         buttons = view.getButtons();

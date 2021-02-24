@@ -1,4 +1,4 @@
-package customer;
+package customer.flight;
 
 import global.*;
 
