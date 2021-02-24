@@ -91,6 +91,8 @@ public class LoginView extends JPanel{
     }
 
     public void errorPanel(){
+        //Liten beep :)
+        java.awt.Toolkit.getDefaultToolkit().beep();
         String s = "The username or password is incorrect!";
         JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
     }

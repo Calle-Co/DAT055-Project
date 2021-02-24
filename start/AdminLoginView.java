@@ -61,6 +61,8 @@ public class AdminLoginView extends JPanel {
 
     
     public void errorPanel(){
+        //Liten beep :)
+        java.awt.Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(this, "Wrong password!\nTry again", "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
