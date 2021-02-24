@@ -30,7 +30,7 @@ public class AdminFrame implements Observable {
         int y = (int) ((dimension.getHeight() - adminFrame.getHeight()) / 2);
         adminFrame.setLocation(x, y);
         adminFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        adminFrame.setTitle("CC Airlines");
+        adminFrame.setTitle("CC Airlines - Admin");
     }
 
     public void init() {
