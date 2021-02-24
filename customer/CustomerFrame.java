@@ -46,6 +46,10 @@ public class CustomerFrame implements Observable {
         currentView = view;
     }
 
+    public void frameSetVisible(Boolean b) {
+        customerFrame.setVisible(b);
+    }
+
     @Override
     public void addObserver(Observer observer) {
         this.observer = observer;

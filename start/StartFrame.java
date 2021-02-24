@@ -108,6 +108,10 @@ public class StartFrame implements Observable {
         currentView = view;
     }
 
+    public void frameSetVisible(Boolean b) {
+        startFrame.setVisible(b);
+    }
+
     @Override
     public void addObserver(Observer observer) {
         this.observer = observer;

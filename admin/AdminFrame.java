@@ -46,6 +46,10 @@ public class AdminFrame implements Observable {
         currentView = view;
     }
 
+    public void frameSetVisible(Boolean b) {
+        adminFrame.setVisible(b);
+    }
+
     @Override
     public void addObserver(Observer observer) {
         this.observer = observer;

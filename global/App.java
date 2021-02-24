@@ -2,25 +2,30 @@ package global;
 
 import start.*;
 import customer.*;
-
+import admin.*;
 import java.util.concurrent.TimeUnit;
 
-import admin.*;
-    public class App implements Observer {
-        private static StartFrame startFrame;
-        private static CustomerFrame customerFrame;
-        private static AdminFrame adminFrame;
+/**
+ * @author William Husar, Simon Länsberg
+ * @version 2021-02-24
+ */
+public class App implements Observer {
+    private static StartFrame startFrame;
+    private static CustomerFrame customerFrame;
+    private static AdminFrame adminFrame;
 
     public App() {
         startFrame = new StartFrame();
         customerFrame = new CustomerFrame();
         adminFrame = new AdminFrame();
-        startFrame.setVisible(true);
+        startFrame.frameSetVisible(true);
     }
 
     public static void main(String[] args) {
         Observer app = new App();
         startFrame.addObserver(app);
+        customerFrame.addObserver(app);
+        adminFrame.addObserver(app);
     }
 
     private void customerLogin() {
@@ -30,15 +35,15 @@ import admin.*;
         } catch (InterruptedException ie) {
             Thread.currentThread().interrupt();
         }
-        startFrame.setVisible(false);
-        customerFrame.setVisible(true);
+        startFrame.frameSetVisible(false);
+        customerFrame.frameSetVisible(true);
     }
 
     private void adminLogin() {
         System.out.println("inloggad admin");
-        startFrame.setVisible(false);
+        startFrame.frameSetVisible(false);
         // loading...
-        adminFrame.setVisible(true);
+        adminFrame.frameSetVisible(true);
     }
 
     private void logout() {
