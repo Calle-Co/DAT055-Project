@@ -90,6 +90,11 @@ public class LoginView extends JPanel{
 
     }
 
+    public void errorPanel(){
+        String s = "The username or password is incorrect!";
+        JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
+    }
+
     public String getPassword(){ return password.getText(); }
     public String getUsername(){ return username.getText(); }
     public ArrayList<AllButtons> getButtons() { return buttons; }
