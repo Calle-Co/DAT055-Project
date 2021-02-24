@@ -1,9 +1,7 @@
 package customer;
 
-import java.awt.*;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.DateFormat;
@@ -44,16 +42,16 @@ public class HomeView extends JPanel {
 
         // Destination
 
-        JButton sfButton = new JButton("One-Way");
-        sfButton.setBackground(Color.white);
-        sfButton.setBorderPainted(false);
+        AllButtons sfButton = new AllButtons(size.BORDERLESSWHITE, "One-Way");
+        //sfButton.setBackground(Color.white);
+        //sfButton.setBorderPainted(false);
         sfButton.setBounds(50, 20, 120, 30);
         sfButton.setFont(new Font("Airal", 1, 20));
         centerPanel.add(sfButton);
 
-        JButton rButton = new JButton("Return");
-        rButton.setBackground(Color.white);
-        rButton.setBorderPainted(false);
+        AllButtons rButton = new AllButtons(size.BORDERLESSWHITE, "Return");
+        //rButton.setBackground(Color.white);
+        //rButton.setBorderPainted(false);
         rButton.setBounds(190, 20, 100, 30);
         rButton.setFont(new Font("Arial", Font.BOLD, 20));
         centerPanel.add(rButton);
@@ -89,7 +87,7 @@ public class HomeView extends JPanel {
         exitLabel.setFont(new Font("Verdana", 0, 15));
         centerPanel.add(exitLabel);
 
-        JButton dateButton1 = new JButton("1");
+        AllButtons dateButton1 = new AllButtons(size.CUSTOM, "...");
         dateButton1.setBounds(135, 221, 35, 32);
         centerPanel.add(dateButton1);
 
@@ -102,7 +100,7 @@ public class HomeView extends JPanel {
         returnLabel.setFont(new Font("Verdana", 0, 15));
         centerPanel.add(returnLabel);
 
-        JButton dateButton2 = new JButton("2");
+        AllButtons dateButton2 = new AllButtons(size.CUSTOM, "...");
         dateButton2.setBounds(260, 221, 35, 32);
         centerPanel.add(dateButton2);
 
@@ -166,38 +164,38 @@ public class HomeView extends JPanel {
         topPanel.setLayout(null);
         add(topPanel);
 
-        JButton homeButton = new JButton("Home");
+        AllButtons homeButton = new AllButtons(size.BORDERLESSWHITE, "Home");
         homeButton.setBounds(50, 20, 160, 60);
-        homeButton.setBackground(Color.white);
-        homeButton.setBorderPainted(false);
+        //homeButton.setBackground(Color.white);
+        //homeButton.setBorderPainted(false);
         homeButton.setFont(new Font("", Font.BOLD, 25));
         topPanel.add(homeButton);
 
-        JButton bkButton = new JButton("Bookings");
+        AllButtons bkButton = new AllButtons(size.BORDERLESSWHITE, "Bookings");
         bkButton.setBounds(230, 20, 160, 60);
-        bkButton.setBackground(Color.white);
-        bkButton.setBorderPainted(false);
+        //bkButton.setBackground(Color.white);
+        //bkButton.setBorderPainted(false);
         bkButton.setFont(new Font("Arial", Font.BOLD, 25));
         topPanel.add(bkButton);
 
-        JButton hButton = new JButton("Help");
+        AllButtons hButton = new AllButtons(size.BORDERLESSWHITE, "Help");
         hButton.setBounds(410, 20, 160, 60);
-        hButton.setBackground(Color.white);
-        hButton.setBorderPainted(false);
+        //hButton.setBackground(Color.white);
+        //hButton.setBorderPainted(false);
         hButton.setFont(new Font("Arial", Font.BOLD, 25));
         topPanel.add(hButton);
 
-        JButton pButton = new JButton("Profile");
+        AllButtons pButton = new AllButtons(size.BORDERLESSWHITE, "Profile");
         pButton.setBounds(590, 20, 160, 28);
-        pButton.setBackground(Color.white);
-        pButton.setBorderPainted(false);
+        //pButton.setBackground(Color.white);
+        //pButton.setBorderPainted(false);
         pButton.setFont(new Font("Arial", Font.BOLD, 15));
         topPanel.add(pButton);
 
-        JButton logoutButton = new JButton("Logout");
+        AllButtons logoutButton = new AllButtons(size.BORDERLESSWHITE, "Logout");
         logoutButton.setBounds(590, 52, 160, 28);
-        logoutButton.setBackground(Color.white);
-        logoutButton.setBorderPainted(false);
+        //logoutButton.setBackground(Color.white);
+        //logoutButton.setBorderPainted(false);
         logoutButton.setFont(new Font("Arial", Font.BOLD, 15));
         topPanel.add(logoutButton);
 

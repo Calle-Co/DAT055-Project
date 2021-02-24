@@ -20,7 +20,9 @@ public class AllButtons extends JButton{
     public enum size{
         SMALL,
         MEDIUM,
-        LARGE
+        LARGE,
+        BORDERLESSWHITE,
+        CUSTOM
     }
 
     /**
@@ -75,6 +77,32 @@ public class AllButtons extends JButton{
             setPreferredSize(new Dimension(240, 80));
             setFont(new Font("Basic", Font.BOLD,45));
         }
+        else if( s == size.BORDERLESSWHITE){
+            setBackground(Color.white);
+            addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    setBackground(new Color(209,237,242,200));
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    setBackground(Color.white);
+                }
+            });
+            setBorderPainted(false);
+            
+        }
+        else if(s == size.LARGE){
+            addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    setBackground(new Color(209,237,242,200));
+                }
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    setBackground(UIManager.getColor("control"));
+                }
+            });
+
+        }
+        
+    
     }
 
 }
