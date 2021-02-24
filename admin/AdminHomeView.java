@@ -7,6 +7,7 @@ import global.AllButtons;
 import global.AllButtons.size;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -21,6 +22,7 @@ public class AdminHomeView extends JPanel{
     public AdminHomeView(){
         JPanel contentPanel = new JPanel();
 
+        JPanel topPanel = new JPanel();
         JPanel menuPanel = new JPanel();
         JPanel sidePanel = new JPanel();
         JPanel mainPanel = new JPanel();
@@ -29,9 +31,7 @@ public class AdminHomeView extends JPanel{
 
         JLabel date = new JLabel("--date and time--");
         AllButtons homeButton = new AllButtons(size.MEDIUM, "Home");
-        AllButtons bookingButton = new AllButtons(size.MEDIUM, "Bookings");
         AllButtons logoutButton = new AllButtons(size.MEDIUM, "Logout");
-        AllButtons helpButton = new AllButtons(size.MEDIUM, "Help");
         JLabel logo = new JLabel(logga, JLabel.CENTER);
        
         JLabel ex1 = new JLabel("ex1");
@@ -44,43 +44,41 @@ public class AdminHomeView extends JPanel{
         AllButtons flights = new AllButtons(size.LARGE, "Flights");
 
         JLabel random = new JLabel("Whatever YOU WANT!");
+        
+        topPanel.add(date);
+        topPanel.add(menuPanel);
+        topPanel.add(logo);
 
         menuPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-        menuPanel.add(date);
         menuPanel.add(homeButton);
-        menuPanel.add(bookingButton);
         menuPanel.add(logoutButton);
-        menuPanel.add(helpButton);
-        menuPanel.add(logo);
 
         inside.setLayout(new GridLayout(4,1));
         inside.add(ex1);
         inside.add(ex2);
         inside.add(ex3);
         inside.add(ex4);
-        
-        sidePanel.setLayout(new BoxLayout(sidePanel, BoxLayout.Y_AXIS));
 
-        Border margin = new EmptyBorder(20, 20, 5, 10);
+        Border margin = new EmptyBorder(10, 50, 10, 50);
         sidePanel.setBorder(margin);
+        sidePanel.setBackground(Color.WHITE);
         sidePanel.add(inside);
 
-        mainPanel.setLayout(new GridLayout(3,1));
+        mainPanel.setLayout(new GridLayout(5,1));
+        mainPanel.setBorder(new EmptyBorder(20,50,0,50));
         mainPanel.add(destinations);
         mainPanel.add(customers);
         mainPanel.add(flights);
 
+
         lowerPanel.setLayout(new FlowLayout());
         lowerPanel.add(random);
-        
-        contentPanel.setLayout(new BorderLayout());
-        contentPanel.add(menuPanel, BorderLayout.NORTH);
-        contentPanel.add(sidePanel, BorderLayout.WEST);
-        contentPanel.add(mainPanel, BorderLayout.CENTER);
-        contentPanel.add(lowerPanel, BorderLayout.SOUTH);
-        
-        add(contentPanel);
+
+        setLayout(new BorderLayout());
+        add(topPanel, BorderLayout.NORTH);
+        add(sidePanel, BorderLayout.WEST);
+        add(mainPanel, BorderLayout.CENTER);
+        add(lowerPanel, BorderLayout.SOUTH);
         setVisible(true); 
     }
 
