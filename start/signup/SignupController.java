@@ -1,4 +1,4 @@
-package start;
+package start.signup;
 
 import javax.swing.JButton;
 
