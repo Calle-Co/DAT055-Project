@@ -47,10 +47,10 @@ public class App implements Observer {
 
     @Override
     public void update(String message) {
-        if(message == "cLogin") {
+        if(message.equals("cLogin")) {
             customerLogin();
         }
-        if(message == "aLogin") {
+        if(message.equals("aLogin")) {
             adminLogin();
         }
     }
