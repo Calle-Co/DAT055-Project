@@ -30,7 +30,7 @@ public class CustomerFrame implements Observable {
         int y = (int) ((dimension.getHeight() - customerFrame.getHeight()) / 2);
         customerFrame.setLocation(x, y);
         customerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        customerFrame.setTitle("CC Airlines");
+        customerFrame.setTitle("CC Airlines - Customer");
     }
 
     public void init() {

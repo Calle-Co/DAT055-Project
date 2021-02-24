@@ -31,9 +31,13 @@ public class LoginController {
 
     public boolean userLogin(String username,String password){
         try{
-            return model.userLogin(username,password); 
+            if(model.userLogin(username,password)){
+                return true;
+            } else {
+                view.errorPanel();
+                return false;
+            }
         } catch (SQLException e){    
-            //view.errorPanel();
             e.printStackTrace();
             return false;
         } catch (ClassNotFoundException e) {

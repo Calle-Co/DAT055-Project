@@ -81,7 +81,14 @@ public class StartFrame implements Observable {
         String s = ((JButton) e.getSource()).getText();
         if (s == "Login!") {
             if(aController.adminLogin(aView.getPassword())){
-                notifyObservers("aLogin");
+                nextView(new LoadingView());
+                    Timer t = new Timer(2000, new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            notifyObservers("aLogin");
+                        }
+                    });
+                    t.setRepeats(false);
+                    t.start();
             }   
         }
         if (s == "cancel") {
