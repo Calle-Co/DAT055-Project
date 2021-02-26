@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 
 import global.AllButtons;
 import global.AllButtons.*;
+import admin.AdminMenuPanel;
 
 /**
  * @author Carl Classon
@@ -23,9 +24,15 @@ public class ClientsInfoView extends JPanel{
         usersPanel.setLayout(new GridLayout(20,1));
         
         JPanel topPanel = new JPanel();
+        topPanel.setLayout(new FlowLayout());
+        AdminMenuPanel menuPanel = new AdminMenuPanel();
+        for (AllButtons b : menuPanel.getButtons()){
+            buttons.add(b);
+        }
         AllButtons updateButton = new AllButtons(size.LARGE, "Update");
         buttons.add(updateButton);
         topPanel.add(updateButton);
+        topPanel.add(menuPanel);
 
         setLayout(new BorderLayout());
         add(topPanel,BorderLayout.NORTH);

@@ -65,6 +65,12 @@ public class AdminFrame implements Observable {
             String s = ((JButton) e.getSource()).getText();
             if (s.equals("Update")) {
                 cController.listAllUsers();
+            } 
+            if (s.equals("Logout")) {
+                notifyObservers("aLogout");
+            }
+            if (s.equals("Home")) {
+                nextView(views.get("AdminHomeView"));
             }
             });
 

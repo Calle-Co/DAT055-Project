@@ -11,11 +11,11 @@ import global.AllButtons;
 import global.AllButtons.size;
 
 
-public class AdminMenupanel extends JPanel{
+public class AdminMenuPanel extends JPanel{
 
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
-    public AdminMenupanel(){
+    public AdminMenuPanel(){
 
         JLabel date = new JLabel("--date and time--");
         AllButtons homeButton = new AllButtons(size.MEDIUM, "Home");
@@ -51,5 +51,5 @@ public class AdminMenupanel extends JPanel{
         add(logo, c);
         setVisible(true);
     }
-    
+    public ArrayList<AllButtons> getButtons(){ return buttons; }
 }
