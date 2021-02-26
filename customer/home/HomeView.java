@@ -191,6 +191,7 @@ public class HomeView extends JPanel {
         topPanel.add(pButton);
 
         AllButtons logoutButton = new AllButtons(size.BORDERLESSWHITE, "Logout");
+        buttons.add(logoutButton);
         logoutButton.setBounds(590, 52, 160, 28);
         //logoutButton.setBackground(Color.white);
         //logoutButton.setBorderPainted(false);

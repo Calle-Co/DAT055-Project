@@ -40,6 +40,9 @@ public class CustomerFrame implements Observable {
         HomeView hView = new HomeView();
         HomeModel hModel = new HomeModel();
         HomeController hController = new HomeController(hModel, hView);
+        hController.addButtonListener(e -> {
+            notifyObservers("cLogout");
+        });
 
         FlightView fView = new FlightView();
         FlightModel fModel = new FlightModel();

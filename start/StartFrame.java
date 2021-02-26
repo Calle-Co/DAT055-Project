@@ -167,6 +167,7 @@ public class StartFrame implements Observable {
                     } catch (Exception e) {
                     }
                     notifyObservers("cLogin");
+                    nextView(views.get("WelcomeView"));
                 }   
             });
             t2.start();
@@ -179,12 +180,12 @@ public class StartFrame implements Observable {
             Thread t2 = new Thread(new Runnable(){
                 @Override
                 public void run() {
-                    // TODO Auto-generated method stub
                     try {
                         Thread.sleep(2000);
                     } catch (Exception e) {
                     }
                     notifyObservers("aLogin");
+                    nextView(views.get("WelcomeView"));
                 }          
             });
             t2.start();
