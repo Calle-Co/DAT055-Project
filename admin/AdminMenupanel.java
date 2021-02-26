@@ -13,7 +13,9 @@ import global.AllButtons;
 import global.AllButtons.size;
 import global.WebFetching;
 
-
+/**
+ * @author
+ */
 public class AdminMenuPanel extends JPanel{
 
     private ArrayList<AllButtons> buttons = new ArrayList<>();
