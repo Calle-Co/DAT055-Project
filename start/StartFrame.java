@@ -57,29 +57,22 @@ public class StartFrame implements Observable {
         LoginView lView = new LoginView();
         LoginModel lModel = new LoginModel();
         LoginController lController = new LoginController(lModel, lView);
+        //detta försöker logga in med enter-knappen på tangentbordet
+        lController.addKeyListener(new KeyListener(){
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    tryLogin(lController, lView);
+                }    
+            }
+            public void keyTyped(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {}
+        });
+        //detta försöker logga in med login-knappen.
         lController.addButtonListener(e -> {
-            String s = ((JButton) e.getSource()).getText();
+            String s = ((JButton) e.getSource()).getText(); 
             if (s.equals("Login!")) {
-                if(lController.userLogin(lView.getUsername(), lView.getPassword())) {
-                    nextView(new LoadingView());
-                     
-                    Thread t2 = new Thread(new Runnable(){
-
-                        @Override
-                        public void run() {
-                            // TODO Auto-generated method stub
-                            
-                            try {
-                                Thread.sleep(2000);
-                            } catch (Exception e) {
-                            }
-                            notifyObservers("cLogin");
-                        }
-
-                        
-                    });
-                    t2.start();
-                }
+                tryLogin(lController, lView);
             }
             if (s.equals("cancel")) {
         	    nextView(views.get("WelcomeView"));
@@ -108,9 +101,7 @@ public class StartFrame implements Observable {
                         } catch (Exception e) {
                         }
                         notifyObservers("aLogin");
-                    }
-
-                    
+                    }          
                 });
                 t2.start();
             }   
@@ -123,6 +114,19 @@ public class StartFrame implements Observable {
         SignupView sView = new SignupView();
         SignupModel suModel = new SignupModel();
         SignupController sController = new SignupController(suModel, sView);
+        //Om man trycker på enter på tangentbordet
+        sController.addKeyListener(new KeyListener(){
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if(sController.signUp(sView.getUsername(), sView.getPassword()))
+                        nextView(views.get("LoginView"));
+                }    
+            }
+            public void keyTyped(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {}
+        });
+        //Om man trycker på knappen "signup!"
         sController.addButtonListener(e -> {
         	String s = ((JButton) e.getSource()).getText();
           	if (s.equals("Signup!")) {
@@ -153,6 +157,23 @@ public class StartFrame implements Observable {
         view.setVisible(true);
         startFrame.pack();
         currentView = view;
+    }
+
+    public void tryLogin(LoginController lController, LoginView lView){
+        if(lController.userLogin(lView.getUsername(), lView.getPassword())) {
+            nextView(new LoadingView());       
+            Thread t2 = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (Exception e) {
+                    }
+                    notifyObservers("cLogin");
+                }   
+            });
+            t2.start();
+        }
     }
 
     public void frameSetVisible(Boolean b) {

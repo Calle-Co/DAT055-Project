@@ -37,8 +37,7 @@ public class AdminLoginModel{
             }    
         }
         catch (SQLException e) {
-            //throw new SQLException();
-            System.out.println(s.getError(e));
+            throw new SQLException();
         }
         s.getConn().close();
         return true;

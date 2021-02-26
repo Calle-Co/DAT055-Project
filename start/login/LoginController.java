@@ -7,6 +7,8 @@ import global.AllButtons;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JTextField;
+
 
 /**
  * @author William Husar, Simon Länsberg, Carl Classon
@@ -29,6 +31,11 @@ public class LoginController {
         }
     }
 
+    public void addKeyListener(KeyListener kl) {
+        JTextField passwordField = view.getPasswordField();
+        passwordField.addKeyListener(kl);
+    }
+
     public boolean userLogin(String username,String password){
         try{
             if(model.userLogin(username,password)){
@@ -45,4 +52,5 @@ public class LoginController {
             return false;
         }
     }
+
 }
