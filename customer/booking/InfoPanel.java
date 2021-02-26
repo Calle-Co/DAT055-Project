@@ -1,6 +1,8 @@
 package customer.booking;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
 import java.util.ArrayList;
 import global.*;
@@ -15,6 +17,8 @@ public class InfoPanel extends JPanel {
     private ArrayList<String> info = new ArrayList<>();
     
     public InfoPanel(String nr){
+        Border blackline = BorderFactory.createLineBorder(Color.GRAY);
+        this.setBorder(blackline);
         JPanel centerPanel = new JPanel();
         setPreferredSize(new Dimension(200,120));
         JLabel seatLabel = new JLabel("Seat " + nr, JLabel.CENTER);

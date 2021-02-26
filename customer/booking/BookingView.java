@@ -33,7 +33,7 @@ public class BookingView extends JPanel{
         this.setBorder(new EmptyBorder(6,6,6,6));
         this.setLayout(new BorderLayout(10,10));
         this.setBackground(Color.WHITE);
-        iHolder.setLayout(new GridLayout(4,1,0,0));
+        iHolder.setLayout(new GridLayout(4,1,2,2));
         iHolder.setPreferredSize(new Dimension(200, 600));
         iHolder.setVisible(true);
         iHolder.setBackground(Color.WHITE);

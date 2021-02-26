@@ -40,6 +40,7 @@ public class CustomerFrame implements Observable {
         HomeView hView = new HomeView();
         HomeModel hModel = new HomeModel();
         HomeController hController = new HomeController(hModel, hView);
+        hController.getDestinations();
         hController.addButtonListener(e -> {
             notifyObservers("cLogout");
         });
@@ -56,13 +57,14 @@ public class CustomerFrame implements Observable {
         BookingModel bModel = new BookingModel();
         BookingController bController = new BookingController(bModel, bView);
 
-        views.put("HomeView", hView);
+        /*views.put("HomeView", hView);
         views.put("FlightView", fView);
-        views.put("BookingView", bView);
-        
+        views.put("BookingView", bView);*/
+       
         customerFrame.add(hView);
         customerFrame.pack();
         currentView = hView;
+        
         
         /*
         customerFrame.add(fView);

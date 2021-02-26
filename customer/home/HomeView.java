@@ -12,57 +12,42 @@ import java.util.Date;
 import javax.swing.*;
 
 import global.AllButtons;
+import global.Destination;
 import global.WebFetching;
 import global.AllButtons.size;
 
 public class HomeView extends JPanel {
 
-    JComboBox combobox1;
-    JComboBox combobox2;
+    private JComboBox combobox1;
+    private JComboBox combobox2;
 
     private ImageIcon logga = new ImageIcon("global/resources/smalllogga.PNG");
 
     public final static int ONE_SECOND = 1000;
     private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
     private WebFetching todaysDat;
-
-    JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
-    JFormattedTextField dateField2 = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
-
+    private ArrayList<Destination> destinations;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
-
+    private JPanel centerPanel;
+    private String[] choices;
+    JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
+    
     public HomeView() {
-
+        destinations = new ArrayList<>();
+        choices = new String[100];
         setLayout(null);
         todaysDat = new WebFetching();
-        JPanel centerPanel = new JPanel();
+        centerPanel = new JPanel();
         centerPanel.setBounds(300, 120, 650, 450);
         centerPanel.setLayout(null);
         centerPanel.setBackground(Color.white);
         add(centerPanel);
 
         // Destination
+        
+        String[] choices2 = {"1", "2", "3", "4" };
 
-        AllButtons sfButton = new AllButtons(size.BORDERLESSWHITE, "One-Way");
-        sfButton.setBounds(50, 20, 120, 30);
-        sfButton.setFont(new Font("Airal", 1, 20));
-        centerPanel.add(sfButton);
-
-        AllButtons rButton = new AllButtons(size.BORDERLESSWHITE, "Return");
-        rButton.setBounds(190, 20, 100, 30);
-        rButton.setFont(new Font("Arial", Font.BOLD, 20));
-        centerPanel.add(rButton);
-
-        String[] choices = { " ", "1", "2", "3", "4" };
-
-        combobox1 = new JComboBox<String>(choices);
-        combobox1.setBounds(50, 110, 250, 50);
-        centerPanel.add(combobox1);
-
-        combobox2 = new JComboBox<String>(choices);
-        combobox2.setBounds(350, 110, 250, 50);
-        centerPanel.add(combobox2);
+        
 
         JLabel from = new JLabel("From");
         from.setBounds(55, 75, 60, 30);
@@ -76,52 +61,23 @@ public class HomeView extends JPanel {
 
         // Datefield
 
-        dateField.setValue(new Date());
+        dateField.setText(todaysDat.getDat());
         dateField.setBounds(50, 220, 80, 35);
         centerPanel.add(dateField);
 
-        JLabel exitLabel = new JLabel("Exit");
-        exitLabel.setBounds(55, 190, 40, 20);
-        exitLabel.setFont(new Font("Verdana", 0, 15));
-        centerPanel.add(exitLabel);
-
-        AllButtons dateButton1 = new AllButtons(size.CUSTOM, "...");
-        dateButton1.setBounds(135, 221, 35, 32);
-        centerPanel.add(dateButton1);
-
-        dateField2.setValue(new Date());
-        dateField2.setBounds(175, 220, 80, 35);
-        centerPanel.add(dateField2);
-
-        JLabel returnLabel = new JLabel("Return");
-        returnLabel.setBounds(180, 190, 80, 20);
-        returnLabel.setFont(new Font("Verdana", 0, 15));
-        centerPanel.add(returnLabel);
-
-        AllButtons dateButton2 = new AllButtons(size.CUSTOM, "...");
-        dateButton2.setBounds(260, 221, 35, 32);
-        centerPanel.add(dateButton2);
-
+        JLabel outboundLabel = new JLabel("Outbound");
+        outboundLabel.setBounds(55, 190, 100, 20);
+        outboundLabel.setFont(new Font("Verdana", 0, 15));
+        centerPanel.add(outboundLabel);
         // traveler
         JLabel passengerLabel = new JLabel("Passengers");
         passengerLabel.setBounds(355, 190, 120, 20);
         passengerLabel.setFont(new Font("Verdana", 0, 15));
         centerPanel.add(passengerLabel);
 
-        JComboBox tCombobox = new JComboBox<String>(choices);
+        JComboBox tCombobox = new JComboBox<String>(choices2);
         tCombobox.setBounds(350, 220, 120, 35);
         centerPanel.add(tCombobox);
-
-        String[] planeType = { "Economy", "Business", "FirstClass" };
-
-        JLabel ttLabel = new JLabel("Ticket type");
-        ttLabel.setBounds(485, 190, 120, 20);
-        ttLabel.setFont(new Font("Verdana", 0, 15));
-        centerPanel.add(ttLabel);
-
-        JComboBox pCombobox = new JComboBox<String>(planeType);
-        pCombobox.setBounds(480, 220, 120, 35);
-        centerPanel.add(pCombobox);
 
         AllButtons searchButton = new AllButtons(size.MEDIUM, "Search");
         searchButton.setBounds(255, 300, 140, 60);
@@ -244,7 +200,21 @@ public class HomeView extends JPanel {
 
         public ArrayList<AllButtons> getButtons() { return buttons; }
 
+		public void setDestinations(ArrayList<Destination> destinations) {
+                this.destinations = destinations;
+                int n = 0;
+                for(Destination d : destinations){
+                    choices[n] = d.getDestination();
+                    n++;
+                }
+                combobox1 = new JComboBox<String>(choices);
+                combobox1.setBounds(50, 110, 250, 50);
+                centerPanel.add(combobox1);
 
+                combobox2 = new JComboBox<String>(choices);
+                combobox2.setBounds(350, 110, 250, 50);
+                centerPanel.add(combobox2);
+		}
     }
 
 
