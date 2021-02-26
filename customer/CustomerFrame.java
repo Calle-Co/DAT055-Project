@@ -18,6 +18,9 @@ public class CustomerFrame implements Observable {
     private HashMap<String, JPanel> views;
     private Observer observer;
     private String currentUser;
+
+    private BookingController bController;
+    FlightController fController;
     
     public CustomerFrame(String user) {
         this.currentUser = user; 
@@ -50,26 +53,24 @@ public class CustomerFrame implements Observable {
                 notifyObservers("cLogout");
             }
             else if(s.equals("Search")){
-                System.out.println("BOOOM BOOOOM POOOW");
+                bController.setLimit( Integer.parseInt(hView.getSearchParam()[3]));
+                searchFlights(hView.getSearchParam()[0], hView.getSearchParam()[1], hView.getSearchParam()[2]);
+                nextView(views.get("FlightView"));
             }
             
         });
 
         FlightView fView = new FlightView();
         FlightModel fModel = new FlightModel();
-        FlightController fController = new FlightController(fModel, fView);
-        fController.flightTest("Gothenburg", "London", "2021-06-20");
-        fController.addButtonListener(e -> {
-            nextView(views.get("BookingView"));
-        });
+        fController = new FlightController(fModel, fView);
+        
 
         BookingView bView = new BookingView();
         BookingModel bModel = new BookingModel();
-        BookingController bController = new BookingController(bModel, bView);
-
-        /*views.put("HomeView", hView);
+        bController = new BookingController(bModel, bView);
+        views.put("HomeView", hView);
         views.put("FlightView", fView);
-        views.put("BookingView", bView);*/
+        views.put("BookingView", bView);
        
         customerFrame.add(hView);
         customerFrame.pack();
@@ -82,6 +83,16 @@ public class CustomerFrame implements Observable {
         currentView = fView;
         */
     }
+
+
+    public void searchFlights(String a, String b, String c){
+        fController.flightTest(a, b, c);
+        fController.addButtonListener(e -> {
+            System.out.println("hej");
+            nextView(views.get("BookingView"));
+        });
+    }
+
 
     public void nextView(JPanel view) {
         customerFrame.remove(currentView);
