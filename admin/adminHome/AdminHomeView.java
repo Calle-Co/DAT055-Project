@@ -1,4 +1,4 @@
-package admin;
+package admin.adminHome;
 
 import java.util.ArrayList;
 
@@ -31,6 +31,7 @@ public class AdminHomeView extends JPanel{
         JLabel date = new JLabel("--date and time--");
         AllButtons homeButton = new AllButtons(size.MEDIUM, "Home");
         AllButtons logoutButton = new AllButtons(size.MEDIUM, "Logout");
+        buttons.add(logoutButton);
         JLabel logo = new JLabel(logga, JLabel.CENTER);
        
         JLabel ex1 = new JLabel("ex1");

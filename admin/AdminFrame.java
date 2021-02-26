@@ -4,6 +4,7 @@ import javax.swing.*;
 import global.*;
 import java.awt.*;
 import java.util.HashMap;
+import admin.adminHome.*;
 
 /**
  * @author William Husar
@@ -34,21 +35,23 @@ public class AdminFrame implements Observable {
     }
 
     public void init() {
-        AdminModel aModel = new AdminModel();
-
+        AdminHomeModel aModel = new AdminHomeModel();
         AdminHomeView hView = new AdminHomeView();
         AdminHomeController hController = new AdminHomeController(aModel, hView);
         hController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
-            if (s == "Destinations") {
+            if (s.equals("Destinations")) {
                 nextView(views.get("DestinationView"));
-          }
-            if (s == "Clients") {
+            }
+            if (s.equals("Clients")) {
         	    nextView(views.get("ClientInfoView"));
-          }
-            if (s == "Flights") {
+            }
+            if (s.equals("Flights")) {
                 nextView(views.get("FlightsView"));
-          }
+            }
+            if (s.equals("Logout")) {
+                notifyObservers("aLogout");
+            }
         });
 
         views.put("AdminHomeView", hView);

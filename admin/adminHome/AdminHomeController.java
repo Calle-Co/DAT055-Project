@@ -1,4 +1,4 @@
-package admin;
+package admin.adminHome;
 
 import javax.swing.JButton;
 
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public class AdminHomeController {
     
-    private AdminModel model;
+    private AdminHomeModel model;
     private AdminHomeView view;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
-    public AdminHomeController(AdminModel m, AdminHomeView v){
+    public AdminHomeController(AdminHomeModel m, AdminHomeView v){
         this.model = m;
         this.view = v;
         buttons = view.getButtons();
