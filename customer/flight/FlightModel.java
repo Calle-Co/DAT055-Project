@@ -22,12 +22,11 @@ public class FlightModel {
     public String[] getFlight(String from, String to, String date) throws SQLException, ClassNotFoundException{
         serverConnection = new ServerConnection();
         serverConnection.DatabaseConnection();
-        try(PreparedStatement ps = serverConnection.getConn().prepareStatement("SELECT * FROM flights WHERE from_d = ? AND to_d = ?");)
+        try(PreparedStatement ps = serverConnection.getConn().prepareStatement("SELECT * FROM flights WHERE from_d = ? AND to_d = ? AND date_of >= ? ORDER BY (date_of, time_of) ASC");)
         {
             ps.setString(1, from); 
             ps.setString(2, to);
-            //ps.setString(3, date);
-            //  AND date_of >= ?
+            ps.setDate(3, java.sql.Date.valueOf(date));
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 flight[0] = rs.getString("flight_id");
