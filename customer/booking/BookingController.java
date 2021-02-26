@@ -18,21 +18,31 @@ public class BookingController {
     private static boolean ok = false;
     private static boolean readyForNew = true;
     private static ArrayList<InfoHolding> people = new ArrayList<>();
-    private static HashMap<String, InfoPanel> info;
+    private static HashMap<String, InfoPanel> info; 
+    private int np = 0;
+    private int limit = 4;
 
     public BookingController(BookingModel model, BookingView view){
         this.model = model;
         this.view = view;
+         
         seats = new ArrayList<>();
         view.addSeatListener(e -> {
         String s = ((Seat) e.getSource()).getSeat();
-            if(!((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
-                view.addInfo(s);
-                seats.add((Seat) e.getSource());
-            }
-            else if(((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
+            
+            if(((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
                 view.removeInfo(s);
                 seats.remove((Seat) e.getSource());
+                np--;
+            }
+            else if(np == limit){
+                Toolkit.getDefaultToolkit().beep();
+                ((Seat) e.getSource()).setFree();
+            }
+            else if(!((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
+                view.addInfo(s);
+                seats.add((Seat) e.getSource());
+                np++;
             }
         });
 
@@ -91,8 +101,9 @@ public class BookingController {
         }
     }
 
-    public void freeSeats(){
-        
+    public void setLimit(int limit){
+        this.limit = limit;
+        System.out.println("New limit = " + this.limit);
     }
 
     public static void toUpdate(){

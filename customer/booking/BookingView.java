@@ -45,12 +45,12 @@ public class BookingView extends JPanel{
     }
 
     public void addInfo(String s){
-        InfoPanel ip = new InfoPanel(s);
-        iHolder.add(ip);
-        ip.setVisible(true);
-        System.out.println(s);
-        info.put(s,ip);
-        iHolder.revalidate();
+            InfoPanel ip = new InfoPanel(s);
+            iHolder.add(ip);
+            ip.setVisible(true);
+            System.out.println(s);
+            info.put(s,ip);
+            iHolder.revalidate();
     }
 
     public void removeInfo(String s){

@@ -30,6 +30,7 @@ public class HomeView extends JPanel {
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private JPanel centerPanel;
     private String[] choices;
+    private JComboBox tCombobox;
     private JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
     
     public HomeView() {
@@ -41,9 +42,6 @@ public class HomeView extends JPanel {
         centerPanel.setLayout(null);
         centerPanel.setBackground(Color.white);
         add(centerPanel);
-
-        
-
 
         // Destination
         String[] choices2 = {"1", "2", "3", "4" };
@@ -73,7 +71,7 @@ public class HomeView extends JPanel {
         passengerLabel.setFont(new Font("Verdana", 0, 15));
         centerPanel.add(passengerLabel);
 
-        JComboBox tCombobox = new JComboBox<String>(choices2);
+        tCombobox = new JComboBox<String>(choices2);
         tCombobox.setBounds(350, 220, 120, 35);
         centerPanel.add(tCombobox);
 
@@ -222,6 +220,15 @@ public class HomeView extends JPanel {
             centerPanel.add(wLabel);
             wLabel.setFont(new Font("Verdana", 0, 20));
         }
+
+		public String[] getSearchParam() {
+            String[] param = new String[4];
+            param[0] = combobox1.getSelectedItem().toString();
+            param[1] = combobox2.getSelectedItem().toString();
+            param[2] = dateField.getText();
+            param[3] = tCombobox.getSelectedItem().toString();
+			return param;
+		}
     }
 
 

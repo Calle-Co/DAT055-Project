@@ -96,4 +96,9 @@ public class Seat extends JButton implements ActionListener{
     public Boolean getClick(){
         return this.clicked;
     }
+    
+    public void setFree(){
+        this.paint(free);
+        this.clicked = !clicked;
+    }
 }
