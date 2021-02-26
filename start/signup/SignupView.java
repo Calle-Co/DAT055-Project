@@ -91,5 +91,6 @@ public class SignupView extends JPanel{
     }
 
     public ArrayList<AllButtons> getButtons() { return buttons; }
+    public JTextField getPasswordField() { return password; }
 
 }

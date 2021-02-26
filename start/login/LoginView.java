@@ -100,4 +100,5 @@ public class LoginView extends JPanel{
     public String getPassword(){ return password.getText(); }
     public String getUsername(){ return username.getText(); }
     public ArrayList<AllButtons> getButtons() { return buttons; }
+    public JTextField getPasswordField() { return password; }
 }

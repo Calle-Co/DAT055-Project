@@ -3,6 +3,7 @@ package customer.home;
 import javax.swing.JButton;
 
 import global.AllButtons;
+import global.WebFetching;
 
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class HomeController {
     }
 
     public void addButtonListener(ActionListener al) {
-        for(JButton b : buttons) {
+        for(AllButtons b : buttons) {
             b.addActionListener(al);
         }
     }

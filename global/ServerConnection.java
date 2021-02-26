@@ -15,11 +15,19 @@ public class ServerConnection {
     private static final String PASSWORD = "postgres";
     private Connection conn;
     
+
     public void DatabaseConnection() throws SQLException, ClassNotFoundException {
         DatabaseConnection(DATABASE, USERNAME, PASSWORD);  
     }
 
-    // Initializes the connection, no need to change anything here
+    /**
+     * 
+     * @param db Adressen till servern (databasen) som man vill komma åt
+     * @param user Användarnamnet som används för autentisering mot servern. 
+     * @param pwd Lösenordet -||-
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void DatabaseConnection(String db, String user, String pwd) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         Properties props = new Properties();
@@ -28,7 +36,12 @@ public class ServerConnection {
         conn = DriverManager.getConnection(db, props);
     }
 
-    // Detta är taget från Lab4 i kursen TDA357 (Databaser)
+   
+    /** Detta är taget från Lab4 i kursen TDA357 (Databaser)
+     * 
+     * @param e ett SQLException som man vill printa.
+     * @return En string som förklarar SQL-error meddelandet.
+     */
     public String getError(SQLException e){
         String message = e.getMessage();
         int ix = message.indexOf('\n');

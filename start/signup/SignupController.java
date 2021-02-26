@@ -1,6 +1,7 @@
 package start.signup;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 import global.AllButtons;
 
@@ -26,6 +27,10 @@ public class SignupController {
         for(JButton b : buttons) {
             b.addActionListener(al);
         }
+    }
+    public void addKeyListener(KeyListener kl) {
+        JTextField passwordField = view.getPasswordField();
+        passwordField.addKeyListener(kl);
     }
 
     public boolean signUp(String username, String password){

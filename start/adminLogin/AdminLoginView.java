@@ -68,4 +68,5 @@ public class AdminLoginView extends JPanel {
 
     public String getPassword(){ return password.getText(); }
     public ArrayList<AllButtons> getButtons() { return buttons; }
+    public JTextField getPasswordField() { return password; }
 }

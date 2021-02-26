@@ -12,6 +12,7 @@ import java.util.Date;
 import javax.swing.*;
 
 import global.AllButtons;
+import global.WebFetching;
 import global.AllButtons.size;
 
 public class HomeView extends JPanel {
@@ -24,6 +25,7 @@ public class HomeView extends JPanel {
     public final static int ONE_SECOND = 1000;
     private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+    private WebFetching todaysDat;
 
     JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
     JFormattedTextField dateField2 = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
@@ -33,7 +35,7 @@ public class HomeView extends JPanel {
     public HomeView() {
 
         setLayout(null);
-
+        todaysDat = new WebFetching();
         JPanel centerPanel = new JPanel();
         centerPanel.setBounds(300, 120, 650, 450);
         centerPanel.setLayout(null);
@@ -43,15 +45,11 @@ public class HomeView extends JPanel {
         // Destination
 
         AllButtons sfButton = new AllButtons(size.BORDERLESSWHITE, "One-Way");
-        //sfButton.setBackground(Color.white);
-        //sfButton.setBorderPainted(false);
         sfButton.setBounds(50, 20, 120, 30);
         sfButton.setFont(new Font("Airal", 1, 20));
         centerPanel.add(sfButton);
 
         AllButtons rButton = new AllButtons(size.BORDERLESSWHITE, "Return");
-        //rButton.setBackground(Color.white);
-        //rButton.setBorderPainted(false);
         rButton.setBounds(190, 20, 100, 30);
         rButton.setFont(new Font("Arial", Font.BOLD, 20));
         centerPanel.add(rButton);
@@ -193,6 +191,7 @@ public class HomeView extends JPanel {
         topPanel.add(pButton);
 
         AllButtons logoutButton = new AllButtons(size.BORDERLESSWHITE, "Logout");
+        buttons.add(logoutButton);
         logoutButton.setBounds(590, 52, 160, 28);
         //logoutButton.setBackground(Color.white);
         //logoutButton.setBorderPainted(false);
@@ -223,14 +222,10 @@ public class HomeView extends JPanel {
             timer.start();
 
             JLabel dateLabel = new JLabel();
-            dateLabel.setText(dateFormat.format(new Date()));
+            dateLabel.setText(todaysDat.getDat());
             dateLabel.setFont(new Font(dateLabel.getFont().getName(), Font.BOLD, 18));
             dateLabel.setBounds(37, 10, 120, 40);
             timePanel.add(dateLabel);
-
-            
-            
-            
             // logo (TOPRIGHT)
             // top pan = 200, 0, 800, 100
 

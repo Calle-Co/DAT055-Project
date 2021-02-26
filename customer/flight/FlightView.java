@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -19,18 +21,15 @@ import java.awt.*;
 public class FlightView extends JPanel {
     private List<FlightInfoButton> myList;
     private JPanel list;
-    public FlightView(){
+    private ArrayList<JButton> buttons;
+
+    public FlightView() {
+        buttons = new ArrayList<>();
         list = new JPanel();
         list.setLayout(new GridLayout(20,1,10,10));
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(300,600));
         myList = new ArrayList<>();
-        for (int index = 0; index < 20; index++) {
-           myList.add(new FlightInfoButton());
-        }
-        for(FlightInfoButton f : myList){
-            list.add(f);
-        }
         add(new JScrollPane(list));
     }
     public void addButtonListener(ActionListener al){
@@ -38,4 +37,14 @@ public class FlightView extends JPanel {
             f.addActionListener(al);
         }
     }
+
+    public void initButtons(FlightInfoButton b) {
+        myList.add(b);
+        list.add(b);
+        buttons.add(b);
+        list.revalidate();
+        list.repaint();
+    }
+
+    public ArrayList<JButton> getButtons() { return buttons; }
 }

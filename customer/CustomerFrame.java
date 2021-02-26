@@ -37,25 +37,38 @@ public class CustomerFrame implements Observable {
     }
 
     public void init() {
-        HomeView chView = new HomeView();
+        HomeView hView = new HomeView();
         HomeModel hModel = new HomeModel();
-        HomeController wController = new HomeController(hModel, chView);
-        /*wController.addButtonListener(e -> {
-            String s = ((JButton) e.getSource()).getText();
-            if (s == "Boka!") {
-              nextView(views.get("LoginView"));
-            }
-            if (s == "Admin") {
-              nextView(views.get("AdminLoginView"));
-            }
-        });*/
+        HomeController hController = new HomeController(hModel, hView);
+        hController.addButtonListener(e -> {
+            notifyObservers("cLogout");
+        });
 
+        FlightView fView = new FlightView();
+        FlightModel fModel = new FlightModel();
+        FlightController fController = new FlightController(fModel, fView);
+        fController.flightTest("Gothenburg", "London", "2021-06-20");
+        fController.addButtonListener(e -> {
+            nextView(views.get("BookingView"));
+        });
 
-        views.put("HomeView", chView);
+        BookingView bView = new BookingView();
+        BookingModel bModel = new BookingModel();
+        BookingController bController = new BookingController(bModel, bView);
 
-        customerFrame.add(chView);
+        views.put("HomeView", hView);
+        views.put("FlightView", fView);
+        views.put("BookingView", bView);
+        
+        customerFrame.add(hView);
         customerFrame.pack();
-        currentView = chView;
+        currentView = hView;
+        
+        /*
+        customerFrame.add(fView);
+        customerFrame.pack();
+        currentView = fView;
+        */
     }
 
     public void nextView(JPanel view) {

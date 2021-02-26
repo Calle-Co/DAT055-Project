@@ -1,7 +1,7 @@
 package start.login;
+
 import java.sql.*;
 import global.ServerConnection;
-
 
 /**
  * Denna klassen sköter inloggning av användare.

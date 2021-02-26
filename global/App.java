@@ -10,39 +10,42 @@ import admin.*;
  */
 public class App implements Observer {
     private static StartFrame startFrame;
-    private static CustomerFrame customerFrame;
-    private static AdminFrame adminFrame;
+    private static Observer app;
+    private CustomerFrame customerFrame;
+    private AdminFrame adminFrame;
 
     public App() {
         startFrame = new StartFrame();
-        customerFrame = new CustomerFrame();
-        adminFrame = new AdminFrame();
         startFrame.frameSetVisible(true);
     }
 
     public static void main(String[] args) {
-        Observer app = new App();
+        app = new App();
         startFrame.addObserver(app);
-        customerFrame.addObserver(app);
-        adminFrame.addObserver(app);
     }
 
     private void customerLogin() {
-        System.out.println("inloggad customer");
+        customerFrame = new CustomerFrame();
+        customerFrame.addObserver(app);
         startFrame.frameSetVisible(false);
         customerFrame.frameSetVisible(true);
     }
 
     private void adminLogin() {
-        System.out.println("inloggad admin");
+        adminFrame = new AdminFrame();
+        adminFrame.addObserver(app);
         startFrame.frameSetVisible(false);
-        // loading...
         adminFrame.frameSetVisible(true);
     }
 
-    private void logout() {
-        //startFrame.setVisible(true);
-        //mainFrame.setVisible(false);
+    private void customerLogout() {
+        startFrame.frameSetVisible(true);
+        customerFrame.frameSetVisible(false);
+    }
+
+    private void adminLogout() {
+        startFrame.frameSetVisible(true);
+        adminFrame.frameSetVisible(false);
     }
 
     @Override
@@ -52,6 +55,12 @@ public class App implements Observer {
         }
         if(message.equals("aLogin")) {
             adminLogin();
+        }
+        if(message.equals("cLogout")) {
+            customerLogout();
+        }
+        if(message.equals("aLogout")) {
+            adminLogout();
         }
     }
 }
