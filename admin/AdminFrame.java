@@ -4,6 +4,10 @@ import javax.swing.*;
 import global.*;
 import java.awt.*;
 import java.util.HashMap;
+import admin.adminHome.*;
+import admin.clientsInfo.ClientsInfoController;
+import admin.clientsInfo.ClientsInfoModel;
+import admin.clientsInfo.ClientsInfoView;
 
 /**
  * @author William Husar
@@ -34,24 +38,38 @@ public class AdminFrame implements Observable {
     }
 
     public void init() {
-        AdminModel aModel = new AdminModel();
-
+        AdminHomeModel aModel = new AdminHomeModel();
         AdminHomeView hView = new AdminHomeView();
         AdminHomeController hController = new AdminHomeController(aModel, hView);
         hController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
-            if (s == "Destinations") {
+            if (s.equals("Destinations")) {
                 nextView(views.get("DestinationView"));
-          }
-            if (s == "Clients") {
-        	    nextView(views.get("ClientInfoView"));
-          }
-            if (s == "Flights") {
+            }
+            if (s.equals("Clients")) {
+        	    nextView(views.get("ClientsInfoView"));
+            }
+            if (s.equals("Flights")) {
                 nextView(views.get("FlightsView"));
-          }
+            }
+            if (s.equals("Logout")) {
+                notifyObservers("aLogout");
+            }
         });
 
+        ClientsInfoView cView = new ClientsInfoView();
+        ClientsInfoModel cModel = new ClientsInfoModel();
+        ClientsInfoController cController = new ClientsInfoController(cModel,cView);
+        cController.listAllUsers();
+        cController.addButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText();
+            if (s.equals("Update")) {
+                cController.listAllUsers();
+            }
+            });
+
         views.put("AdminHomeView", hView);
+        views.put("ClientsInfoView", cView);
 
         adminFrame.add(hView);
         adminFrame.pack();
