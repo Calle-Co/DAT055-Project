@@ -24,8 +24,8 @@ public class App implements Observer {
         startFrame.addObserver(app);
     }
 
-    private void customerLogin() {
-        customerFrame = new CustomerFrame();
+    private void customerLogin(String user) {
+        customerFrame = new CustomerFrame(user);
         customerFrame.addObserver(app);
         startFrame.frameSetVisible(false);
         customerFrame.frameSetVisible(true);
@@ -51,7 +51,7 @@ public class App implements Observer {
     @Override
     public void update(String message) {
         if(message.equals("cLogin")) {
-            customerLogin();
+            customerLogin("sven");
         }
         if(message.equals("aLogin")) {
             adminLogin();

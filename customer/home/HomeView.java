@@ -30,11 +30,10 @@ public class HomeView extends JPanel {
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private JPanel centerPanel;
     private String[] choices;
-    JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
+    private JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
     
     public HomeView() {
         destinations = new ArrayList<>();
-        choices = new String[100];
         setLayout(null);
         todaysDat = new WebFetching();
         centerPanel = new JPanel();
@@ -43,11 +42,11 @@ public class HomeView extends JPanel {
         centerPanel.setBackground(Color.white);
         add(centerPanel);
 
-        // Destination
         
-        String[] choices2 = {"1", "2", "3", "4" };
 
-        
+
+        // Destination
+        String[] choices2 = {"1", "2", "3", "4" };
 
         JLabel from = new JLabel("From");
         from.setBounds(55, 75, 60, 30);
@@ -60,7 +59,6 @@ public class HomeView extends JPanel {
         centerPanel.add(to);
 
         // Datefield
-
         dateField.setText(todaysDat.getDat());
         dateField.setBounds(50, 220, 80, 35);
         centerPanel.add(dateField);
@@ -81,6 +79,7 @@ public class HomeView extends JPanel {
 
         AllButtons searchButton = new AllButtons(size.MEDIUM, "Search");
         searchButton.setBounds(255, 300, 140, 60);
+        buttons.add(searchButton);
         centerPanel.add(searchButton);
 
         // BOOKEDPANEL main = 300, 120, 650, 450
@@ -202,6 +201,7 @@ public class HomeView extends JPanel {
 
 		public void setDestinations(ArrayList<Destination> destinations) {
                 this.destinations = destinations;
+                choices = new String[destinations.size()];
                 int n = 0;
                 for(Destination d : destinations){
                     choices[n] = d.getDestination();
@@ -215,6 +215,13 @@ public class HomeView extends JPanel {
                 combobox2.setBounds(350, 110, 250, 50);
                 centerPanel.add(combobox2);
 		}
+
+        public void setUser(String user){
+            JLabel wLabel = new JLabel("Welcome " + user + "!");
+            wLabel.setBounds(20, 20, 170, 25);
+            centerPanel.add(wLabel);
+            wLabel.setFont(new Font("Verdana", 0, 20));
+        }
     }
 
 
