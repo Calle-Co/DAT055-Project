@@ -22,7 +22,7 @@ public class AdminHomeView extends JPanel{
         JPanel contentPanel = new JPanel();
 
         JPanel topPanel = new JPanel();
-        JPanel menuPanel = new JPanel();
+        //JPanel menuPanel = new JPanel();
         JPanel sidePanel = new JPanel();
         JPanel mainPanel = new JPanel();
         JPanel lowerPanel = new JPanel();
@@ -45,14 +45,8 @@ public class AdminHomeView extends JPanel{
 
         JLabel random = new JLabel("Whatever YOU WANT!");
         
-        topPanel.add(date);
-        topPanel.add(menuPanel);
-        topPanel.add(logo);
-
-        menuPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        menuPanel.add(homeButton);
-        menuPanel.add(logoutButton);
-
+        AdminMenupanel menuPanel = new AdminMenupanel();
+    
         inside.setLayout(new GridLayout(4,1));
         inside.add(ex1);
         inside.add(ex2);
@@ -75,7 +69,7 @@ public class AdminHomeView extends JPanel{
         lowerPanel.add(random);
 
         setLayout(new BorderLayout());
-        add(topPanel, BorderLayout.NORTH);
+        add(menuPanel, BorderLayout.NORTH);
         add(sidePanel, BorderLayout.WEST);
         add(mainPanel, BorderLayout.CENTER);
         add(lowerPanel, BorderLayout.SOUTH);
