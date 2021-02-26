@@ -75,10 +75,10 @@ public class StartFrame implements Observable {
                             }
                             notifyObservers("cLogin");
                         }
-
                         
                     });
                     t2.start();
+                    nextView(views.get("WelcomeView"));
                 }
             }
             if (s.equals("cancel")) {
@@ -97,6 +97,7 @@ public class StartFrame implements Observable {
         if (s.equals("Login!")) {
             if(aController.adminLogin(aView.getPassword())){
                 nextView(new LoadingView());
+                
                 Thread t2 = new Thread(new Runnable(){
 
                     @Override
@@ -108,13 +109,13 @@ public class StartFrame implements Observable {
                         } catch (Exception e) {
                         }
                         notifyObservers("aLogin");
+                        nextView(views.get("AdminLoginView"));
                     }
-
-                    
                 });
-                t2.start();
+                t2.start(); 
             }   
         }
+        
         if (s.equals("cancel")){
             nextView(views.get("WelcomeView"));
         }
