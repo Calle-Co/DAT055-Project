@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import global.AllButtons;
 import global.AllButtons.size;
+import admin.AdminMenuPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,7 +21,6 @@ public class AdminHomeView extends JPanel{
 
     public AdminHomeView(){
         JPanel contentPanel = new JPanel();
-
         JPanel topPanel = new JPanel();
         //JPanel menuPanel = new JPanel();
         JPanel sidePanel = new JPanel();
@@ -28,12 +28,13 @@ public class AdminHomeView extends JPanel{
         JPanel lowerPanel = new JPanel();
         JPanel inside = new JPanel();
 
+        /*
         JLabel date = new JLabel("--date and time--");
         AllButtons homeButton = new AllButtons(size.MEDIUM, "Home");
         AllButtons logoutButton = new AllButtons(size.MEDIUM, "Logout");
         buttons.add(logoutButton);
         JLabel logo = new JLabel(logga, JLabel.CENTER);
-       
+       */
         JLabel ex1 = new JLabel("ex1");
         JLabel ex2 = new JLabel("ex2");
         JLabel ex3 = new JLabel("ex3");
@@ -41,11 +42,15 @@ public class AdminHomeView extends JPanel{
 
         AllButtons destinations = new AllButtons(size.LARGE, "Destinations");
         AllButtons customers = new AllButtons(size.LARGE, "Clients");
+        buttons.add(customers);
         AllButtons flights = new AllButtons(size.LARGE, "Flights");
 
         JLabel random = new JLabel("Whatever YOU WANT!");
         
-        AdminMenupanel menuPanel = new AdminMenupanel();
+        AdminMenuPanel menuPanel = new AdminMenuPanel();
+        for (AllButtons b : menuPanel.getButtons()){
+            buttons.add(b);
+        }
     
         inside.setLayout(new GridLayout(4,1));
         inside.add(ex1);

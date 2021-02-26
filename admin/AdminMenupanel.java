@@ -5,19 +5,26 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JFormattedTextField;
 import java.awt.*;
+import java.text.*;
 
 import global.AllButtons;
 import global.AllButtons.size;
+import global.WebFetching;
 
 
-public class AdminMenupanel extends JPanel{
+public class AdminMenuPanel extends JPanel{
 
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
-    public AdminMenupanel(){
+    private JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
 
-        JLabel date = new JLabel("--date and time--");
+    public AdminMenuPanel(){
+
+        WebFetching todaysDate = new WebFetching();
+
+        dateField.setText(todaysDate.getDat());
         AllButtons homeButton = new AllButtons(size.MEDIUM, "Home");
         buttons.add(homeButton);
         AllButtons logoutButton = new AllButtons(size.MEDIUM, "Logout");
@@ -29,7 +36,7 @@ public class AdminMenupanel extends JPanel{
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.gridx = 0;
         c.gridy = 0;
-        add(date, c);
+        add(dateField, c);
 
         c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.PAGE_START;
@@ -51,5 +58,5 @@ public class AdminMenupanel extends JPanel{
         add(logo, c);
         setVisible(true);
     }
-    
+    public ArrayList<AllButtons> getButtons(){ return buttons; }
 }
