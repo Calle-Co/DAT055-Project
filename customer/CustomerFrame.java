@@ -56,15 +56,16 @@ public class CustomerFrame implements Observable {
         views.put("HomeView", hView);
         views.put("FlightView", fView);
         views.put("BookingView", bView);
-        /*
+        
         customerFrame.add(hView);
         customerFrame.pack();
         currentView = hView;
-        */
         
+        /*
         customerFrame.add(fView);
         customerFrame.pack();
         currentView = fView;
+        */
     }
 
     public void nextView(JPanel view) {

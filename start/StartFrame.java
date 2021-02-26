@@ -54,6 +54,7 @@ public class StartFrame implements Observable {
             }
         });
 
+        /*===================================LOGIN=====================================*/
         LoginView lView = new LoginView();
         LoginModel lModel = new LoginModel();
         LoginController lController = new LoginController(lModel, lView);
@@ -82,35 +83,31 @@ public class StartFrame implements Observable {
             }
         });
 
+        /*================================ADMIN-LOGIN=====================================*/
         AdminLoginView aView = new AdminLoginView();
         AdminLoginModel aModel = new AdminLoginModel();
         AdminLoginController aController = new AdminLoginController(aModel, aView);
         aController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
         if (s.equals("Login!")) {
-            if(aController.adminLogin(aView.getPassword())){
-                nextView(new LoadingView());
-                Thread t2 = new Thread(new Runnable(){
-
-                    @Override
-                    public void run() {
-                        // TODO Auto-generated method stub
-                        
-                        try {
-                            Thread.sleep(2000);
-                        } catch (Exception e) {
-                        }
-                        notifyObservers("aLogin");
-                    }          
-                });
-                t2.start();
-            }   
+            tryAdminLogin(aController, aView);
         }
         if (s.equals("cancel")){
             nextView(views.get("WelcomeView"));
         }
         });
+        aController.addKeyListener(new KeyListener(){
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    tryAdminLogin(aController, aView);
+                }    
+            }
+            public void keyTyped(KeyEvent e) {}
+            public void keyReleased(KeyEvent e) {}
+        });
 
+        /*===================================SIGNUP=====================================*/
         SignupView sView = new SignupView();
         SignupModel suModel = new SignupModel();
         SignupController sController = new SignupController(suModel, sView);
@@ -171,6 +168,24 @@ public class StartFrame implements Observable {
                     }
                     notifyObservers("cLogin");
                 }   
+            });
+            t2.start();
+        }
+    }
+
+    public void tryAdminLogin(AdminLoginController aController, AdminLoginView aView){
+        if(aController.adminLogin(aView.getPassword())){
+            nextView(new LoadingView());
+            Thread t2 = new Thread(new Runnable(){
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+                    try {
+                        Thread.sleep(2000);
+                    } catch (Exception e) {
+                    }
+                    notifyObservers("aLogin");
+                }          
             });
             t2.start();
         }

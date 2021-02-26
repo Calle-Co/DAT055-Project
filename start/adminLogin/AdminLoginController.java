@@ -1,6 +1,8 @@
 package start.adminLogin;
 
 import javax.swing.JButton;
+import javax.swing.JTextField;
+
 import global.AllButtons;
 import java.awt.event.*;
 import java.sql.SQLException;
@@ -27,6 +29,11 @@ public class AdminLoginController {
         for(JButton b : buttons) {
             b.addActionListener(al);
         }
+    }
+
+    public void addKeyListener(KeyListener kl) {
+        JTextField passwordField = view.getPasswordField();
+        passwordField.addKeyListener(kl);
     }
 
     /**
