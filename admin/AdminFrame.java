@@ -5,6 +5,9 @@ import global.*;
 import java.awt.*;
 import java.util.HashMap;
 import admin.adminHome.*;
+import admin.clientsInfo.ClientsInfoController;
+import admin.clientsInfo.ClientsInfoModel;
+import admin.clientsInfo.ClientsInfoView;
 
 /**
  * @author William Husar
@@ -44,7 +47,7 @@ public class AdminFrame implements Observable {
                 nextView(views.get("DestinationView"));
             }
             if (s.equals("Clients")) {
-        	    nextView(views.get("ClientInfoView"));
+        	    nextView(views.get("ClientsInfoView"));
             }
             if (s.equals("Flights")) {
                 nextView(views.get("FlightsView"));
@@ -54,7 +57,19 @@ public class AdminFrame implements Observable {
             }
         });
 
+        ClientsInfoView cView = new ClientsInfoView();
+        ClientsInfoModel cModel = new ClientsInfoModel();
+        ClientsInfoController cController = new ClientsInfoController(cModel,cView);
+        cController.listAllUsers();
+        cController.addButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText();
+            if (s.equals("Update")) {
+                cController.listAllUsers();
+            }
+            });
+
         views.put("AdminHomeView", hView);
+        views.put("ClientsInfoView", cView);
 
         adminFrame.add(hView);
         adminFrame.pack();
