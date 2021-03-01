@@ -23,8 +23,9 @@ public class FlightController {
 
     public void flightTest(String from, String to, String date) {
         try {
-            String[] s = model.getFlight(from, to, date);
-            view.initButtons(new FlightInfoButton(s[0], s[1], s[2], s[3], s[4]));
+            // ArrayList<FlightInfoButton> infoButtons = model.getFlight(from, to, date);
+            //view.initButtons(new FlightInfoButton(s[0], s[1], s[2], s[3], s[4]));
+            view.initButtons(model.getFlight(from, to, date));
         } catch (Exception e) {
             System.out.println("something went wrong");
         }

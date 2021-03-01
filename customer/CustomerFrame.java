@@ -50,10 +50,21 @@ public class CustomerFrame implements Observable {
             if(s.equals("Logout")){
                 notifyObservers("cLogout");
             }
-            else if(s.equals("Search")){
+            if(s.equals("Search")){
                 bController.setLimit(Integer.parseInt(hView.getSearchParam()[3]));
                 searchFlights(hView.getSearchParam()[0], hView.getSearchParam()[1], hView.getSearchParam()[2]);
-                nextView(views.get("FlightView"));
+                nextView(new LoadingView());   
+                Thread t2 = new Thread(new Runnable(){
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (Exception e) {
+                        }
+                        nextView(views.get("FlightView"));
+                    }   
+                });
+                t2.start();
             }
             
         });
@@ -61,11 +72,11 @@ public class CustomerFrame implements Observable {
         FlightView fView = new FlightView();
         FlightModel fModel = new FlightModel();
         fController = new FlightController(fModel, fView);
-        
 
         BookingView bView = new BookingView();
         BookingModel bModel = new BookingModel();
         bController = new BookingController(bModel, bView);
+        
         views.put("HomeView", hView);
         views.put("FlightView", fView);
         views.put("BookingView", bView);

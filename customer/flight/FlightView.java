@@ -38,10 +38,12 @@ public class FlightView extends JPanel {
         }
     }
 
-    public void initButtons(FlightInfoButton b) {
-        myList.add(b);
-        list.add(b);
-        buttons.add(b);
+    public void initButtons(ArrayList<FlightInfoButton> infoButtons) {
+        for(FlightInfoButton fib : infoButtons) {
+            myList.add(fib);
+            list.add(fib);
+            buttons.add(fib);
+        }
         list.revalidate();
         list.repaint();
     }

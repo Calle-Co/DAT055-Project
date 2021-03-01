@@ -1,14 +1,16 @@
 package customer.flight;
 
 import java.sql.*;
+import java.util.ArrayList;
+
 import global.ServerConnection;
 
 public class FlightModel {
     private ServerConnection serverConnection;
-    private String[] flight;
+    private ArrayList<FlightInfoButton> flights;
 
     public FlightModel() {
-        this.flight = new String[5];
+        this.flights = new ArrayList<>();
     }
 
     /**
@@ -19,7 +21,7 @@ public class FlightModel {
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-    public String[] getFlight(String from, String to, String date) throws SQLException, ClassNotFoundException{
+    public ArrayList<FlightInfoButton> getFlight(String from, String to, String date) throws SQLException, ClassNotFoundException{
         serverConnection = new ServerConnection();
         serverConnection.DatabaseConnection();
         try(PreparedStatement ps = serverConnection.getConn().prepareStatement("SELECT * FROM flights WHERE from_d = ? AND to_d = ? AND date_of >= ? ORDER BY (date_of, time_of) ASC");)
@@ -29,11 +31,15 @@ public class FlightModel {
             ps.setDate(3, java.sql.Date.valueOf(date));
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                flights.add(new FlightInfoButton(rs.getString("flight_id"), rs.getString("from_d"), rs.getString("to_d"),
+                                    rs.getString("date_of"), rs.getString("time_of")));
+                /*
                 flight[0] = rs.getString("flight_id");
                 flight[1] = rs.getString("from_d");
                 flight[2] = rs.getString("to_d");
                 flight[3] = rs.getString("date_of");
                 flight[4] = rs.getString("time_of");
+                */
             } 
         }
         catch (SQLException e) {
@@ -41,6 +47,6 @@ public class FlightModel {
             System.out.println(serverConnection.getError(e));
         }
         serverConnection.getConn().close();
-        return flight;
+        return flights;
     }
 }
