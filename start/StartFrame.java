@@ -20,9 +20,11 @@ public class StartFrame implements Observable {
     private JPanel currentView;
     private HashMap<String, JPanel> views;
     private Observer observer;
+    private String user;
 
     public StartFrame() {
         views = new HashMap<>();
+        user = "";
         makeFrame();
         init();
     }
@@ -158,6 +160,7 @@ public class StartFrame implements Observable {
 
     public void tryLogin(LoginController lController, LoginView lView){
         if(lController.userLogin(lView.getUsername(), lView.getPassword())) {
+            user = lView.getUsername();
             nextView(new LoadingView());       
             Thread t2 = new Thread(new Runnable(){
                 @Override
@@ -190,6 +193,10 @@ public class StartFrame implements Observable {
             });
             t2.start();
         }
+    }
+
+    public String getUser() {
+        return this.user;
     }
 
     public void frameSetVisible(Boolean b) {

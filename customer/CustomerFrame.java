@@ -17,13 +17,12 @@ public class CustomerFrame implements Observable {
     private JPanel currentView;
     private HashMap<String, JPanel> views;
     private Observer observer;
-    private String currentUser;
-
+    private HomeView hView;
     private BookingController bController;
-    FlightController fController;
+    private FlightController fController;
+    private String currentUser;
     
-    public CustomerFrame(String user) {
-        this.currentUser = user; 
+    public CustomerFrame() {
         views = new HashMap<>();
         makeFrame();
         init();
@@ -42,10 +41,9 @@ public class CustomerFrame implements Observable {
     }
 
     public void init() {
-        HomeView hView = new HomeView();
+        hView = new HomeView();
         HomeModel hModel = new HomeModel();
         HomeController hController = new HomeController(hModel, hView);
-        hView.setUser(this.currentUser);
         hController.getDestinations();
         hController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
@@ -53,7 +51,7 @@ public class CustomerFrame implements Observable {
                 notifyObservers("cLogout");
             }
             else if(s.equals("Search")){
-                bController.setLimit( Integer.parseInt(hView.getSearchParam()[3]));
+                bController.setLimit(Integer.parseInt(hView.getSearchParam()[3]));
                 searchFlights(hView.getSearchParam()[0], hView.getSearchParam()[1], hView.getSearchParam()[2]);
                 nextView(views.get("FlightView"));
             }
@@ -75,20 +73,12 @@ public class CustomerFrame implements Observable {
         customerFrame.add(hView);
         customerFrame.pack();
         currentView = hView;
-        
-        
-        /*
-        customerFrame.add(fView);
-        customerFrame.pack();
-        currentView = fView;
-        */
     }
 
 
     public void searchFlights(String a, String b, String c){
         fController.flightTest(a, b, c);
         fController.addButtonListener(e -> {
-            System.out.println("hej");
             nextView(views.get("BookingView"));
         });
     }
@@ -101,6 +91,11 @@ public class CustomerFrame implements Observable {
         view.setVisible(true);
         customerFrame.pack();
         currentView = view;
+    }
+
+    public void setUser(String user) {
+        currentUser = user;
+        hView.setUser(user);
     }
 
     public void frameSetVisible(Boolean b) {
