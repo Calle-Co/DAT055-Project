@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import customer.MenuPanel;
+
 import java.awt.*;
 
 
@@ -31,6 +33,14 @@ public class FlightView extends JPanel {
         this.setPreferredSize(new Dimension(300,600));
         myList = new ArrayList<>();
         add(new JScrollPane(list));
+        this.add(new JScrollPane(list), BorderLayout.CENTER);
+        MenuPanel menuPanel = new MenuPanel();
+        menuPanel.setPreferredSize(new Dimension(1200,100));
+        for(AllButtons b : menuPanel.getButtons()) {
+            buttons.add(b);
+        }
+        this.add(menuPanel, BorderLayout.NORTH);
+        this.setVisible(true);
     }
     public void addButtonListener(ActionListener al){
         for(FlightInfoButton f : myList){
@@ -47,6 +57,7 @@ public class FlightView extends JPanel {
         list.revalidate();
         list.repaint();
     }
+
 
     public ArrayList<JButton> getButtons() { return buttons; }
 }

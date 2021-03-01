@@ -38,27 +38,32 @@ public class MenuPanel extends JPanel {
         AllButtons homeButton = new AllButtons(size.BORDERLESSWHITE, "Home");
         homeButton.setBounds(50, 20, 160, 60);
         homeButton.setFont(new Font("", Font.BOLD, 25));
+        buttons.add(homeButton);
         topPanel.add(homeButton);
 
         AllButtons bkButton = new AllButtons(size.BORDERLESSWHITE, "Bookings");
         bkButton.setBounds(230, 20, 160, 60);
         bkButton.setFont(new Font("Arial", Font.BOLD, 25));
+        buttons.add(bkButton);
         topPanel.add(bkButton);
 
         AllButtons hButton = new AllButtons(size.BORDERLESSWHITE, "Help");
         hButton.setBounds(410, 20, 160, 60);
         hButton.setFont(new Font("Arial", Font.BOLD, 25));
+        buttons.add(hButton);
         topPanel.add(hButton);
 
         AllButtons pButton = new AllButtons(size.BORDERLESSWHITE, "Profile");
         pButton.setBounds(590, 20, 160, 28);
         pButton.setFont(new Font("Arial", Font.BOLD, 15));
+        buttons.add(pButton);
         topPanel.add(pButton);
 
         AllButtons logoutButton = new AllButtons(size.BORDERLESSWHITE, "Logout");
         buttons.add(logoutButton);
         logoutButton.setBounds(590, 52, 160, 28);
         logoutButton.setFont(new Font("Arial", Font.BOLD, 15));
+        buttons.add(logoutButton);
         topPanel.add(logoutButton);
 
         // TIME PANEL (TOPLEFT)

@@ -3,8 +3,11 @@ package customer.booking;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+
+import global.AllButtons;
 import global.InfoHolding;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  * @author Simon Länsberg, William Husar
@@ -19,14 +22,16 @@ public class BookingController {
     private static boolean readyForNew = true;
     private static ArrayList<InfoHolding> people = new ArrayList<>();
     private static HashMap<String, InfoPanel> info; 
+    private ArrayList<AllButtons> buttons;
     private int np = 0;
     private int limit = 4;
 
     public BookingController(BookingModel model, BookingView view){
         this.model = model;
         this.view = view;
-         
+        buttons = view.getButtons();
         seats = new ArrayList<>();
+
         view.addSeatListener(e -> {
         String s = ((Seat) e.getSource()).getSeat();
             
@@ -84,9 +89,9 @@ public class BookingController {
             text = "";
             }
         });
+
     }
-    public void toPrint(String s){
-    }
+    //public void toPrint(String s){}
 
     public static void toSave(String key){
         String name = info.get(key).getName();
@@ -112,5 +117,11 @@ public class BookingController {
         total += p.toPrint()+ "\n";
         }
         test.updateDisplay(total);
+    }
+
+	public void addButtonListener(ActionListener al) {
+        for(AllButtons b : buttons) {
+            b.addActionListener(al);
+        }
     }
 }

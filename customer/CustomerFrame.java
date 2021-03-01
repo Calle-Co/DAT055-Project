@@ -1,6 +1,8 @@
 package customer;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileView;
+
 import global.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -20,6 +22,7 @@ public class CustomerFrame implements Observable {
     private HomeView hView;
     private BookingController bController;
     private FlightController fController;
+    FlightView fView;
     private String currentUser;
     
     public CustomerFrame() {
@@ -48,34 +51,55 @@ public class CustomerFrame implements Observable {
         hController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
+                System.out.println("Loggar ut!");
                 notifyObservers("cLogout");
             }
-            if(s.equals("Search")){
-                bController.setLimit(Integer.parseInt(hView.getSearchParam()[3]));
-                searchFlights(hView.getSearchParam()[0], hView.getSearchParam()[1], hView.getSearchParam()[2]);
-                nextView(new LoadingView());   
-                Thread t2 = new Thread(new Runnable(){
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(2000);
-                        } catch (Exception e) {
-                        }
-                        nextView(views.get("FlightView"));
-                    }   
-                });
-                t2.start();
+            else if(s.equals("Search")){
+                search();
             }
-            
+            else if(s.equals("Home")){
+                nextView(views.get("HomeView"));
+            }
+            else if(s.equals("Bookings")){
+                System.out.println("**** no");
+
+            }
+            else if(s.equals("Help")){
+                System.out.println("**** you");
+
+            }
+            else if(s.equals("Profile")){
+                System.out.println("**** us");
+
+            }
         });
 
-        FlightView fView = new FlightView();
+
+        fView = new FlightView();
         FlightModel fModel = new FlightModel();
         fController = new FlightController(fModel, fView);
 
         BookingView bView = new BookingView();
         BookingModel bModel = new BookingModel();
         bController = new BookingController(bModel, bView);
+        bController.addButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText(); 
+            if(s.equals("Logout")){
+                notifyObservers("cLogout");
+            }
+            else if(s.equals("Home")){
+                nextView(views.get("HomeView"));
+            }
+            else if(s.equals("Bookings")){
+                System.out.println("**** no");
+            }
+            else if(s.equals("Help")){
+                System.out.println("**** you");
+            }
+            else if(s.equals("Profile")){
+                System.out.println("**** us");
+            }
+        });
         
         views.put("HomeView", hView);
         views.put("FlightView", fView);
@@ -86,14 +110,63 @@ public class CustomerFrame implements Observable {
         currentView = hView;
     }
 
-
     public void searchFlights(String a, String b, String c){
         fController.flightTest(a, b, c);
         fController.addButtonListener(e -> {
-            nextView(views.get("BookingView"));
+            String s = ((JButton) e.getSource()).getText(); 
+            if(s.equals("Logout")){
+                notifyObservers("cLogout");
+            }
+            else if(s.equals("Home")){
+                nextView(views.get("HomeView"));
+                //fView.clearButtons();
+            }
+            else if(s.equals("Bookings")){
+                System.out.println("**** no");
+
+            }
+            else if(s.equals("Help")){
+                System.out.println("**** you");
+
+            }
+            else if(s.equals("Profile")){
+                System.out.println("**** us");
+
+            }
+            else{
+                nextView(views.get("BookingView"));
+            }
         });
     }
 
+    public void search(){
+        bController.setLimit(Integer.parseInt(hView.getSearchParam()[3]));
+        searchFlights(hView.getSearchParam()[0], hView.getSearchParam()[1], hView.getSearchParam()[2]);
+        nextView(new LoadingView());   
+        Thread t2 = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                }
+                if(!fController.getNoFlight()){
+                    nextView(views.get("FlightView"));
+                    System.out.println("BOOKING");
+                }
+                else{
+                    JOptionPane.showConfirmDialog(null,
+                    "There is no such flight! We apologize for the inconvenience",
+                    "Sorry!",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.PLAIN_MESSAGE);
+                    nextView(views.get("HomeView"));
+                    System.out.println("HOME AGAIN");
+                }   
+            }   
+        });
+        t2.start();
+    }
 
     public void nextView(JPanel view) {
         customerFrame.remove(currentView);

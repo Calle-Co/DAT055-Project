@@ -5,6 +5,8 @@ import global.AllButtons.size;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import customer.MenuPanel;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -20,14 +22,18 @@ public class BookingView extends JPanel{
     private HashMap<String, InfoPanel> info;
     private JPanel sPanel;
     private JPanel iHolder;
+    private JPanel fillPanel;
     private ArrayList<Seat> seats;
+    private ArrayList<AllButtons> buttons;
    
     public BookingView(){
         bokaButton = new AllButtons(size.MEDIUM, "Boka!");
         sPanel = new JPanel();
         iHolder = new JPanel();
+        fillPanel = new JPanel();
         info = new HashMap<>();
         seats = new ArrayList<>();
+        buttons = new ArrayList<>();
         initSeats();
         this.setPreferredSize(new Dimension(500,800));
         this.setBorder(new EmptyBorder(6,6,6,6));
@@ -37,10 +43,19 @@ public class BookingView extends JPanel{
         iHolder.setPreferredSize(new Dimension(200, 600));
         iHolder.setVisible(true);
         iHolder.setBackground(Color.WHITE);
-        //this.setLayout(new BorderLayout());
+        fillPanel.setBackground(Color.WHITE);
+        fillPanel.setPreferredSize(new Dimension(700,600));
+        fillPanel.setVisible(true);
         this.add(sPanel, BorderLayout.WEST);
         this.add(bokaButton, BorderLayout.SOUTH);
         this.add(iHolder, BorderLayout.CENTER);
+        this.add(fillPanel, BorderLayout.EAST);
+        MenuPanel menuPanel = new MenuPanel();
+        menuPanel.setPreferredSize(new Dimension(500,100));
+        for(AllButtons b : menuPanel.getButtons()) {
+            buttons.add(b);
+        }
+        this.add(menuPanel, BorderLayout.NORTH);
         
     }
 
@@ -114,4 +129,14 @@ public class BookingView extends JPanel{
     public void addButtonListener(ActionListener al){
         bokaButton.addActionListener(al);
     }
+
+    public void addMenuListener(ActionListener al){
+        for(AllButtons b : buttons){
+            b.addActionListener(al);
+        } 
+    }
+
+	public ArrayList<AllButtons> getButtons() {
+		return buttons;
+	}
 }
