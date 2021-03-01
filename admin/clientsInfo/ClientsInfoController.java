@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.JButton;
 
 /**
+ * Kontroller för ClientsInfo-panelen.
  * @author Carl Classon
  * @version 2021-02-26
  */

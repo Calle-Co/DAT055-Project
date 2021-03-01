@@ -1,8 +1,10 @@
 package admin.clientsInfo;
 
 import javax.swing.*;
+import javax.swing.border.*;
 import java.util.ArrayList;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -10,18 +12,19 @@ import global.AllButtons;
 import global.AllButtons.*;
 import admin.AdminMenuPanel;
 
+
 /**
  * @author Carl Classon
  * @version 2021-02-26
  */
 @SuppressWarnings("serial")
 public class ClientsInfoView extends JPanel{
-    private JPanel usersPanel;
+    private JPanel clientsPanel;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
     public ClientsInfoView(){
-        usersPanel = new JPanel();
-        usersPanel.setLayout(new GridLayout(20,1));
+        clientsPanel = new JPanel();
+        clientsPanel.setLayout(new GridLayout(20,1));
         
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new FlowLayout());
@@ -36,7 +39,7 @@ public class ClientsInfoView extends JPanel{
 
         setLayout(new BorderLayout());
         add(topPanel,BorderLayout.NORTH);
-        add(new JScrollPane(usersPanel));
+        add(new JScrollPane(clientsPanel));
         setVisible(true);
       
     }  
@@ -47,17 +50,31 @@ public class ClientsInfoView extends JPanel{
      */
     public void setUsers(ArrayList<String> users){
         for(String user : users){
-            AllButtons button = new AllButtons(size.SMALL, user);
-            usersPanel.add(button);
+            JPanel userPanel = new JPanel();
+            userPanel.setLayout(new GridLayout(1,2));
+           
+            Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+            Border blackLine = BorderFactory.createLineBorder(Color.black);
+            CompoundBorder line = new CompoundBorder(empty, blackLine);
+            Border grid1Border = BorderFactory.createTitledBorder(line, "Client username:");
+            
+            JLabel userLabel = new JLabel(user);
+            AllButtons userButton = new AllButtons(size.SMALL,"Client Info");
+            buttons.add(userButton);
+            
+            userPanel.add(userLabel);
+            userPanel.add(userButton);
+            userPanel.setBorder(grid1Border);
+            clientsPanel.add(userPanel);
         }
-        usersPanel.revalidate();
-        usersPanel.repaint();
+        clientsPanel.revalidate();
+        clientsPanel.repaint();
     }
 
     public void clearUsers(){
-        usersPanel.removeAll();
-        usersPanel.revalidate();
-        usersPanel.repaint();
+        clientsPanel.removeAll();
+        clientsPanel.revalidate();
+        clientsPanel.repaint();
     }
 
     public ArrayList<AllButtons> getButtons() { return buttons; }
