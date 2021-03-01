@@ -21,6 +21,7 @@ import admin.AdminMenuPanel;
 public class ClientsInfoView extends JPanel{
     private JPanel clientsPanel;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
+    private ArrayList<AllButtons> clients = new ArrayList<>();
 
     public ClientsInfoView(){
         clientsPanel = new JPanel();
@@ -51,22 +52,22 @@ public class ClientsInfoView extends JPanel{
     public void setUsers(ArrayList<String> users){
         for(String user : users){
             JPanel userPanel = new JPanel();
-            userPanel.setLayout(new GridLayout(1,2));
+            userPanel.setLayout(new GridLayout(1,1));
            
             Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
             Border blackLine = BorderFactory.createLineBorder(Color.black);
             CompoundBorder line = new CompoundBorder(empty, blackLine);
             Border grid1Border = BorderFactory.createTitledBorder(line, "Client username:");
             
-            JLabel userLabel = new JLabel(user);
-            AllButtons userButton = new AllButtons(size.SMALL,"Client Info");
-            buttons.add(userButton);
+            AllButtons userButton = new AllButtons(size.SMALL,user);
+            clients.add(userButton);
             
-            userPanel.add(userLabel);
             userPanel.add(userButton);
             userPanel.setBorder(grid1Border);
             clientsPanel.add(userPanel);
         }
+        Border empty = BorderFactory.createEmptyBorder(0, 300, 0, 300);
+        clientsPanel.setBorder(empty);
         clientsPanel.revalidate();
         clientsPanel.repaint();
     }
@@ -77,6 +78,19 @@ public class ClientsInfoView extends JPanel{
         clientsPanel.repaint();
     }
 
+    public boolean clientPopup(String username){
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        String s = "Do you want to delete the user " + username + "?";
+        int dialogResult = JOptionPane.showConfirmDialog (null, s,"Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            return true;
+        } else {
+            return false;
+        } 
+    }
+
     public ArrayList<AllButtons> getButtons() { return buttons; }
+    public ArrayList<AllButtons> getClient() { return clients; }
+
 
 }

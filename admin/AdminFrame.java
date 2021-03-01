@@ -72,8 +72,7 @@ public class AdminFrame implements Observable {
             if (s.equals("Home")) {
                 nextView(views.get("AdminHomeView"));
             }
-            });
-
+            });   
         views.put("AdminHomeView", hView);
         views.put("ClientsInfoView", cView);
 

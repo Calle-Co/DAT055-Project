@@ -34,8 +34,21 @@ public class ClientsInfoModel{
         return users; 
     }
 
+    public void deleteUser(String username) throws SQLException, ClassNotFoundException{
+        s = new ServerConnection();
+        s.DatabaseConnection();
+        try(PreparedStatement ps = s.getConn().prepareStatement("DELETE FROM customers WHERE username = ?");){
+            ps.setString(1, username);
+            ps.executeUpdate();
+        }catch (SQLException e) {
+            throw new SQLException();
+        }
+        s.getConn().close(); 
+    }
+
     public void clearUsers(){
         users.removeAll(users);
     }
+
 
 }
