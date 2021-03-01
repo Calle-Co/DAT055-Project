@@ -49,6 +49,10 @@ public class FlightView extends JPanel {
     }
 
     public void initButtons(ArrayList<FlightInfoButton> infoButtons) {
+        if(!myList.isEmpty()) {
+            myList.clear();
+            list.removeAll();
+        }
         for(FlightInfoButton fib : infoButtons) {
             myList.add(fib);
             list.add(fib);
