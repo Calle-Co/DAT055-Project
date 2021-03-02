@@ -10,7 +10,7 @@ import admin.clientsInfo.ClientsInfoModel;
 import admin.clientsInfo.ClientsInfoView;
 
 /**
- * @author William Husar
+ * @author William Husar & Carl Classon
  * @version 2021-02-24
  */
 public class AdminFrame implements Observable {

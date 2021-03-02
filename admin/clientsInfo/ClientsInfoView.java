@@ -14,6 +14,7 @@ import admin.AdminMenuPanel;
 
 
 /**
+ * En klass som är ansvarig för grafikdelen av ClientsInfo.
  * @author Carl Classon
  * @version 2021-02-26
  */
@@ -78,6 +79,12 @@ public class ClientsInfoView extends JPanel{
         clientsPanel.repaint();
     }
 
+    /**
+     * Denna metod har till uppgift att starta en popup ruta som frågar
+     * admin om man radera den valda användaren eller inte.
+     * @param username Användaren som man har tryckt på
+     * @return
+     */
     public boolean clientPopup(String username){
         int dialogButton = JOptionPane.YES_NO_OPTION;
         String s = "Do you want to delete the user " + username + "?";

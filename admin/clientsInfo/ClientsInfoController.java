@@ -35,6 +35,13 @@ public class ClientsInfoController {
         }
     }
 
+    /**
+     * Denna metod kallar på ett flertal andra metoder, i korta drag 
+     * så hämtar den alla customers från databasen, lägger till dom i en lista
+     * och skickar vidare dom till View:n. Den lägger även till en lyssnare på
+     * de knappar som representerar användarna. Den kallar även på clear metoder
+     * som rensar upp grejer!
+     */
     public void listAllUsers(){
         view.clearUsers();
         model.clearUsers();
@@ -50,6 +57,12 @@ public class ClientsInfoController {
         }
     }
     
+    /**
+     * Funktion som kallar på clientPopup i view, om man klickar på OK
+     * så kallar funktionen på deleteUser som tar bort användaren från
+     * databasen.
+     * @param username Namnet på användaren som någon har klickat på.
+     */
     public void clientPopup(String username){
         if(view.clientPopup(username)){
             try {

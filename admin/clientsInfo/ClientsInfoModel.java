@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import global.ServerConnection;
 
 /**
+ * En klass för kommunkation mellan programet och databasen.
  * @author Carl Classon
  * @version 2021-02-26
  */ 
@@ -17,6 +18,12 @@ public class ClientsInfoModel{
         users = new ArrayList<>();
     }
 
+    /**
+     * Denna metod hämtar användarnamnen på alla kunder som finns i databasen.
+     * @return En lista med namnen på alla användarnamn i databasen.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ArrayList<String> getUsers() throws SQLException, ClassNotFoundException{
         s = new ServerConnection();
         s.DatabaseConnection();
@@ -34,6 +41,13 @@ public class ClientsInfoModel{
         return users; 
     }
 
+
+    /**
+     * Denna metod har som uppgift att ta bort en användare från databasen.
+     * @param username Användaren som du vill ta bort från databasen.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public void deleteUser(String username) throws SQLException, ClassNotFoundException{
         s = new ServerConnection();
         s.DatabaseConnection();
