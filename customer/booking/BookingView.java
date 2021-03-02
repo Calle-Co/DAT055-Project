@@ -20,6 +20,7 @@ public class BookingView extends JPanel{
     private Seat currentSeat;
     private AllButtons bokaButton;
     private HashMap<String, InfoPanel> info;
+    private String text;
     private JPanel sPanel;
     private JPanel iHolder;
     private JPanel fillPanel;
@@ -27,13 +28,14 @@ public class BookingView extends JPanel{
     private ArrayList<AllButtons> buttons;
    
     public BookingView(){
-        bokaButton = new AllButtons(size.MEDIUM, "Boka!");
         sPanel = new JPanel();
         iHolder = new JPanel();
         fillPanel = new JPanel();
         info = new HashMap<>();
         seats = new ArrayList<>();
         buttons = new ArrayList<>();
+        bokaButton = new AllButtons(size.MEDIUM, "Boka!");
+        buttons.add(bokaButton);
         initSeats();
         this.setPreferredSize(new Dimension(500,800));
         this.setBorder(new EmptyBorder(6,6,6,6));
@@ -116,6 +118,38 @@ public class BookingView extends JPanel{
         }
     }
 
+    public boolean makeOPane(String s){
+        if(s.equals("confirm")){
+            text = "Are you sure you wish to Book";
+            int reply = JOptionPane.showConfirmDialog(null, 
+            text,
+            "OKEY?", 
+            JOptionPane.YES_NO_OPTION);
+            if( reply == JOptionPane.YES_OPTION){
+                return true;
+            }
+        }
+        else if(s.equals("BookingConfirm")){
+            JOptionPane.showConfirmDialog(null,
+            "The booking was succesful! Have a horrible day :) ",
+            "Bich!",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.PLAIN_MESSAGE);
+            return true;    
+        }
+        else if(s.equals("SelectError")){
+            JOptionPane.showMessageDialog(null, 
+                "YOU NEED TO SELECT A SEAT AND FILL BOTH BOXES BEFORE YOU BOOK", 
+                "OKEY?", 
+                JOptionPane.WARNING_MESSAGE);
+            text = "";
+            return true;
+        }
+        return false;
+        }
+
+    
+
     public HashMap<String, InfoPanel> getInfo(){
         return info;
     }
@@ -139,4 +173,6 @@ public class BookingView extends JPanel{
 	public ArrayList<AllButtons> getButtons() {
 		return buttons;
 	}
+
+
 }

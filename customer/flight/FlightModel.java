@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import global.ServerConnection;
+/**
+ * @author William Husar, Simon Länsberg
+ * @version 2021-03-02
+ */
 
 public class FlightModel {
     private ServerConnection serverConnection;

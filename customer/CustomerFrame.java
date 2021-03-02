@@ -11,8 +11,8 @@ import customer.flight.*;
 import customer.booking.*;
 
 /**
- * @author William Husar
- * @version 2021-04-24
+ * @author William Husar, Simon Länsberg
+ * @version 2021-03-02
  */
 public class CustomerFrame implements Observable {
     private JFrame customerFrame;
@@ -74,7 +74,6 @@ public class CustomerFrame implements Observable {
             }
         });
 
-
         fView = new FlightView();
         FlightModel fModel = new FlightModel();
         fController = new FlightController(fModel, fView);
@@ -86,6 +85,25 @@ public class CustomerFrame implements Observable {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
                 notifyObservers("cLogout");
+            }
+            else if(s.equals("Boka!")){
+                bController.initBooking();
+                if(bController.returnToHome()){
+                   nextView(new LoadingView());
+                    Thread t3 = new Thread(new Runnable(){
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (Exception e) {
+                            }
+                            if(bView.makeOPane("BookingConfirm")){
+                                nextView(views.get("HomeView"));
+                            }
+                        }   
+                    });
+                    t3.start();
+                }
             }
             else if(s.equals("Home")){
                 nextView(views.get("HomeView"));
@@ -104,7 +122,6 @@ public class CustomerFrame implements Observable {
         views.put("HomeView", hView);
         views.put("FlightView", fView);
         views.put("BookingView", bView);
-       
         customerFrame.add(hView);
         customerFrame.pack();
         currentView = hView;
@@ -119,7 +136,6 @@ public class CustomerFrame implements Observable {
             }
             else if(s.equals("Home")){
                 nextView(views.get("HomeView"));
-                //fView.clearButtons();
             }
             else if(s.equals("Bookings")){
                 System.out.println("**** no");
@@ -152,16 +168,11 @@ public class CustomerFrame implements Observable {
                 }
                 if(!fController.getNoFlight()){
                     nextView(views.get("FlightView"));
-                    System.out.println("BOOKING");
                 }
                 else{
-                    JOptionPane.showConfirmDialog(null,
-                    "There is no such flight! We apologize for the inconvenience",
-                    "Sorry!",
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.PLAIN_MESSAGE);
-                    nextView(views.get("HomeView"));
-                    System.out.println("HOME AGAIN");
+                    if(fView.makeOPane()){
+                        nextView(views.get("HomeView"));
+                    }
                 }   
             }   
         });

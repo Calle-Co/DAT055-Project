@@ -14,6 +14,7 @@ import java.awt.event.*;
  * @version 2021-02-24
  */
 public class BookingController {
+    private boolean rth = false;
     private BookingView view;
     private BookingModel model;
     private ArrayList<Seat> seats;
@@ -50,22 +51,18 @@ public class BookingController {
                 np++;
             }
         });
+    }
 
-        view.addButtonListener(e -> {
+    public void initBooking(){
         info = view.getInfo();
+        rth = false;
         if (readyForNew) {
             for(Seat s: seats){
                 toSave(s.getSeat());
             }
         }
         if(ok){
-            text = "Are you sure you wish to Book";
-            int reply = JOptionPane.showConfirmDialog(null, 
-            text,
-            "OKEY?", 
-            JOptionPane.YES_NO_OPTION);
-
-            if( reply == JOptionPane.YES_OPTION){
+            if(view.makeOPane("confirm")){
                 for(Seat s: seats){
                     s.setStatus(true);
                     view.removeInfo(s.getSeat());
@@ -74,24 +71,23 @@ public class BookingController {
                 text = "";
                 toUpdate();
                 readyForNew = true;
+                rth = true;
+
             }
-            else if(reply == JOptionPane.NO_OPTION){ 
+            else{ 
                 text = "";
                 readyForNew = false;
             }   
         }
         else{
             Toolkit.getDefaultToolkit().beep();
-            JOptionPane.showMessageDialog(null, 
-                "YOU NEED TO SELECT A SEAT AND FILL BOTH BOXES BEFORE YOU BOOK", 
-                "OKEY?", 
-                JOptionPane.WARNING_MESSAGE);
-            text = "";
+            if(view.makeOPane("SelectError")){}
             }
-        });
+        }
 
-    }
-    //public void toPrint(String s){}
+        public boolean returnToHome(){
+            return this.rth;
+        }
 
     public static void toSave(String key){
         String name = info.get(key).getName();
@@ -105,6 +101,7 @@ public class BookingController {
             ok = false;
         }
     }
+
 
     public void setLimit(int limit){
         this.limit = limit;

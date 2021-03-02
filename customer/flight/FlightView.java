@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -32,7 +33,6 @@ public class FlightView extends JPanel {
         this.setLayout(new BorderLayout());
         this.setPreferredSize(new Dimension(300,600));
         myList = new ArrayList<>();
-        add(new JScrollPane(list));
         this.add(new JScrollPane(list), BorderLayout.CENTER);
         MenuPanel menuPanel = new MenuPanel();
         menuPanel.setPreferredSize(new Dimension(1200,100));
@@ -42,6 +42,16 @@ public class FlightView extends JPanel {
         this.add(menuPanel, BorderLayout.NORTH);
         this.setVisible(true);
     }
+
+    public boolean makeOPane(){
+            JOptionPane.showConfirmDialog(null,
+            "There is no such flight! We apologize for the inconvenience",
+            "Sorry!",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.PLAIN_MESSAGE);
+            return true;    
+    }
+    
     public void addButtonListener(ActionListener al){
         for(FlightInfoButton f : myList){
             f.addActionListener(al);
