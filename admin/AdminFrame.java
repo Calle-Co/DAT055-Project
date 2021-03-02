@@ -8,6 +8,9 @@ import admin.adminHome.*;
 import admin.clientsInfo.ClientsInfoController;
 import admin.clientsInfo.ClientsInfoModel;
 import admin.clientsInfo.ClientsInfoView;
+import admin.destInfo.DestInfoController;
+import admin.destInfo.DestInfoModel;
+import admin.destInfo.DestInfoView;
 
 /**
  * @author William Husar & Carl Classon
@@ -44,7 +47,7 @@ public class AdminFrame implements Observable {
         hController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
             if (s.equals("Destinations")) {
-                nextView(views.get("DestinationView"));
+                nextView(views.get("DestInfoView"));
             }
             if (s.equals("Clients")) {
         	    nextView(views.get("ClientsInfoView"));
@@ -72,9 +75,28 @@ public class AdminFrame implements Observable {
             if (s.equals("Home")) {
                 nextView(views.get("AdminHomeView"));
             }
-            });   
+            }); 
+            
+        DestInfoView dView = new DestInfoView();
+        DestInfoModel dModel = new DestInfoModel();
+        DestInfoController dController = new DestInfoController(dModel, dView);
+        dController.listAllDestinations();
+        dController.addButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText();
+            if (s.equals("Add destination!")) {
+                dController.addDestination();
+            }
+            if (s.equals("Logout")) {
+                notifyObservers("aLogout");
+            }
+            if (s.equals("Home")) {
+                nextView(views.get("AdminHomeView"));
+            }    
+        });
+            
         views.put("AdminHomeView", hView);
         views.put("ClientsInfoView", cView);
+        views.put("DestInfoView", dView);
 
         adminFrame.add(hView);
         adminFrame.pack();

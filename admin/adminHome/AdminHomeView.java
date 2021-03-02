@@ -41,6 +41,7 @@ public class AdminHomeView extends JPanel{
         JLabel ex4 = new JLabel("ex4");
 
         AllButtons destinations = new AllButtons(size.LARGE, "Destinations");
+        buttons.add(destinations);
         AllButtons customers = new AllButtons(size.LARGE, "Clients");
         buttons.add(customers);
         AllButtons flights = new AllButtons(size.LARGE, "Flights");

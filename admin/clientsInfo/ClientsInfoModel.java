@@ -2,7 +2,6 @@ package admin.clientsInfo;
 
 import java.sql.*;
 import java.util.ArrayList;
-
 import global.ServerConnection;
 
 /**
