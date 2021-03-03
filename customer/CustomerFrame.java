@@ -9,6 +9,7 @@ import java.util.HashMap;
 import customer.home.*;
 import customer.flight.*;
 import customer.booking.*;
+import customer.help.*;
 
 /**
  * @author William Husar, Simon Länsberg
@@ -23,6 +24,8 @@ public class CustomerFrame implements Observable {
     private BookingController bController;
     private FlightController fController;
     FlightView fView;
+    private HelpView helpView;
+    private HelpController helpController;
     private String currentUser;
     public CustomerFrame() {
         views = new HashMap<>();
@@ -64,7 +67,7 @@ public class CustomerFrame implements Observable {
 
             }
             else if(s.equals("Help")){
-                System.out.println("help");
+                nextView(views.get("HelpView"));
 
             }
             else if(s.equals("Profile")){
@@ -89,7 +92,7 @@ public class CustomerFrame implements Observable {
 
             }
             else if(s.equals("Help")){
-                System.out.println("help");
+                nextView(views.get("HelpView"));
 
             }
             else if(s.equals("Profile")){
@@ -109,14 +112,13 @@ public class CustomerFrame implements Observable {
             else if(s.equals("Boka!")){
                 bController.initBooking();
                 if(bController.returnToHome()){
-                   nextView(new LoadingView());
-                   try {
-                    bModel.setBooked(bController.getBookingInfo());
-                   } catch (Exception e0) {
-                       //TODO: handle exception
-
-                       System.out.println("Skiten kaosar yau");
-                   } 
+                    nextView(new LoadingView());
+                    try {
+                        bController.setBooked();
+                        //bModel.setBooked(bController.getBookingInfo());
+                    } catch (Exception e0) {
+                       if(bView.makeOPane("SeatOccupiedError"));
+                    } 
                     Thread t3 = new Thread(new Runnable(){
                         @Override
                         public void run() {
@@ -143,13 +145,41 @@ public class CustomerFrame implements Observable {
                 System.out.println("bookings");
             }
             else if(s.equals("Help")){
-                System.out.println("help");
+                nextView(views.get("HelpView"));
             }
             else if(s.equals("Profile")){
                 System.out.println("profile");
             }
         });
-        
+
+
+        helpView = new HelpView();
+        HelpModel helpModel = new HelpModel();
+        helpController = new HelpController(helpModel, helpView);
+        fController.addMenuButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText(); 
+            if(s.equals("Logout")){
+                notifyObservers("cLogout");
+            }
+            else if(s.equals("Home")){
+                nextView(views.get("HomeView"));
+            }
+            else if(s.equals("Bookings")){
+                System.out.println("bookings");
+
+            }
+            else if(s.equals("Help")){
+                nextView(views.get("HelpView"));
+
+            }
+            else if(s.equals("Profile")){
+                System.out.println("profile");
+
+            }
+        });
+
+
+        views.put("HelpView", helpView);
         views.put("HomeView", hView);
         views.put("FlightView", fView);
         views.put("BookingView", bView);

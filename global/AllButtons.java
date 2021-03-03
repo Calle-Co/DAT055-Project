@@ -90,7 +90,7 @@ public class AllButtons extends JButton{
             setBorderPainted(false);
             
         }
-        else if(s == size.LARGE){
+        else if(s == size.CUSTOM){
             addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     setBackground(new Color(209,237,242,200));

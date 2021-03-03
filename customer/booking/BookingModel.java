@@ -56,4 +56,23 @@ public class BookingModel {
         return seats;
     }
 
+    public ArrayList<String> getBookedSeats(String flight_id) throws SQLException, ClassNotFoundException{
+        ArrayList<String> bookedSeats = new ArrayList<>();
+        serverConnection = new ServerConnection();
+        serverConnection.DatabaseConnection();
+        try(PreparedStatement ps = serverConnection.getConn().prepareStatement("SELECT seat FROM seats WHERE flight_id = ?");) {
+            ps.setInt(1, Integer.parseInt(flight_id));
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                bookedSeats.add(rs.getString("seat"));
+            }
+        }
+        catch (SQLException e) {
+            throw new SQLException();
+            //System.out.println(serverConnection.getError(e));
+        }
+        serverConnection.getConn().close();
+        return bookedSeats;
+    }
+
 }
