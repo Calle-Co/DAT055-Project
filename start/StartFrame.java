@@ -156,6 +156,12 @@ public class StartFrame implements Observable {
         currentView = view;
     }
 
+    /**
+     * Denna metod försöker logga in en användare. Om det lyckas så startas
+     * loadingview och sen loggas man in till customer delen av programmet.
+     * @param lController en loginController
+     * @param lView en loginView
+     */
     public void tryLogin(LoginController lController, LoginView lView){
         if(lController.userLogin(lView.getUsername(), lView.getPassword())) {
             user = lView.getUsername();
@@ -175,6 +181,12 @@ public class StartFrame implements Observable {
         }
     }
 
+        /**
+     * Denna metod försöker logga in en admin. Om det lyckas så startas
+     * loadingview och sen loggas man in till admin delen av programmet.
+     * @param lController en adminLoginController
+     * @param lView en adminLoginView
+     */
     public void tryAdminLogin(AdminLoginController aController, AdminLoginView aView){
         if(aController.adminLogin(aView.getPassword())){
             nextView(new LoadingView());

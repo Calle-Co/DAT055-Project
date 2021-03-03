@@ -14,7 +14,7 @@ public class InfoHolding {
     /**
      * The constructor is used to create a new representation of a person
      * @param name Name of the person
-     * @param age Age of th person
+     * @param age Age of the person
      * @param owner Username of the "main" person who peforms the booking
      */
     public InfoHolding(String name, String age, String owner, String seat) {
