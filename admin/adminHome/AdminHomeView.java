@@ -45,6 +45,7 @@ public class AdminHomeView extends JPanel{
         AllButtons customers = new AllButtons(size.LARGE, "Clients");
         buttons.add(customers);
         AllButtons flights = new AllButtons(size.LARGE, "Flights");
+        buttons.add(flights);
 
         JLabel random = new JLabel("Whatever YOU WANT!");
         

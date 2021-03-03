@@ -53,7 +53,7 @@ public class AdminFrame implements Observable {
         	    nextView(views.get("ClientsInfoView"));
             }
             if (s.equals("Flights")) {
-                nextView(views.get("FlightsView"));
+                nextView(views.get("ShowFlightsView"));
             }
             if (s.equals("Logout")) {
                 notifyObservers("aLogout");
@@ -75,7 +75,7 @@ public class AdminFrame implements Observable {
             if (s.equals("Home")) {
                 nextView(views.get("AdminHomeView"));
             }
-            }); 
+            });
             
         DestInfoView dView = new DestInfoView();
         DestInfoModel dModel = new DestInfoModel();
@@ -93,10 +93,35 @@ public class AdminFrame implements Observable {
                 nextView(views.get("AdminHomeView"));
             }    
         });
+
+        ShowFlightsView fView = new ShowFlightsView();
+        ShowFlightsModel fModel = new ShowFlightsModel();
+        ShowFlightsController fController = new ShowFlightsController(fModel, fView);
+        fController.addButtonListener(e -> {
+        String s = ((JButton) e.getSource()).getText();
+            
+            if (s.equals("Logout")) {
+                notifyObservers("aLogout");
+            }
+            if (s.equals("Home")) {
+                nextView(views.get("AdminHomeView"));
+            }
+            /*if (s.equals("Add Flight")) {
+                if(fController.addFlight(fView.getFlightnr(), fView.getFrom(), fView.getTo(), fView.getDate(), fView.getTime())){
+                //nextView(views.get("LoginView"));  
+                }   
+            }
+             if (s.equals("Update")) {
+                //fController.listAllFlights();
+            }*/
+        });
+
+        
             
         views.put("AdminHomeView", hView);
         views.put("ClientsInfoView", cView);
         views.put("DestInfoView", dView);
+        views.put("ShowFlightsView", fView);
 
         adminFrame.add(hView);
         adminFrame.pack();
