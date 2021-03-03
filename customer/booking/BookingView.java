@@ -21,7 +21,6 @@ public class BookingView extends JPanel{
     private Seat currentSeat;
     private AllButtons bokaButton;
     private HashMap<String, InfoPanel> info;
-    private String fid;
     private String text;
     private JPanel sPanel;
     private JPanel iHolder;
@@ -31,7 +30,6 @@ public class BookingView extends JPanel{
     private ArrayList<AllButtons> buttons;
    
     public BookingView(){
-        fid = "911";
         sPanel = new JPanel();
         iHolder = new JPanel();
         JPanel centerPanel = new JPanel();
@@ -172,8 +170,6 @@ public class BookingView extends JPanel{
         return false;
         }
 
-    
-
     public HashMap<String, InfoPanel> getInfo(){
         return info;
     }
@@ -187,13 +183,4 @@ public class BookingView extends JPanel{
 	public ArrayList<AllButtons> getButtons() {
 		return buttons;
 	}
-<<<<<<< Updated upstream
-=======
-
-	public String getFID() {
-		return this.fid;
-	}
-
-
->>>>>>> Stashed changes
 }

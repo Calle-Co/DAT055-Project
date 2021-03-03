@@ -39,13 +39,6 @@ public class FlightModel {
             while(rs.next()){
                 flights.add(new FlightInfoButton(rs.getString("flight_id"), rs.getString("from_d"), rs.getString("to_d"),
                                     rs.getString("date_of"), rs.getString("time_of")));
-                /*
-                flight[0] = rs.getString("flight_id");
-                flight[1] = rs.getString("from_d");
-                flight[2] = rs.getString("to_d");
-                flight[3] = rs.getString("date_of");
-                flight[4] = rs.getString("time_of");
-                */
                 n++;
             } 
             if(n == 0){

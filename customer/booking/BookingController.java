@@ -27,7 +27,8 @@ public class BookingController {
     private ArrayList<AllButtons> buttons;
     private int np = 0;
     private int limit = 4;
-    private static String user;
+    private String user;
+    private String flight_id;
 
     public BookingController(BookingModel model, BookingView view){
         this.model = model;
@@ -42,7 +43,7 @@ public class BookingController {
         info = view.getInfo();
         rth = false;
         if (readyForNew) {
-            for(Seat s: seats){
+            for(Seat s: seats) {
                 toSave(s.getSeat());
             }
         }
@@ -54,7 +55,6 @@ public class BookingController {
                 }
                 seats.clear();
                 text = "";
-                toUpdate();
                 readyForNew = true;
                 rth = true;
 
@@ -77,10 +77,9 @@ public class BookingController {
     public void toSave(String key){
         String name = info.get(key).getName();
         String age  = info.get(key).getAge();
-        String fid = view.getFID();
         if(!name.isEmpty() && !age.isEmpty() && !info.isEmpty()){
             ok = true;
-            InfoHolding nyP = new InfoHolding(name, age, user, key, fid);
+            InfoHolding nyP = new InfoHolding(name, age, user, key, this.flight_id);
             people.add(nyP);
         }
         else{
@@ -94,9 +93,10 @@ public class BookingController {
     }
 
     public void setFlight(String flight_id) {
-        //model.getSeats...
-        view.initSeats(32);
-        view.addSeatListener(e -> {
+        this.flight_id = flight_id;
+        try {
+            view.initSeats(model.getSeatsNo(flight_id));
+            view.addSeatListener(e -> {
             String s = ((Seat) e.getSource()).getSeat();
             
                 if(((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
@@ -114,6 +114,10 @@ public class BookingController {
                     np++;
                 }
             });
+        } catch (Exception e) {
+            //bruh
+        }
+        
     }
 
     public void setLimit(int limit){
@@ -122,14 +126,6 @@ public class BookingController {
 
     public void setUser(String user){
         this.user = user;
-    }
-
-    public static void toUpdate(){
-        String total = "Owner: " + user + " \n";
-        for(InfoHolding p : people){
-        total += p.toPrint()+ "\n";
-        }
-        test.updateDisplay(total);
     }
 
 	public void addButtonListener(ActionListener al) {
