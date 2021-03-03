@@ -3,6 +3,7 @@ package customer.booking;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.text.View;
 
 import global.AllButtons;
 import global.InfoHolding;
@@ -26,6 +27,7 @@ public class BookingController {
     private ArrayList<AllButtons> buttons;
     private int np = 0;
     private int limit = 4;
+    private static String user;
 
     public BookingController(BookingModel model, BookingView view){
         this.model = model;
@@ -72,12 +74,13 @@ public class BookingController {
             return this.rth;
         }
 
-    public static void toSave(String key){
+    public void toSave(String key){
         String name = info.get(key).getName();
         String age  = info.get(key).getAge();
+        String fid = view.getFID();
         if(!name.isEmpty() && !age.isEmpty() && !info.isEmpty()){
             ok = true;
-            InfoHolding nyP = new InfoHolding(name, age, "test", key);
+            InfoHolding nyP = new InfoHolding(name, age, user, key, fid);
             people.add(nyP);
         }
         else{
@@ -117,8 +120,12 @@ public class BookingController {
         this.limit = limit;
     }
 
+    public void setUser(String user){
+        this.user = user;
+    }
+
     public static void toUpdate(){
-        String total = "Owner: Test \n";
+        String total = "Owner: " + user + " \n";
         for(InfoHolding p : people){
         total += p.toPrint()+ "\n";
         }
@@ -130,4 +137,8 @@ public class BookingController {
             b.addActionListener(al);
         }
     }
+
+	public ArrayList<InfoHolding> getBookingInfo() {
+		return people;
+	}
 }
