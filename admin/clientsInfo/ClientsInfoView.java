@@ -14,7 +14,7 @@ import admin.AdminMenuPanel;
 
 
 /**
- * En klass som är ansvarig för grafikdelen av ClientsInfo.
+ * En klass som är ansvarig för grafikdelen av ClientsInfo-delen av programmet.
  * @author Carl Classon
  * @version 2021-02-26
  */
@@ -24,6 +24,9 @@ public class ClientsInfoView extends JPanel{
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ArrayList<AllButtons> clients = new ArrayList<>();
 
+    /**
+     * Denna metod skapar panelen där infon skall ligga.
+     */
     public ClientsInfoView(){
         clientsPanel = new JPanel();
         clientsPanel.setLayout(new GridLayout(20,1));

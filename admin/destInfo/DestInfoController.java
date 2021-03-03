@@ -2,15 +2,15 @@ package admin.destInfo;
 
 import java.util.*;
 import global.AllButtons;
-import global.Destination;
-
 import java.awt.event.*;
 import javax.swing.JButton;
 
 /**
- * Kontroller för ClientsInfo-panelen.
+ * Kontroller för DestInfo-panelen. Fungerar som en mellanhand mellan
+ * DestInfoModel och DestInfoView. Den tar information från den ena och skickar 
+ * vidare till den andra.
  * @author Carl Classon
- * @version 2021-02-26
+ * @version 2021-03-02
  */
 public class DestInfoController {
     private DestInfoModel model;
@@ -29,6 +29,12 @@ public class DestInfoController {
         }
     }
 
+    /**
+     * Denna metod fungerar som en mellanhand mellan modellen och vyn.
+     * Den ser till att model-klassen hämtar hem destinationerna från databasen
+     * och så skickar den en lista av alla destinationerna till setUsers() i vyn.
+     * Den rensar även upp mellan anropen så att det inte blir duplicerade destinationer.
+     */
     public void listAllDestinations(){
         view.clearDest();
         model.clearDest();
@@ -39,6 +45,12 @@ public class DestInfoController {
         }
     }
 
+    /**
+     * Denna metod fungerar som en mellanhand mellan modellen och vyn.
+     * Den ser till att view visar en popup ruta där användaren kan skriva in
+     * information. Om användaren klickar på OK så skickas de inskrivna värdena
+     * vidare till model-klassen.
+     */
     public void addDestination(){
         if(view.destPopup()){
             try{

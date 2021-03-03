@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -15,6 +14,11 @@ import global.Destination;
 import global.AllButtons.*;
 import admin.AdminMenuPanel;
 
+/**
+ * En klass som är ansvarig för grafiken för DestInfo-delen av programmet.
+ * @author Carl Classon
+ * @version 2021-03-03
+ */
 @SuppressWarnings("serial")
 public class DestInfoView extends JPanel{
     private JPanel destPanel;
@@ -22,6 +26,9 @@ public class DestInfoView extends JPanel{
     private String destination;
     private String abbreviation;
 
+    /**
+     * Denna metod skapar hela panelen.
+     */
     public DestInfoView(){
         destPanel = new JPanel();
         destPanel.setLayout(new GridLayout(20,1));
@@ -34,11 +41,11 @@ public class DestInfoView extends JPanel{
         }
         
         JPanel updatePanel = new JPanel();
-        updatePanel.setLayout(new GridLayout());
-
         AllButtons updateButton = new AllButtons(size.LARGE, "Add destination!");
+        updateButton.setPreferredSize(new Dimension(400,80));
+        updateButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
         buttons.add(updateButton);
-        updatePanel.add(updateButton,BorderLayout.CENTER);
+        updatePanel.add(updateButton);
         
         topPanel.add(updatePanel,BorderLayout.SOUTH);
         topPanel.add(menuPanel,BorderLayout.NORTH);
@@ -81,6 +88,11 @@ public class DestInfoView extends JPanel{
         destPanel.repaint();
     }
 
+    /**
+     * En metod som popar ut en ruta om användaren vill lägga till en ny destination.
+     * Användaren kan sen skriva in namn och förkortning på den nya destinationen.
+     * @return true om användare trycker på "OK"-knappen, annars false.
+     */
     public boolean destPopup(){
         JTextField field1 = new JTextField();
         JTextField field2 = new JTextField();

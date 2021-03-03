@@ -51,7 +51,6 @@ public class CustomerFrame implements Observable {
         hController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
-                System.out.println("Loggar ut!");
                 notifyObservers("cLogout");
             }
             else if(s.equals("Search")){

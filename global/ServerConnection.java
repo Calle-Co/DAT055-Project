@@ -25,8 +25,8 @@ public class ServerConnection {
      * @param db Adressen till servern (databasen) som man vill komma åt
      * @param user Användarnamnet som används för autentisering mot servern. 
      * @param pwd Lösenordet -||-
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Om lösenordet eller användarnamet skulle vara fel.
+     * @throws ClassNotFoundException Om klassen "org.postgresql.driver" inte skulle finnas.
      */
     public void DatabaseConnection(String db, String user, String pwd) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
