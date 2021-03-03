@@ -24,8 +24,6 @@ public class BookingView extends JPanel{
     private String text;
     private JPanel sPanel;
     private JPanel iHolder;
-    //private JPanel fillPanel;
-    //private JPanel centerPanel;
     private ArrayList<Seat> seats;
     private ArrayList<AllButtons> buttons;
    
@@ -180,7 +178,7 @@ public class BookingView extends JPanel{
                 "Error!", 
                 JOptionPane.WARNING_MESSAGE);
             text = "";
-            clearPanels();
+            
             return true;
         }
         return false;

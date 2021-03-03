@@ -38,7 +38,7 @@ public class BookingController {
         people = new ArrayList<>();
     }
 
-    public void initBooking(){
+    public void initBooking() {
         info = view.getInfo();
         rth = false;
         if (readyForNew) {
@@ -65,11 +65,11 @@ public class BookingController {
             Toolkit.getDefaultToolkit().beep();
             if(view.makeOPane("SelectError")){}
             }
-        }
+    }
 
-        public boolean returnToHome(){
-            return this.rth;
-        }
+    public boolean returnToHome() {
+        return this.rth;
+    }
 
     public void toSave(String key){
         String name = info.get(key).getName();
@@ -85,7 +85,9 @@ public class BookingController {
     }
 
     public void reset() {
+        seats.clear();
         view.clearPanels();
+        people.clear();
         np = 0;
     }
 
@@ -120,7 +122,7 @@ public class BookingController {
     public void setBooked() throws SQLException {
         try {
             model.setBooked(this.people);
-            this.people.clear();
+            (this.people).clear();
         } catch (Exception e) {
             throw new SQLException();
         }
@@ -138,5 +140,9 @@ public class BookingController {
         for(AllButtons b : buttons) {
             b.addActionListener(al);
         }
+    }
+
+    public String getFID() {
+        return this.flight_id;
     }
 }

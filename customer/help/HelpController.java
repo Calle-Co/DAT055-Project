@@ -1,24 +1,22 @@
 package customer.help;
 
 import java.util.ArrayList;
+import javax.swing.JButton;
 import java.awt.event.*;
-
-import global.AllButtons;
 
 public class HelpController {
     private HelpModel model;
     private HelpView view;
-
-    private ArrayList<AllButtons> buttons = new ArrayList<>();
+    private ArrayList<JButton> menuButtons;
 
     public HelpController(HelpModel m, HelpView v){
         this.model = m;
         this.view = v;
-        buttons = view.getButtons();
+        menuButtons = view.getMenuButtons();
     }
 
-    public void addButtonListener(ActionListener al) {
-        for(AllButtons b : buttons) {
+    public void addMenuButtonListener(ActionListener al) {
+        for(JButton b : menuButtons) {
             b.addActionListener(al);
         }
     }

@@ -19,13 +19,12 @@ public class CustomerFrame implements Observable {
     private JPanel currentView;
     private HashMap<String, JPanel> views;
     private Observer observer;
-    private HomeView hView;
-    private BookingController bController;
-    private FlightController fController;
-    FlightView fView;
-    private HelpView helpView;
-    private HelpController helpController;
-    private String currentUser;
+    private HomeView homeView;
+    private BookingController bookingController;
+    private FlightController flightController;
+    private FlightView flightView;
+    private String currentFlight;
+    
     public CustomerFrame() {
         views = new HashMap<>();
         makeFrame();
@@ -45,17 +44,17 @@ public class CustomerFrame implements Observable {
     }
 
     public void init() {
-        hView = new HomeView();
-        HomeModel hModel = new HomeModel();
-        HomeController hController = new HomeController(hModel, hView);
-        hController.getDestinations();
-        hController.addButtonListener(e -> {
+        homeView = new HomeView();
+        HomeModel homeModel = new HomeModel();
+        HomeController homeController = new HomeController(homeModel, homeView);
+        homeController.getDestinations();
+        homeController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
                 notifyObservers("cLogout");
             }
             else if(s.equals("Search")) {
-                bController.reset();
+                bookingController.reset();
                 search();
             }
             else if(s.equals("Home")){
@@ -75,10 +74,10 @@ public class CustomerFrame implements Observable {
             }
         });
 
-        fView = new FlightView();
-        FlightModel fModel = new FlightModel();
-        fController = new FlightController(fModel, fView);
-        fController.addMenuButtonListener(e -> {
+        flightView = new FlightView();
+        FlightModel flightModel = new FlightModel();
+        flightController = new FlightController(flightModel, flightView);
+        flightController.addMenuButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
                 notifyObservers("cLogout");
@@ -100,41 +99,47 @@ public class CustomerFrame implements Observable {
             }
         });
 
-        BookingView bView = new BookingView();
-        BookingModel bModel = new BookingModel();
-        bController = new BookingController(bModel, bView);
-        bController.addButtonListener(e -> {
+        BookingView bookingView = new BookingView();
+        BookingModel bookingModel = new BookingModel();
+        bookingController = new BookingController(bookingModel, bookingView);
+        bookingController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
                 notifyObservers("cLogout");
             }
             else if(s.equals("Boka!")){
-                bController.initBooking();
-                if(bController.returnToHome()){
-                    nextView(new LoadingView());
+                bookingController.initBooking();
+                if(bookingController.returnToHome()) {
+                    Boolean goHome = true;
                     try {
-                        bController.setBooked();
-                        //bModel.setBooked(bController.getBookingInfo());
+                        bookingController.setBooked();
                     } catch (Exception e0) {
-                       if(bView.makeOPane("SeatOccupiedError"));
+                        if(bookingView.makeOPane("SeatOccupiedError")) {
+                            bookingController.reset();
+                            bookingController.setFlight(currentFlight);
+                            goHome = false;
+                        }  
                     } 
-                    Thread t3 = new Thread(new Runnable(){
-                        @Override
-                        public void run() {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (Exception e) {
-                            }
-                            if(bView.makeOPane("BookingConfirm")){
-                                nextView(views.get("HomeView"));
-                            }
-                        }   
-                    });
-                    t3.start();
+                    if(goHome) {
+                        nextView(new LoadingView());
+                        Thread t3 = new Thread(new Runnable(){
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(1000);
+                                } catch (Exception e) {
+                                }
+                                if(bookingView.makeOPane("BookingConfirm")){
+                                    nextView(views.get("HomeView"));
+                                }
+                            }   
+                        });
+                        t3.start();
+                    }
                 }
             }
             else if(s.equals("cancel")){
-                bController.reset();
+                bookingController.reset();
                 nextView(views.get("FlightView"));
             }
             else if(s.equals("Home")){
@@ -151,11 +156,10 @@ public class CustomerFrame implements Observable {
             }
         });
 
-
-        helpView = new HelpView();
+        HelpView helpView = new HelpView();
         HelpModel helpModel = new HelpModel();
-        helpController = new HelpController(helpModel, helpView);
-        fController.addMenuButtonListener(e -> {
+        HelpController helpController = new HelpController(helpModel, helpView);
+        helpController.addMenuButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
                 notifyObservers("cLogout");
@@ -169,7 +173,6 @@ public class CustomerFrame implements Observable {
             }
             else if(s.equals("Help")){
                 nextView(views.get("HelpView"));
-
             }
             else if(s.equals("Profile")){
                 System.out.println("profile");
@@ -177,28 +180,30 @@ public class CustomerFrame implements Observable {
             }
         });
 
-
         views.put("HelpView", helpView);
-        views.put("HomeView", hView);
-        views.put("FlightView", fView);
-        views.put("BookingView", bView);
-        customerFrame.add(hView);
+        views.put("HomeView", homeView);
+        views.put("FlightView", flightView);
+        views.put("BookingView", bookingView);
+        views.put("HelpView", helpView);
+
+        customerFrame.add(homeView);
         customerFrame.pack();
-        currentView = hView;
+        currentView = homeView;
     }
 
-    public void searchFlights(String a, String b, String c){
-        fController.flightSearch(a, b, c);
-        fController.addFlightButtonListener(e -> {
+    public void searchFlights(String a, String b, String c) {
+        flightController.flightSearch(a, b, c);
+        flightController.addFlightButtonListener(e -> {
             FlightInfoButton fib = (FlightInfoButton) e.getSource();
-            bController.setFlight(fib.getFlightID());
+            bookingController.setFlight(fib.getFlightID());
+            currentFlight = fib.getFlightID();
             nextView(views.get("BookingView"));
         });
     }
 
-    public void search(){
-        bController.setLimit(Integer.parseInt(hView.getSearchParam()[3]));
-        searchFlights(hView.getSearchParam()[0], hView.getSearchParam()[1], hView.getSearchParam()[2]);
+    public void search() {
+        bookingController.setLimit(Integer.parseInt(homeView.getSearchParam()[3]));
+        searchFlights(homeView.getSearchParam()[0], homeView.getSearchParam()[1], homeView.getSearchParam()[2]);
         nextView(new LoadingView());   
         Thread t2 = new Thread(new Runnable(){
             @Override
@@ -207,11 +212,11 @@ public class CustomerFrame implements Observable {
                     Thread.sleep(1000);
                 } catch (Exception e) {
                 }
-                if(!fController.getNoFlight()){
+                if(!flightController.getNoFlight()){
                     nextView(views.get("FlightView"));
                 }
                 else{
-                    if(fView.makeOPane()){
+                    if(flightView.makeOPane()){
                         nextView(views.get("HomeView"));
                     }
                 }   
@@ -230,9 +235,8 @@ public class CustomerFrame implements Observable {
     }
 
     public void setUser(String user) {
-        currentUser = user;
-        hView.setUser(user);
-        bController.setUser(user);
+        homeView.setUser(user);
+        bookingController.setUser(user);
     }
 
     public void frameSetVisible(Boolean b) {

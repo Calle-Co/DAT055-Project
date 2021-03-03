@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,19 +19,20 @@ import global.AllButtons;
 import global.AllButtons.size;
 
 public class HelpView extends JPanel {
-    
-    private ArrayList<AllButtons> buttons;
-    JScrollPane helpScrollPane;
+    private ArrayList<JButton> menuButtons;
+    private JScrollPane helpScrollPane;
     private ImageIcon logga2 = new ImageIcon("global/Resources/logga2.JPG");
 
     public HelpView(){
         setLayout(null);
 
+        menuButtons = new ArrayList<>();
+
         MenuPanel menuPanel = new MenuPanel();
         menuPanel.setBounds(0, 0, 1200, 100);
-        /*for(AllButtons b : menuPanel.getButtons()) {
-            buttons.add(b);
-        }*/
+        for(AllButtons b : menuPanel.getButtons()) {
+            menuButtons.add(b);
+        }
         add(menuPanel);
 
         JPanel helpmenuPanel = new JPanel();
@@ -116,7 +118,5 @@ public class HelpView extends JPanel {
 
     }
 
-    public ArrayList<AllButtons> getButtons() {
-		return buttons;
-	}
+    public ArrayList<JButton> getMenuButtons() { return menuButtons; }
 }
