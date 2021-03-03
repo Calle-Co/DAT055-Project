@@ -5,12 +5,9 @@ import global.*;
 import java.awt.*;
 import java.util.HashMap;
 import admin.adminHome.*;
-import admin.clientsInfo.ClientsInfoController;
-import admin.clientsInfo.ClientsInfoModel;
-import admin.clientsInfo.ClientsInfoView;
-import admin.destInfo.DestInfoController;
-import admin.destInfo.DestInfoModel;
-import admin.destInfo.DestInfoView;
+import admin.flightsInfo.*;
+import admin.destInfo.*;
+import admin.clientsInfo.*;
 
 /**
  * @author William Husar & Carl Classon
@@ -94,12 +91,12 @@ public class AdminFrame implements Observable {
             }    
         });
 
-        ShowFlightsView fView = new ShowFlightsView();
-        ShowFlightsModel fModel = new ShowFlightsModel();
-        ShowFlightsController fController = new ShowFlightsController(fModel, fView);
+        FlightsInfoView fView = new FlightsInfoView();
+        FlightsInfoModel fModel = new FlightsInfoModel();
+        FlightsInfoController fController = new FlightsInfoController(fModel, fView);
+        fController.getDestinations();
         fController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
-            
             if (s.equals("Logout")) {
                 notifyObservers("aLogout");
             }

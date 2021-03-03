@@ -1,4 +1,4 @@
-package admin;
+package admin.flightsInfo;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,13 +8,13 @@ import java.awt.event.*;
 
 import global.AllButtons;
 
-public class ShowFlightsController {
-        private ShowFlightsModel model;
-        private ShowFlightsView view;
+public class FlightsInfoController {
+        private FlightsInfoModel model;
+        private FlightsInfoView view;
         private ArrayList<AllButtons> buttons = new ArrayList<>();
         private boolean noFlight;
         
-    public ShowFlightsController(ShowFlightsModel m, ShowFlightsView v){
+    public FlightsInfoController(FlightsInfoModel m, FlightsInfoView v){
 
         this.model = m;
         this.view = v;
@@ -26,27 +26,6 @@ public class ShowFlightsController {
         for(JButton b : buttons) {
             b.addActionListener(al);
         }
-    }
-
-    public void listAllFlights() {
-        try {
-            ArrayList<customer.flight.FlightInfoButton> infoButtons = model.getFlights();
-             if(infoButtons == (null)){
-                this.noFlight = true;
-             }
-             else {
-                view.initButtons(infoButtons);
-                this.noFlight = false;
-             }
-            
-        } catch (Exception e) {
-            System.out.println("something went wrong");
-        }
-        buttons = view.getButtons();
-    }
-
-    public Boolean getNoFlight(){
-        return this.noFlight;
     }
 
     public void getDestinations(){
@@ -70,5 +49,4 @@ public class ShowFlightsController {
         view.successPanel();
         return true;
     }
-
 }
