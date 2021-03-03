@@ -3,18 +3,25 @@ package start.signup;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
-
 import global.*;
 
+/**
+ * En klass som är ansvarig för grafiken för Signup-delen av programmet.
+ * @author Simon Länsberg & William Husar & Carl Classon
+ * @version 2021-02-24
+ */
+@SuppressWarnings("serial")
 public class SignupView extends JPanel{
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private JTextField username;
     private JTextField password;
 
+    /**
+     * Denna metod skapar signup-panelen med all dess innehåll.
+     */
     public SignupView() {
         setSize(600, 600);
         Color c = new Color(211,211,211);
@@ -72,12 +79,19 @@ public class SignupView extends JPanel{
         setVisible(true);
     }
 
+    /**
+     * Metod som visar en popup-panel om användare försöker registrera sig med
+     * ett användarnamn som redan är taget.
+     */
     public void errorPanel(){
         //Liten beep :)
         java.awt.Toolkit.getDefaultToolkit().beep();
         String s = "That username already exist!\n" + "Try " + getUsername() + "1 instead!";
         JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
     }
+    /**
+     * Metod som visar en popup-panel om registreringen lyckades!
+     */
     public void successPanel(){
         String s = "Signup succeeded!\nPress ok to return to login screen:";
         JOptionPane.showMessageDialog(this, s, "Success!", JOptionPane.INFORMATION_MESSAGE);

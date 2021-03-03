@@ -1,25 +1,21 @@
 package start.welcome;
 
 import javax.swing.JButton;
-
 import global.AllButtons;
-import start.StartModel;
-
 import java.awt.event.*;
 import java.util.ArrayList;
+
 /**
+ * Denna klassen sköter kommunikation mellan WelcomeView och resten av programmet.
  * @author William Husar, Simon Länsberg
- * @version 2021-02-18
+ * @version 2021-03-03
  */
 public class WelcomeController {
-    private StartModel model;
     private WelcomeView view;
     private ArrayList<AllButtons> buttons;
 
-    public WelcomeController(StartModel m, WelcomeView v){
-        this.model = m;
+    public WelcomeController(WelcomeView v){
         this.view = v;
-        buttons = new ArrayList<>();
         buttons = view.getButtons();
     }
 

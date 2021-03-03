@@ -42,10 +42,8 @@ public class StartFrame implements Observable {
     }
 
     public void init() {
-        StartModel sModel = new StartModel();
-
         WelcomeView wView = new WelcomeView();
-        WelcomeController wController = new WelcomeController(sModel, wView);
+        WelcomeController wController = new WelcomeController(wView);
         wController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText();
             if (s.equals("Boka!")){

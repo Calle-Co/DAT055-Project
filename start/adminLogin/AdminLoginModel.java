@@ -18,8 +18,8 @@ public class AdminLoginModel{
      * 
      * @param password det inskrivna lösenordet
      * @return  true om lösenordet matchar det i databasen, annars false.
-     * @throws SQLException
-     * @throws ClassNotFoundException
+     * @throws SQLException Om något går fel med SQL-anropet.
+     * @throws ClassNotFoundException Om "ServerConnection.DatabaseConnection" skulle kalla på en klass som ej existerar.
      */
     public boolean adminLogin(String password) throws SQLException, ClassNotFoundException{
         s = new ServerConnection();

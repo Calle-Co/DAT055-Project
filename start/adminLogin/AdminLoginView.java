@@ -3,18 +3,25 @@ package start.adminLogin;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
-
 import global.*;
 
+/**
+ * Denna klass ansvarar för grafiken av admin-login delen av programmet.
+ * @author Carl Classon @ Anna Manfredsson
+ * @version 2021-03-03
+ */
+@SuppressWarnings("serial")
 public class AdminLoginView extends JPanel {
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private JTextField password;
 
-    public AdminLoginView( ) {
+    /**
+     * Denna metod skapar panelen med all dess innehåll.
+     */
+    public AdminLoginView() {
         setSize(600, 600);
         Color c = new Color(211,211,211);
         setLayout(new BorderLayout());
@@ -59,7 +66,9 @@ public class AdminLoginView extends JPanel {
         setVisible(true);
     }
 
-    
+    /**
+     * Metod som visar en popup-panel om en admin försöker logga in med fel lösenord.
+     */
     public void errorPanel(){
         //Liten beep :)
         java.awt.Toolkit.getDefaultToolkit().beep();

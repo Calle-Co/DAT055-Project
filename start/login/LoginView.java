@@ -3,15 +3,16 @@ package start.login;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
-
 import global.*;
 
 /**
+ * Klass som ansvarar för grafiken av login-delen av programmet.
  * @author Anna Manfredsson
+ * @version 2021-03-03
  */
+@SuppressWarnings("serial")
 public class LoginView extends JPanel{
 
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
@@ -19,6 +20,9 @@ public class LoginView extends JPanel{
     private JTextField username;
     private JTextField password;
 
+    /**
+     * Denna metod skapar panelen med all dess innehåll.
+     */
     public LoginView( ) {
 
 
@@ -90,6 +94,10 @@ public class LoginView extends JPanel{
 
     }
 
+    /**
+     * Metod som visar en popup-panel om användare försöker logga in med fel
+     * användarnamn eller lösenord.
+     */
     public void errorPanel(){
         //Liten beep :)
         java.awt.Toolkit.getDefaultToolkit().beep();

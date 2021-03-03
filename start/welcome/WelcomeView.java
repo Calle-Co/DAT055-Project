@@ -8,7 +8,7 @@ import global.AllButtons;
 import global.AllButtons.size;
 
 /**
- * En klass för Välkomstpanelen.
+ * En klass som är ansvarig för grafiken för Welcome-delen av programmet.
  * @author Carl Classon
  * @version 2021-02-16
  */
@@ -17,6 +17,9 @@ public class WelcomeView extends JPanel{
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
+    /**
+     * Denna metod skapar välkommst-panelen.
+     */
     public WelcomeView() {
         setSize(600, 600);
         Color c = new Color(211,211,211);
