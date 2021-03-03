@@ -1,9 +1,12 @@
 package customer.help;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,6 +21,7 @@ public class HelpView extends JPanel {
     
     private ArrayList<AllButtons> buttons;
     JScrollPane helpScrollPane;
+    private ImageIcon logga2 = new ImageIcon("global/Resources/logga2.JPG");
 
     public HelpView(){
         setLayout(null);
@@ -80,30 +84,30 @@ public class HelpView extends JPanel {
 
         
         
-        //JPanel instructionPanel = new JPanel();
-        //instructionPanel.setLayout(null);
-        //instructionPanel.setBounds(340, 120, 830, 500);
-        //instructionPanel.setBackground(Color.white);
+        /*JPanel instructionPanel = new JPanel();
+        instructionPanel.setLayout(null);
+        instructionPanel.setBounds(340, 120, 830, 500);
+        instructionPanel.setBackground(Color.white);*/
 
         JPanel componentPanel = new JPanel();
-        componentPanel.setLayout(null);
-        componentPanel.setBounds(340, 120, 830, 500);
         componentPanel.setBackground(Color.WHITE);
+        componentPanel.setLayout(new BoxLayout(componentPanel, BoxLayout.Y_AXIS));
         
-        AllButtons bigassbutton = new AllButtons(size.CUSTOM, "hehe");
-        bigassbutton.setBounds(0, 0, 200, 800);
+        /*AllButtons bigassbutton = new AllButtons(size.CUSTOM, "hehe");
+        bigassbutton.setMinimumSize(new Dimension(500, 300));
         componentPanel.add(bigassbutton);
 
         AllButtons bigassbutton2 = new AllButtons(size.CUSTOM, "hehe");
-        bigassbutton2.setBounds(0, 800, 200, 800);
-        componentPanel.add(bigassbutton2);
+        bigassbutton2.setMinimumSize(new Dimension(300, 500));
+        componentPanel.add(bigassbutton2);*/
 
         //add(componentPanel);
-
+        JLabel label2 = new JLabel(logga2);
+        componentPanel.add(label2);
 
         
         
-        helpScrollPane = new JScrollPane(componentPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        helpScrollPane = new JScrollPane(componentPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         helpScrollPane.setBounds(340, 120, 830, 500);
         add(helpScrollPane);
 
