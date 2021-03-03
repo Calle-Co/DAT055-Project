@@ -24,7 +24,6 @@ public class CustomerFrame implements Observable {
     private FlightController fController;
     FlightView fView;
     private String currentUser;
-    
     public CustomerFrame() {
         views = new HashMap<>();
         makeFrame();
@@ -110,6 +109,13 @@ public class CustomerFrame implements Observable {
                 bController.initBooking();
                 if(bController.returnToHome()){
                    nextView(new LoadingView());
+                   try {
+                    bModel.setBooked(bController.getBookingInfo());
+                   } catch (Exception e0) {
+                       //TODO: handle exception
+
+                       System.out.println("Skiten kaosar yau");
+                   } 
                     Thread t3 = new Thread(new Runnable(){
                         @Override
                         public void run() {
@@ -195,6 +201,7 @@ public class CustomerFrame implements Observable {
     public void setUser(String user) {
         currentUser = user;
         hView.setUser(user);
+        bController.setUser(user);
     }
 
     public void frameSetVisible(Boolean b) {

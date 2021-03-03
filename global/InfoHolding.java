@@ -10,6 +10,7 @@ public class InfoHolding {
     private String age = null;
     private String name = null;
     private String seat = null;
+    private String fid = null;
 
     /**
      * The constructor is used to create a new representation of a person
@@ -17,11 +18,12 @@ public class InfoHolding {
      * @param age Age of the person
      * @param owner Username of the "main" person who peforms the booking
      */
-    public InfoHolding(String name, String age, String owner, String seat) {
+    public InfoHolding(String name, String age, String owner, String seat, String fid) {
         this.name = name;
         this.age  = age;
         this.owner = owner;
         this.seat = seat;
+        this.fid = fid;
     }
 
     /**
@@ -40,6 +42,10 @@ public class InfoHolding {
         return this.age;       
     }
 
+    public String getOwner(){
+        return this.owner;
+    }
+
     /**
      * Getter function for the seat number
      * @return Returns the seatnumber
@@ -55,5 +61,9 @@ public class InfoHolding {
     public String toPrint(){
         return ("Name : " + this.name+ " \nAge: "+this.age);
     }
+
+	public String getFID() {
+		return this.fid;
+	}
     
 }
