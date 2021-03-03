@@ -109,12 +109,13 @@ public class CustomerFrame implements Observable {
             else if(s.equals("Boka!")){
                 bController.initBooking();
                 if(bController.returnToHome()){
-                   nextView(new LoadingView());
-                   try {
-                    bModel.setBooked(bController.getBookingInfo());
-                   } catch (Exception e0) {
+                    nextView(new LoadingView());
+                    try {
+                        bController.setBooked();
+                        //bModel.setBooked(bController.getBookingInfo());
+                    } catch (Exception e0) {
                        if(bView.makeOPane("SeatOccupiedError"));
-                   } 
+                    } 
                     Thread t3 = new Thread(new Runnable(){
                         @Override
                         public void run() {

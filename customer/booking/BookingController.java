@@ -9,6 +9,7 @@ import global.AllButtons;
 import global.InfoHolding;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 
 /**
  * @author Simon Länsberg, William Husar
@@ -19,11 +20,10 @@ public class BookingController {
     private BookingView view;
     private BookingModel model;
     private ArrayList<Seat> seats;
-    private static String text;
-    private static boolean ok = false;
-    private static boolean readyForNew = true;
-    private static ArrayList<InfoHolding> people = new ArrayList<>();
-    private static HashMap<String, InfoPanel> info; 
+    private boolean ok = false;
+    private boolean readyForNew = true;
+    private ArrayList<InfoHolding> people;
+    private HashMap<String, InfoPanel> info; 
     private ArrayList<AllButtons> buttons;
     private int np = 0;
     private int limit = 4;
@@ -35,8 +35,7 @@ public class BookingController {
         this.view = view;
         buttons = view.getButtons();
         seats = new ArrayList<>();
-
-        
+        people = new ArrayList<>();
     }
 
     public void initBooking(){
@@ -54,13 +53,11 @@ public class BookingController {
                     view.removeInfo(s.getSeat());
                 }
                 seats.clear();
-                text = "";
                 readyForNew = true;
                 rth = true;
 
             }
             else{ 
-                text = "";
                 readyForNew = false;
             }   
         }
@@ -120,6 +117,15 @@ public class BookingController {
         
     }
 
+    public void setBooked() throws SQLException {
+        try {
+            model.setBooked(this.people);
+            this.people.clear();
+        } catch (Exception e) {
+            throw new SQLException();
+        }
+    }
+
     public void setLimit(int limit){
         this.limit = limit;
     }
@@ -133,8 +139,4 @@ public class BookingController {
             b.addActionListener(al);
         }
     }
-
-	public ArrayList<InfoHolding> getBookingInfo() {
-		return people;
-	}
 }
