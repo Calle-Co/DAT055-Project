@@ -95,7 +95,7 @@ public class BookingController {
     public void setFlight(String flight_id) {
         this.flight_id = flight_id;
         try {
-            view.initSeats(model.getSeatsNo(flight_id));
+            view.initSeats(model.getSeatsNo(flight_id), model.getBookedSeats(flight_id));
             view.addSeatListener(e -> {
             String s = ((Seat) e.getSource()).getSeat();
             

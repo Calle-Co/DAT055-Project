@@ -92,7 +92,7 @@ public class BookingView extends JPanel{
         return seats;
     }
 
-    public void initSeats(int n) {
+    public void initSeats(int n, ArrayList<String> bookedSeats) {
         clearPanels();
         sPanel.setLayout(new GridLayout((n/4),4));
         for(int i = 1; i <= (n/4); i++) {
@@ -122,6 +122,13 @@ public class BookingView extends JPanel{
                     currentSeat = new Seat(i + "D");
                     sPanel.add(currentSeat);
                     seats.add(currentSeat);
+                }
+            }
+        }
+        for(Seat s : seats) {
+            for(String b : bookedSeats) {
+                if(b.equals(s.getSeat())) {
+                    s.setStatus(true);
                 }
             }
         }
@@ -165,6 +172,15 @@ public class BookingView extends JPanel{
                 "Error!", 
                 JOptionPane.WARNING_MESSAGE);
             text = "";
+            return true;
+        }
+        else if(s.equals("SeatOccupiedError")){
+            JOptionPane.showMessageDialog(null, 
+                "One or more seats have already been booked", 
+                "Error!", 
+                JOptionPane.WARNING_MESSAGE);
+            text = "";
+            clearPanels();
             return true;
         }
         return false;

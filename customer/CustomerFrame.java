@@ -113,9 +113,7 @@ public class CustomerFrame implements Observable {
                    try {
                     bModel.setBooked(bController.getBookingInfo());
                    } catch (Exception e0) {
-                       //TODO: handle exception
-
-                       System.out.println("Skiten kaosar yau");
+                       if(bView.makeOPane("SeatOccupiedError"));
                    } 
                     Thread t3 = new Thread(new Runnable(){
                         @Override
