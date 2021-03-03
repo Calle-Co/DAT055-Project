@@ -37,6 +37,7 @@ public class ClientsInfoModel{
         catch (SQLException e) {
             throw new SQLException();
         }
+        s.getConn().close(); 
         return users; 
     }
 
