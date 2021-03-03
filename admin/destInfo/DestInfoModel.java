@@ -40,8 +40,10 @@ public class DestInfoModel {
         }
         catch(SQLException e) {
             throw new SQLException();
-        } 
-        return destinations; 
+        } finally {
+            s.getConn().close();  
+        }
+        return destinations;    
     }
 
     /**

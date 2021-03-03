@@ -1,7 +1,6 @@
 package customer;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileView;
 
 import global.*;
 import java.awt.*;
