@@ -85,6 +85,11 @@ public class BookingController {
         }
     }
 
+    public void reset() {
+        view.clearPanels();
+        np = 0;
+    }
+
     public void setFlight(String flight_id) {
         //model.getSeats...
         view.initSeats(32);

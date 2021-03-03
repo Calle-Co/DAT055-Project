@@ -53,7 +53,8 @@ public class CustomerFrame implements Observable {
             if(s.equals("Logout")){
                 notifyObservers("cLogout");
             }
-            else if(s.equals("Search")){
+            else if(s.equals("Search")) {
+                bController.reset();
                 search();
             }
             else if(s.equals("Home")){
@@ -126,6 +127,7 @@ public class CustomerFrame implements Observable {
                 }
             }
             else if(s.equals("cancel")){
+                bController.reset();
                 nextView(views.get("FlightView"));
             }
             else if(s.equals("Home")){

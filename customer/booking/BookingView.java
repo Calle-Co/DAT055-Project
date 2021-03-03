@@ -93,8 +93,7 @@ public class BookingView extends JPanel{
     }
 
     public void initSeats(int n) {
-        sPanel.removeAll();
-        seats.clear();
+        clearPanels();
         sPanel.setLayout(new GridLayout((n/4),4));
         for(int i = 1; i <= (n/4); i++) {
             for(int j = 1; j <= 5; j++) {
@@ -128,6 +127,17 @@ public class BookingView extends JPanel{
         }
         sPanel.revalidate();
         sPanel.repaint();
+    }
+
+    public void clearPanels() {
+        sPanel.removeAll();
+        seats.clear();
+        iHolder.removeAll();
+        info.clear();
+        sPanel.revalidate();
+        sPanel.repaint();
+        iHolder.revalidate();
+        iHolder.repaint();
     }
 
     public boolean makeOPane(String s){
