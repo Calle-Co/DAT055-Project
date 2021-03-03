@@ -12,7 +12,6 @@ public class FlightsInfoController {
         private FlightsInfoModel model;
         private FlightsInfoView view;
         private ArrayList<AllButtons> buttons = new ArrayList<>();
-        private boolean noFlight;
         
     public FlightsInfoController(FlightsInfoModel m, FlightsInfoView v){
 
@@ -36,17 +35,24 @@ public class FlightsInfoController {
         } 
     }
 
-    public boolean addFlight() {
+    
+    public void getModels(){
+        try {
+            view.setPlaneModels(model.getPlaneModels());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+    }
+
+    public void addFlight() {
         try{
-            model.addFlight(view.getFrom(), view.getTo(), view.getDate(), view.getTime(), view.getModel()); 
+            model.addFlight(view.getFrom(), view.getTo(), view.getDate(), view.getTime(), view.getPlaneModel()); 
         } catch (SQLException e){    
             view.errorPanel();
-            return false;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            return false;
+            
         }
         view.successPanel();
-        return true;
     }
 }

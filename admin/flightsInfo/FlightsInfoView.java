@@ -1,30 +1,40 @@
 package admin.flightsInfo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.*;
+import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
 import javax.swing.*;
 import javax.swing.event.*;
 import admin.AdminMenuPanel;
+
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import customer.flight.FlightInfoButton;
+import global.WebFetching;
 import global.*;
 
 public class FlightsInfoView extends JPanel {
     private JPanel destPanel1;
     private JPanel destPanel2;
+    private JPanel modelPanel;
     private JPanel addPanel;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
-    private ArrayList<FlightInfoButton> flightButtons;
     private String[] choices;
+    private String[] choices1;
     private JComboBox<String> combobox1;
     private JComboBox<String> combobox2;
-    private JPanel showflightsPanel;
+    private JComboBox<String> combobox3;
     private JLabel from;
     private JLabel to;
-    private JTextField date;
-    private JTextField time;
-    private JTextField model;
-    
+    private JLabel model;
+    private JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
+    private JFormattedTextField timeField = new JFormattedTextField(new SimpleDateFormat("HH:mm"));
+   
 
     public FlightsInfoView(){
 
@@ -37,52 +47,54 @@ public class FlightsInfoView extends JPanel {
         }
         add(menuPanel,BorderLayout.NORTH);
 
-
-    //---------------SHOW FLIGHTS--------------------
-        flightButtons = new ArrayList<>();
-        
-        showflightsPanel = new JPanel();
-        showflightsPanel.setLayout(new BoxLayout(showflightsPanel, BoxLayout.Y_AXIS));
-        showflightsPanel.setBackground(Color.WHITE);
-        JScrollPane scrollPane = new JScrollPane(showflightsPanel);
-        scrollPane.setBounds(200, 120, 800, 625);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        add(scrollPane, BorderLayout.CENTER);
-
-        //contentPanel = new JPanel();
-        //contentPanel.setLayout(new GridLayout(20,1));
-
     //---------------ADD FLIGHTS-----------------------
         addPanel = new JPanel();
+        
         JLabel addFlight = new JLabel("Add a flight");
+        addFlight.setFont(new Font("Verdana", 0, 15));
        
-        from = new JLabel("from");
-        to = new JLabel("to");
-        date = new JTextField("date");
-        time = new JTextField("time");
-        model = new JTextField("model");
+        from = new JLabel("From");
+        to = new JLabel("To");
+        model = new JLabel("Model");
+
+        dateField.setText(new WebFetching().getDat());
+        Date tid = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
+        timeField.setText(sdf.format(tid));
+        
         
         AllButtons addFlightsButton = new AllButtons(AllButtons.size.MEDIUM, "Add Flight");
         buttons.add(addFlightsButton);
 
         destPanel1 = new JPanel();
-        destPanel1.setLayout(null);
         destPanel2 = new JPanel();
-        destPanel2.setLayout(null);
         destPanel1.add(from);
         destPanel2.add(to);
 
-        addPanel.setLayout(new GridLayout(3, 3, 20, 20));
-        addPanel.setBorder(new EmptyBorder(20, 200, 50, 200));
-        addPanel.add(addFlight);
+        modelPanel = new JPanel();
+        modelPanel.add(model);
+
+        JPanel content = new JPanel();
+
+        content.setBorder(new EmptyBorder(20, 100, 150, 100));
+
+        Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        Border blackLine = BorderFactory.createLineBorder(Color.black);
+        CompoundBorder line = new CompoundBorder(empty, blackLine);
+        Border grid1Border = BorderFactory.createTitledBorder(line, "Add a flight:");
+
+        addPanel.setLayout(new GridLayout(0, 3, 20, 20));
+        addPanel.setBorder(grid1Border);
         addPanel.add(destPanel1);
         addPanel.add(destPanel2);
-        addPanel.add(date);
-        addPanel.add(time);
-        addPanel.add(model);
+        addPanel.add(modelPanel);
+        addPanel.add(dateField);
+        addPanel.add(timeField);
         addPanel.add(addFlightsButton);
+        content.add(addPanel);
 
-        add(addPanel, BorderLayout.SOUTH);
+        add(content, BorderLayout.CENTER);
         setVisible(true);
     }
 
@@ -94,23 +106,6 @@ public class FlightsInfoView extends JPanel {
     public void successPanel(){
         String s = "Flight added!\n";
         JOptionPane.showMessageDialog(this, s, "Success!", JOptionPane.INFORMATION_MESSAGE);
-    }    
-
-    public void initButtons(ArrayList<FlightInfoButton> infoButtons) {
-        if(!flightButtons.isEmpty()) {
-            flightButtons.clear();
-            showflightsPanel.removeAll();
-        }
-        showflightsPanel.add(Box.createVerticalStrut(20));
-        for(FlightInfoButton fib : infoButtons) {
-            flightButtons.add(fib);
-            fib.setMaximumSize(new Dimension(600,100));
-            fib.setAlignmentX(JButton.CENTER_ALIGNMENT);
-            showflightsPanel.add(fib);
-            showflightsPanel.add(Box.createVerticalStrut(20));
-        }
-        showflightsPanel.revalidate();
-        showflightsPanel.repaint();
     }
     
     public void setDestinations(ArrayList<Destination> destinations) {
@@ -122,15 +117,30 @@ public class FlightsInfoView extends JPanel {
         }
         combobox1 = new JComboBox<String>(choices);
         destPanel1.add(combobox1);
+        destPanel1.setVisible(true);
         combobox2 = new JComboBox<String>(choices);
         destPanel2.add(combobox2);
+
     }
 
+    public void setPlaneModels(ArrayList<Flight> planeModels) {
+        choices1 = new String[planeModels.size()];
+        int n = 0;
+        for(Flight m : planeModels){
+            choices1[n] = m.getModel();
+            n++;
+        }
+        combobox3 = new JComboBox<String>(choices1);
+        modelPanel.add(combobox3);
+        modelPanel.setVisible(true);
+    }
+    
+
     public ArrayList<AllButtons> getButtons(){ return buttons; }
-    public String getFrom(){ return from.getText(); }
-    public String getTo(){ return to.getText(); }
-    public String getDate(){ return date.getText(); }
-    public String getTime(){ return time.getText(); }
-    public String getModel(){ return model.getText(); }
+    public String getFrom(){ return combobox1.getSelectedItem().toString(); }
+    public String getTo(){ return combobox2.getSelectedItem().toString(); }
+    public String getDate(){ return dateField.getText(); }
+    public String getTime(){ return timeField.getText(); }
+    public String getPlaneModel(){ return combobox3.getSelectedItem().toString(); }
     
 }

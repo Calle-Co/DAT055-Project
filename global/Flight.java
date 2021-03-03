@@ -20,6 +20,9 @@ public class Flight {
         this.time = time;
         this.model = model;
     }
+    public Flight(String model){
+        this.model = model;
+    }
 
     public String getFlight(){
         return this.flight_id;
