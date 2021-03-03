@@ -33,7 +33,7 @@ public class FlightsInfoView extends JPanel {
     private JLabel to;
     private JLabel model;
     private JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
-    private JFormattedTextField timeField = new JFormattedTextField(new SimpleDateFormat("HH:mm"));
+    private JFormattedTextField timeField = new JFormattedTextField(new SimpleDateFormat("HH:mm:ss"));
    
 
     public FlightsInfoView(){
@@ -59,7 +59,7 @@ public class FlightsInfoView extends JPanel {
 
         dateField.setText(new WebFetching().getDat());
         Date tid = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
         timeField.setText(sdf.format(tid));
         

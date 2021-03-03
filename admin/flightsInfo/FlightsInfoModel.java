@@ -28,8 +28,9 @@ public class FlightsInfoModel {
         }
         catch(SQLException e) {
             throw new SQLException();
-        } 
-        s.getConn().close(); 
+        } finally {
+            s.getConn().close();  
+        }  
         return destinations; 
     }
 
@@ -46,8 +47,9 @@ public class FlightsInfoModel {
         }
         catch(SQLException e) {
             throw new SQLException();
+        } finally {
+            s.getConn().close();  
         } 
-        s.getConn().close(); 
         return planeModels; 
     }
     
@@ -66,7 +68,10 @@ public class FlightsInfoModel {
         }
         catch (SQLException e) {
             throw new SQLException();
-        }
-        s.getConn().close();   
+        } finally {
+            s.getConn().close();  
+        } 
     }
+
+    
 }

@@ -108,7 +108,7 @@ public class AdminFrame implements Observable {
                 nextView(views.get("AdminHomeView"));
             }
             if (s.equals("Add Flight")) {
-                //fController.addFlight();
+                fController.addFlight();
             }
         });
 
