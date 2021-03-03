@@ -37,10 +37,10 @@ public class AdminFrame implements Observable {
         adminFrame.setTitle("CC Airlines - Admin");
     }
 
+    /*===================================HomePage=====================================*/
     public void init() {
-        AdminHomeModel aModel = new AdminHomeModel();
         AdminHomeView hView = new AdminHomeView();
-        AdminHomeController hController = new AdminHomeController(aModel, hView);
+        AdminHomeController hController = new AdminHomeController(hView);
         hController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
             if (s.equals("Destinations")) {
@@ -57,6 +57,7 @@ public class AdminFrame implements Observable {
             }
         });
 
+        /*===================================ClientsInfo=====================================*/
         ClientsInfoView cView = new ClientsInfoView();
         ClientsInfoModel cModel = new ClientsInfoModel();
         ClientsInfoController cController = new ClientsInfoController(cModel,cView);
@@ -73,7 +74,8 @@ public class AdminFrame implements Observable {
                 nextView(views.get("AdminHomeView"));
             }
             });
-            
+        
+        /*===================================DestInfo=====================================*/    
         DestInfoView dView = new DestInfoView();
         DestInfoModel dModel = new DestInfoModel();
         DestInfoController dController = new DestInfoController(dModel, dView);
@@ -91,6 +93,7 @@ public class AdminFrame implements Observable {
             }    
         });
 
+        /*===================================FlightsInfo=====================================*/
         FlightsInfoView fView = new FlightsInfoView();
         FlightsInfoModel fModel = new FlightsInfoModel();
         FlightsInfoController fController = new FlightsInfoController(fModel, fView);

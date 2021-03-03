@@ -1,9 +1,6 @@
 package customer.booking;
 
 import javax.swing.*;
-
-import admin.AdminView;
-
 import java.awt.*;
 
 public class test {

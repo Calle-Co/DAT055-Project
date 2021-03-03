@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * @version 2021-02-24
  */
 public class BookingController {
-    private boolean rth = false;
+    private boolean returnToHome = false;
     private BookingView view;
     private BookingModel model;
     private ArrayList<Seat> seats;
@@ -25,7 +25,7 @@ public class BookingController {
     private ArrayList<InfoHolding> people;
     private HashMap<String, InfoPanel> info; 
     private ArrayList<AllButtons> buttons;
-    private int np = 0;
+    private int numberOfSeats = 0;
     private int limit = 4;
     private String user;
     private String flight_id;
@@ -40,7 +40,7 @@ public class BookingController {
 
     public void initBooking() {
         info = view.getInfo();
-        rth = false;
+        returnToHome = false;
         if (readyForNew) {
             for(Seat s: seats) {
                 toSave(s.getSeat());
@@ -54,7 +54,7 @@ public class BookingController {
                 }
                 seats.clear();
                 readyForNew = true;
-                rth = true;
+                returnToHome = true;
 
             }
             else{ 
@@ -68,7 +68,7 @@ public class BookingController {
     }
 
     public boolean returnToHome() {
-        return this.rth;
+        return this.returnToHome;
     }
 
     public void toSave(String key){
@@ -88,7 +88,7 @@ public class BookingController {
         seats.clear();
         view.clearPanels();
         people.clear();
-        np = 0;
+        numberOfSeats = 0;
     }
 
     public void setFlight(String flight_id) {
@@ -101,16 +101,16 @@ public class BookingController {
                 if(((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
                     view.removeInfo(s);
                     seats.remove((Seat) e.getSource());
-                    np--;
+                    numberOfSeats--;
                 }
-                else if(np == limit){
+                else if(numberOfSeats == limit){
                     Toolkit.getDefaultToolkit().beep();
                     ((Seat) e.getSource()).setFree();
                 }
                 else if(!((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
                     view.addInfo(s);
                     seats.add((Seat) e.getSource());
-                    np++;
+                    numberOfSeats++;
                 }
             });
         } catch (Exception e) {
