@@ -13,6 +13,10 @@ import global.AllButtons;
 import global.WebFetching;
 import global.AllButtons.size;
 
+/**
+ * @author Kevin Hao
+ * @version 2021-02-26
+ */
 public class MenuPanel extends JPanel {
     private ArrayList<AllButtons> buttons;
     private ImageIcon logga = new ImageIcon("global/resources/smalllogga.PNG");

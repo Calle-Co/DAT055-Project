@@ -11,6 +11,10 @@ import global.Destination;
 import global.WebFetching;
 import global.AllButtons.size;
 
+/**
+ * @author Kevin Hao, William Husar
+ * @version 2021-03-02
+ */
 public class HomeView extends JPanel {
     private JComboBox combobox1;
     private JComboBox combobox2;

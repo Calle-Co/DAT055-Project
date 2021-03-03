@@ -33,24 +33,7 @@ public class BookingController {
         buttons = view.getButtons();
         seats = new ArrayList<>();
 
-        view.addSeatListener(e -> {
-        String s = ((Seat) e.getSource()).getSeat();
-            
-            if(((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
-                view.removeInfo(s);
-                seats.remove((Seat) e.getSource());
-                np--;
-            }
-            else if(np == limit){
-                Toolkit.getDefaultToolkit().beep();
-                ((Seat) e.getSource()).setFree();
-            }
-            else if(!((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
-                view.addInfo(s);
-                seats.add((Seat) e.getSource());
-                np++;
-            }
-        });
+        
     }
 
     public void initBooking(){
@@ -102,10 +85,31 @@ public class BookingController {
         }
     }
 
+    public void setFlight(String flight_id) {
+        //model.getSeats...
+        view.initSeats(32);
+        view.addSeatListener(e -> {
+            String s = ((Seat) e.getSource()).getSeat();
+            
+                if(((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
+                    view.removeInfo(s);
+                    seats.remove((Seat) e.getSource());
+                    np--;
+                }
+                else if(np == limit){
+                    Toolkit.getDefaultToolkit().beep();
+                    ((Seat) e.getSource()).setFree();
+                }
+                else if(!((Seat) e.getSource()).getClick() && !((Seat) e.getSource()).getStatus()){
+                    view.addInfo(s);
+                    seats.add((Seat) e.getSource());
+                    np++;
+                }
+            });
+    }
 
     public void setLimit(int limit){
         this.limit = limit;
-        System.out.println("New limit = " + this.limit);
     }
 
     public static void toUpdate(){

@@ -19,11 +19,11 @@ import java.awt.*;
  */
 public class FlightView extends JPanel {
     private ArrayList<FlightInfoButton> flightButtons;
-    private ArrayList<JButton> buttons;
+    private ArrayList<JButton> menuButtons;
     private JPanel list;
 
     public FlightView() {
-        buttons = new ArrayList<>();
+        menuButtons = new ArrayList<>();
         flightButtons = new ArrayList<>();
         
         setLayout(null);
@@ -39,11 +39,9 @@ public class FlightView extends JPanel {
         MenuPanel menuPanel = new MenuPanel();
         menuPanel.setBounds(0, 0, 1200, 100);
         for(AllButtons b : menuPanel.getButtons()) {
-            buttons.add(b);
+            menuButtons.add(b);
         }
         add(menuPanel);
-
-        setVisible(true);
     }
 
     public boolean makeOPane(){
@@ -53,12 +51,6 @@ public class FlightView extends JPanel {
             JOptionPane.DEFAULT_OPTION,
             JOptionPane.PLAIN_MESSAGE);
             return true;    
-    }
-    
-    public void addButtonListener(ActionListener al){
-        for(FlightInfoButton f : flightButtons){
-            f.addActionListener(al);
-        }
     }
 
     public void initButtons(ArrayList<FlightInfoButton> infoButtons) {
@@ -73,11 +65,11 @@ public class FlightView extends JPanel {
             fib.setAlignmentX(JButton.CENTER_ALIGNMENT);
             list.add(fib);
             list.add(Box.createVerticalStrut(20));
-            buttons.add(fib);
         }
         list.revalidate();
         list.repaint();
     }
 
-    public ArrayList<JButton> getButtons() { return buttons; }
+    public ArrayList<JButton> getMenuButtons() { return menuButtons; }
+    public ArrayList<FlightInfoButton> getFlightButtons() { return flightButtons; }
 }

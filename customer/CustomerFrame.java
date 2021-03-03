@@ -60,15 +60,15 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HomeView"));
             }
             else if(s.equals("Bookings")){
-                System.out.println("**** no");
+                System.out.println("bookings");
 
             }
             else if(s.equals("Help")){
-                System.out.println("**** you");
+                System.out.println("help");
 
             }
             else if(s.equals("Profile")){
-                System.out.println("**** us");
+                System.out.println("profile");
 
             }
         });
@@ -76,6 +76,27 @@ public class CustomerFrame implements Observable {
         fView = new FlightView();
         FlightModel fModel = new FlightModel();
         fController = new FlightController(fModel, fView);
+        fController.addMenuButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText(); 
+            if(s.equals("Logout")){
+                notifyObservers("cLogout");
+            }
+            else if(s.equals("Home")){
+                nextView(views.get("HomeView"));
+            }
+            else if(s.equals("Bookings")){
+                System.out.println("bookings");
+
+            }
+            else if(s.equals("Help")){
+                System.out.println("help");
+
+            }
+            else if(s.equals("Profile")){
+                System.out.println("profile");
+
+            }
+        });
 
         BookingView bView = new BookingView();
         BookingModel bModel = new BookingModel();
@@ -104,17 +125,20 @@ public class CustomerFrame implements Observable {
                     t3.start();
                 }
             }
+            else if(s.equals("cancel")){
+                nextView(views.get("FlightView"));
+            }
             else if(s.equals("Home")){
                 nextView(views.get("HomeView"));
             }
             else if(s.equals("Bookings")){
-                System.out.println("**** no");
+                System.out.println("bookings");
             }
             else if(s.equals("Help")){
-                System.out.println("**** you");
+                System.out.println("help");
             }
             else if(s.equals("Profile")){
-                System.out.println("**** us");
+                System.out.println("profile");
             }
         });
         
@@ -127,30 +151,11 @@ public class CustomerFrame implements Observable {
     }
 
     public void searchFlights(String a, String b, String c){
-        fController.flightTest(a, b, c);
-        fController.addButtonListener(e -> {
-            String s = ((JButton) e.getSource()).getText(); 
-            if(s.equals("Logout")){
-                notifyObservers("cLogout");
-            }
-            else if(s.equals("Home")){
-                nextView(views.get("HomeView"));
-            }
-            else if(s.equals("Bookings")){
-                System.out.println("**** no");
-
-            }
-            else if(s.equals("Help")){
-                System.out.println("**** you");
-
-            }
-            else if(s.equals("Profile")){
-                System.out.println("**** us");
-
-            }
-            else{
-                nextView(views.get("BookingView"));
-            }
+        fController.flightSearch(a, b, c);
+        fController.addFlightButtonListener(e -> {
+            FlightInfoButton fib = (FlightInfoButton) e.getSource();
+            bController.setFlight(fib.getFlightID());
+            nextView(views.get("BookingView"));
         });
     }
 
