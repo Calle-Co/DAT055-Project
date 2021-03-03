@@ -15,12 +15,13 @@ import java.util.HashMap;
 
 /**
  * @author Simon Länsberg, William Husar
- * @version 2021-02-24
+ * @version 2021-03-03
  */
 public class BookingView extends JPanel{
     private Seat currentSeat;
     private AllButtons bokaButton;
     private HashMap<String, InfoPanel> info;
+    private String fid;
     private String text;
     private JPanel sPanel;
     private JPanel iHolder;
@@ -30,6 +31,7 @@ public class BookingView extends JPanel{
     private ArrayList<AllButtons> buttons;
    
     public BookingView(){
+        fid = "911";
         sPanel = new JPanel();
         iHolder = new JPanel();
         JPanel centerPanel = new JPanel();
@@ -185,4 +187,13 @@ public class BookingView extends JPanel{
 	public ArrayList<AllButtons> getButtons() {
 		return buttons;
 	}
+<<<<<<< Updated upstream
+=======
+
+	public String getFID() {
+		return this.fid;
+	}
+
+
+>>>>>>> Stashed changes
 }
