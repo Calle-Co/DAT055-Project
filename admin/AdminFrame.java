@@ -98,6 +98,7 @@ public class AdminFrame implements Observable {
         FlightsInfoModel fModel = new FlightsInfoModel();
         FlightsInfoController fController = new FlightsInfoController(fModel, fView);
         fController.getDestinations();
+        fController.getModels();
         fController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
             if (s.equals("Logout")) {
@@ -106,14 +107,9 @@ public class AdminFrame implements Observable {
             if (s.equals("Home")) {
                 nextView(views.get("AdminHomeView"));
             }
-            /*if (s.equals("Add Flight")) {
-                if(fController.addFlight(fView.getFlightnr(), fView.getFrom(), fView.getTo(), fView.getDate(), fView.getTime())){
-                //nextView(views.get("LoginView"));  
-                }   
+            if (s.equals("Add Flight")) {
+                //fController.addFlight();
             }
-             if (s.equals("Update")) {
-                //fController.listAllFlights();
-            }*/
         });
 
         

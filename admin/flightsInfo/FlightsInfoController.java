@@ -35,7 +35,6 @@ public class FlightsInfoController {
         } 
     }
 
-    
     public void getModels(){
         try {
             view.setPlaneModels(model.getPlaneModels());
