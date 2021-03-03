@@ -6,6 +6,9 @@ import global.*;
 import java.awt.*;
 import java.util.HashMap;
 import customer.home.*;
+import customer.myBookings.MyBookingController;
+import customer.myBookings.MyBookingModel;
+import customer.myBookings.MyBookingView;
 import customer.flight.*;
 import customer.booking.*;
 import customer.help.*;
@@ -24,6 +27,9 @@ public class CustomerFrame implements Observable {
     private FlightController flightController;
     private FlightView flightView;
     private String currentFlight;
+    private String currentUser;
+    private MyBookingView mbView;
+    private MyBookingController mbController;
     
     public CustomerFrame() {
         views = new HashMap<>();
@@ -61,7 +67,7 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HomeView"));
             }
             else if(s.equals("Bookings")){
-                System.out.println("bookings");
+                nextView(views.get("Mybookings"));
 
             }
             else if(s.equals("Help")){
@@ -71,6 +77,20 @@ public class CustomerFrame implements Observable {
             else if(s.equals("Profile")){
                 System.out.println("profile");
 
+            }
+        });
+
+        mbView = new MyBookingView();
+        MyBookingModel mbModel = new MyBookingModel();
+        mbController = new MyBookingController(mbModel, mbView);
+        
+        mbController.addButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText(); 
+            if(s.equals("Logout")){
+                notifyObservers("cLogout");
+            }
+            else if(s.equals("Home")){
+                nextView(views.get("HomeView"));
             }
         });
 
@@ -86,7 +106,7 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HomeView"));
             }
             else if(s.equals("Bookings")){
-                System.out.println("bookings");
+                nextView(views.get("Mybookings"));
 
             }
             else if(s.equals("Help")){
@@ -131,6 +151,7 @@ public class CustomerFrame implements Observable {
                                 }
                                 if(bookingView.makeOPane("BookingConfirm")){
                                     nextView(views.get("HomeView"));
+                                    mbController.getBookings(currentUser);
                                 }
                             }   
                         });
@@ -146,7 +167,7 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HomeView"));
             }
             else if(s.equals("Bookings")){
-                System.out.println("bookings");
+                nextView(views.get("Mybookings"));
             }
             else if(s.equals("Help")){
                 nextView(views.get("HelpView"));
@@ -168,7 +189,7 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HomeView"));
             }
             else if(s.equals("Bookings")){
-                System.out.println("bookings");
+                nextView(views.get("Mybookings"));
 
             }
             else if(s.equals("Help")){
@@ -185,6 +206,7 @@ public class CustomerFrame implements Observable {
         views.put("FlightView", flightView);
         views.put("BookingView", bookingView);
         views.put("HelpView", helpView);
+        views.put("Mybookings", mbView);
 
         customerFrame.add(homeView);
         customerFrame.pack();
@@ -235,6 +257,8 @@ public class CustomerFrame implements Observable {
     }
 
     public void setUser(String user) {
+        currentUser = user;
+        System.out.println( mbController.getBookings(user));
         homeView.setUser(user);
         bookingController.setUser(user);
     }
