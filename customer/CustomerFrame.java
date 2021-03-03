@@ -80,7 +80,6 @@ public class CustomerFrame implements Observable {
         myBookingView = new MyBookingView();
         MyBookingModel myBookingModel = new MyBookingModel();
         myBookingController = new MyBookingController(myBookingModel, myBookingView);
-        
         myBookingController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
@@ -88,6 +87,15 @@ public class CustomerFrame implements Observable {
             }
             else if(s.equals("Home")){
                 nextView(views.get("HomeView"));
+            }
+            else if(s.equals("Bookings")){
+                nextView(views.get("Mybookings"));
+            }
+            else if(s.equals("Help")){
+                nextView(views.get("HelpView"));
+            }
+            else if(s.equals("Profile")){
+                System.out.println("profile");
             }
         });
 
