@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JTextField;
 import java.awt.event.*;
 
 import global.AllButtons;
@@ -13,11 +12,14 @@ public class ShowFlightsController {
         private ShowFlightsModel model;
         private ShowFlightsView view;
         private ArrayList<AllButtons> buttons = new ArrayList<>();
+        private boolean noFlight;
+        
     public ShowFlightsController(ShowFlightsModel m, ShowFlightsView v){
 
         this.model = m;
         this.view = v;
         buttons = view.getButtons();
+        
     }
 
     public void addButtonListener(ActionListener al) {
@@ -26,15 +28,38 @@ public class ShowFlightsController {
         }
     }
 
+    public void listAllFlights() {
+        try {
+            ArrayList<customer.flight.FlightInfoButton> infoButtons = model.getFlights();
+             if(infoButtons == (null)){
+                this.noFlight = true;
+             }
+             else {
+                view.initButtons(infoButtons);
+                this.noFlight = false;
+             }
+            
+        } catch (Exception e) {
+            System.out.println("something went wrong");
+        }
+        buttons = view.getButtons();
+    }
 
-   // public void addKeyListener(KeyListener kl) {
-     //   JTextField FlightnrField = view.getFlightnrField();
-       // FlightnrField.addKeyListener(kl);
-    //}
+    public Boolean getNoFlight(){
+        return this.noFlight;
+    }
 
-    public boolean addFlight(String flight_id, String from_d, String to_d, String date_of, String time_of){
+    public void getDestinations(){
+        try {
+            view.setDestinations(model.getDestinations());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
+    }
+
+    public boolean addFlight() {
         try{
-            model.addFlight(flight_id, from_d, to_d, date_of, time_of); 
+            model.addFlight(view.getFrom(), view.getTo(), view.getDate(), view.getTime(), view.getModel()); 
         } catch (SQLException e){    
             view.errorPanel();
             return false;
