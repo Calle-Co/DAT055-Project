@@ -23,9 +23,9 @@ public class BookingModel {
      * @throws ClassNotFoundException Behöver fångas men kommer aldrig kastas.
      */
 	public void setBooked(ArrayList<InfoHolding> info) throws SQLException, ClassNotFoundException {
-        serverConnection = new ServerConnection();
-        serverConnection.DatabaseConnection();
         for(InfoHolding i : info){
+            serverConnection = new ServerConnection();
+            serverConnection.DatabaseConnection();
             try(PreparedStatement ps = serverConnection.getConn().prepareStatement("INSERT INTO seats VALUES(?,?,?,?,?,?)");)
             {
                 ps.setInt(1, Integer.parseInt(i.getFID())); 
