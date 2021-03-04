@@ -36,8 +36,9 @@ public class ClientsInfoModel{
         }
         catch (SQLException e) {
             throw new SQLException();
-        }
-        s.getConn().close(); 
+        } finally {
+            s.getConn().close();
+        } 
         return users; 
     }
 
@@ -54,10 +55,11 @@ public class ClientsInfoModel{
         try(PreparedStatement ps = s.getConn().prepareStatement("DELETE FROM customers WHERE username = ?");){
             ps.setString(1, username);
             ps.executeUpdate();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             throw new SQLException();
-        }
-        s.getConn().close(); 
+        } finally {
+            s.getConn().close();
+        }   
     }
 
     public void clearUsers(){

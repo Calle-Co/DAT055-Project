@@ -65,8 +65,9 @@ public class DestInfoModel {
         }
         catch (SQLException e) {
             throw new SQLException();
-        }
-        s.getConn().close();
+        } finally {
+            s.getConn().close();
+        }     
     }
 
     public void clearDest(){ destinations.removeAll(destinations);}

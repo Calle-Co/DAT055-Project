@@ -111,6 +111,12 @@ public class DestInfoView extends JPanel{
             return false;
         }
     }
+
+    public void errorPanel(){
+        java.awt.Toolkit.getDefaultToolkit().beep();
+        String s = "Something went wrong, try again!\n";
+        JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
+    }    
     
     public String getDest() { return destination; }
     public String getAbbrev() { return abbreviation; }

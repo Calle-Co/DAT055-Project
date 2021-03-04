@@ -31,6 +31,7 @@ public class FlightsInfoController {
         try {
             view.setDestinations(model.getDestinations());
         } catch (Exception e) {
+            //Måste tas om hand, men borde aldrig kunna inträffa.
             e.printStackTrace();
         } 
     }
@@ -39,6 +40,7 @@ public class FlightsInfoController {
         try {
             view.setPlaneModels(model.getPlaneModels());
         } catch (Exception e) {
+            //Måste tas om hand, men borde aldrig kunna inträffa. 
             e.printStackTrace();
         } 
     }
@@ -49,8 +51,8 @@ public class FlightsInfoController {
         } catch (SQLException e){    
             view.errorPanel();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            
+            e.printStackTrace();     
+            //Måste tas om hand, men borde aldrig kunna inträffa. 
         }
         view.successPanel();
     }
