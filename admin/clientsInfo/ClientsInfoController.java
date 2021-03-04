@@ -53,7 +53,7 @@ public class ClientsInfoController {
                 clientPopup(s);
             }); 
         } catch (Exception e) {
-            //TODO: handle exception
+            //Måste tas om hand, men borde aldrig kunna inträffa.
         }
     }
     
@@ -68,7 +68,7 @@ public class ClientsInfoController {
             try {
                 model.deleteUser(username);
             } catch (Exception e){
-                //TODO: handle exception
+                //Måste tas om hand, men borde aldrig kunna inträffa.
             }    
         }
         listAllUsers();

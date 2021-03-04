@@ -100,7 +100,7 @@ public class FlightsInfoView extends JPanel {
 
     public void errorPanel(){
         java.awt.Toolkit.getDefaultToolkit().beep();
-        String s = "That flight already exist!\n";
+        String s = "Something went wrong, try again!\n";
         JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
     }
     public void successPanel(){

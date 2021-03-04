@@ -3,6 +3,8 @@ package admin.destInfo;
 import java.util.*;
 import global.AllButtons;
 import java.awt.event.*;
+import java.sql.SQLException;
+
 import javax.swing.JButton;
 
 /**
@@ -41,7 +43,8 @@ public class DestInfoController {
         try {
             view.setUsers(model.fetchDest());
         } catch (Exception e) {
-            //TODO: handle exception
+            //Måste tas om hand, men borde aldrig kunna inträffa.
+            e.printStackTrace();
         }
     }
 
@@ -55,9 +58,12 @@ public class DestInfoController {
         if(view.destPopup()){
             try{
                 model.addDestination(view.getDest(), view.getAbbrev());
-            } catch (Exception e){
-                //TODO handle exception
-            }
+            } catch (SQLException e){
+                view.errorPanel();
+            } catch (ClassNotFoundException e){
+                //Måste tas om hand, men borde aldrig kunna inträffa.
+                e.printStackTrace();
+            }    
         }
         listAllDestinations();
     }

@@ -72,6 +72,5 @@ public class FlightsInfoModel {
             s.getConn().close();  
         } 
     }
-
     
 }
