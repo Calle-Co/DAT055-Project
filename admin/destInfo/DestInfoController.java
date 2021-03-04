@@ -42,14 +42,14 @@ public class DestInfoController {
     /**
      * Denna metod fungerar som en mellanhand mellan modellen och vyn.
      * Den ser till att model-klassen hämtar hem destinationerna från databasen
-     * och så skickar den en lista av alla destinationerna till setUsers() i vyn.
+     * och så skickar den en lista av alla destinationerna till setDestinations() i vyn.
      * Den rensar även upp mellan anropen så att det inte blir duplicerade destinationer.
      */
     public void listAllDestinations(){
         view.clearDest();
         model.clearDest();
         try {
-            view.setUsers(model.fetchDest());
+            view.setDestinations(model.fetchDest());
         } catch (Exception e) {
             //Måste tas om hand, men borde aldrig kunna inträffa.
             e.printStackTrace();

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.awt.*;
 
 import global.AllButtons;
-import global.Flight;
 import customer.MenuPanel;
 import customer.flight.FlightInfoButton;
 

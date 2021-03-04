@@ -1,14 +1,11 @@
 package start.login;
 
 import javax.swing.JButton;
-
 import global.AllButtons;
-
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTextField;
-
 
 /**
  * Denna klass sköter kommunikation mellan LoginModel och LoginView.
@@ -20,18 +17,31 @@ public class LoginController {
     private LoginView view;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
+    /**
+     * Skapar en instans av LoginView och LoginModel och instanserar en lista av alla knappar från view.
+     * @param m En LoginModel
+     * @param v En LoginView
+     */
     public LoginController(LoginModel m, LoginView v){
         this.model = m;
         this.view = v;
         buttons = view.getButtons();
     }
 
+    /**
+     * Denna metod lägger till en actionListener på alla knappar som hämtades från view.
+     * @param al En actionListener
+     */
     public void addButtonListener(ActionListener al) {
         for(JButton b : buttons) {
             b.addActionListener(al);
         }
     }
 
+    /**
+     * Denna metod lägger till en keyListener på lösenordsrutan från view.
+     * @param kl En keyListener
+     */
     public void addKeyListener(KeyListener kl) {
         JTextField passwordField = view.getPasswordField();
         passwordField.addKeyListener(kl);

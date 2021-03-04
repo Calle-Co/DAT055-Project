@@ -6,7 +6,6 @@ import global.ServerConnection;
 /**
  * Denna klass har som uppdrag att logga in en admin.
  * Lösenordet måste stämma för att kunna logga in.
- * 
  * @author Carl Classon
  * @version 2021-02-24
  */
@@ -15,7 +14,6 @@ public class AdminLoginModel{
 
     /**
      * Metod för att jämnföra det inskrivna lösenordet med det som finns i databasen.
-     * 
      * @param password det inskrivna lösenordet
      * @return  true om lösenordet matchar det i databasen, annars false.
      * @throws SQLException Om något går fel med SQL-anropet.

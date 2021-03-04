@@ -12,8 +12,9 @@ import java.awt.event.*;
 import java.sql.SQLException;
 
 /**
+ * Denna klass är huvudansvarig för all logik som inte hanterar grafik i MVC:n booking
  * @author Simon Länsberg, William Husar
- * @version 2021-02-24
+ * @version 2021-03-03
  */
 public class BookingController {
     private boolean returnToHome = false;
@@ -30,6 +31,12 @@ public class BookingController {
     private String user;
     private String flight_id;
 
+
+    /**
+     * Konstructor metoden för BookingController initierar en instans med två parametrar model och view. 
+     * @param model Modellen som passas med vid konstruktor anropet 
+     * @param view  Vyn som passas med vid konstruktor anropet 
+     */
     public BookingController(BookingModel model, BookingView view){
         this.model = model;
         this.view = view;
@@ -38,6 +45,10 @@ public class BookingController {
         people = new ArrayList<>();
     }
 
+    /**
+     * Void metod för att initiera boknings flödet. Dvs denna metoden kallas på när användaren har valt sitt säte och trycker på boka knappen. 
+     * Om inte informationen för sätet har fyllts i skapas en JOption pane med ett varnings medelande.
+     */
     public void initBooking() {
         info = view.getInfo();
         returnToHome = false;
@@ -67,10 +78,17 @@ public class BookingController {
             }
     }
 
+    /**
+     * En getter funktion som hämtar statusen på "initBooking" Om den är färdig retuneras true, annars false 
+     * @return initBookings status
+     */
     public boolean returnToHome() {
         return this.returnToHome;
     }
 
+    /**
+     * Denna metod hämtar och sparar undan informationen som förknipas med de bokade sätena 
+     */
     public void toSave(String key){
         String name = info.get(key).getName();
         String age  = info.get(key).getAge();
@@ -84,6 +102,9 @@ public class BookingController {
         }
     }
 
+    /**
+     * En reset metod som rensar alla listor och paneler som hör ihop med bokningen. Detta görs för att uppdatera paneler och listor med aktuella värden.
+     */
     public void reset() {
         seats.clear();
         view.clearPanels();
@@ -91,6 +112,10 @@ public class BookingController {
         numberOfSeats = 0;
     }
 
+    /**
+     * Initierar en "flygplans" panel där man kan välja sina säten. Antalet säten beror på vilken modell planet är av, den informationen passas med vid metodanropet.
+     * @param flight_id Flygplanets id, vilket man med hjälp av databasen får ut antalet säten som planet ska ha.
+     */
     public void setFlight(String flight_id) {
         this.flight_id = flight_id;
         try {
@@ -114,11 +139,15 @@ public class BookingController {
                 }
             });
         } catch (Exception e) {
-            //bruh
+            //Heeeey Ohhh  Listen what i saaaaaay ohhhhhh
         }
         
     }
 
+    /**
+     * Metoden som skickar information om säten som ska bokas till BookingModel som sedan bokar in dem i systemet.
+     * @throws SQLException Om något går fel vid bokningen kastas en Exception för att informera användaren om detta.
+     */
     public void setBooked() throws SQLException {
         try {
             model.setBooked(this.people);
@@ -127,21 +156,36 @@ public class BookingController {
             throw new SQLException();
         }
     }
+    /**
+     *  Sätter antalet stolar man kan välja i boknings panelen. Antalet bestäms när man söker flyg och skickas med detta metodanropet. 
+     * @param limit Antal väljbara stolar för denna bokning.
+     */
 
     public void setLimit(int limit){
         this.limit = limit;
     }
-
+    
+    /**
+     * Sätter vem den aktuella användaren är.
+     * @param user Nya användaren.
+     */
     public void setUser(String user){
         this.user = user;
     }
 
+    /**
+     * Lägger till en actionlistnener på ArrayListan buttons.
+     * @param al ActionListener.
+     */
 	public void addButtonListener(ActionListener al) {
         for(AllButtons b : buttons) {
             b.addActionListener(al);
         }
     }
 
+    /**
+     * @return  Flygplans ID för denna bokningen.
+     */
     public String getFID() {
         return this.flight_id;
     }

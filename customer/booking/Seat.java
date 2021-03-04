@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 /**
- * This is a Class for representing the seats icons and their functionality
+ * Denna klass representerar de olika sätenas iconer och deras funktionalitet 
  * @author Simon Länsberg, William Husar
  * @version 2021-02-15
  */
@@ -18,8 +18,8 @@ public class Seat extends JButton implements ActionListener{
     private ImageIcon book  = new ImageIcon("customer/resources/booked.PNG");
 
     /**
-     * This is the constructor for the seats. It initialises each seat with a name (the seats number ex. 1a) and toggels the other instance-variabels to their start values 
-     * @param seat This is the name/number of this seat.
+     * Denna konstruktor skapar ett säte med ett namn ( sätes numert ex. 1a) och ger de andra instansvariablerna sina start värden 
+     * @param seat Detta är sätes nummer/namn
      */
     public Seat(String seat) {
         super();
@@ -35,7 +35,8 @@ public class Seat extends JButton implements ActionListener{
     }
 
     /**
-     * This method detects if a seat is selected and if so changes the icon to a cyan seat, if the seat was not previously selected. Otherwise the seat-icon is set to the free. If the seat is booked a error sound is played
+     * Denna metoden undersöker om ett säte har blivit valt och i så fall så byter det färg på sätet till turkos så läge som det vala sätet inte redan var valt. Om detta är fallet så byter stolen till grön istället. 
+     * Om stolen är röd, dvs bokad så kommer ett error ljud spelas när man försöker trycka på stolen.
      */
     public void actionPerformed(ActionEvent e) {
         this.clicked = !this.clicked;
@@ -51,7 +52,7 @@ public class Seat extends JButton implements ActionListener{
     }
 
     /**
-     * This is the method used to set the booked seat-icon, and reset to the free icon if the seat is canceled 
+     * Denna metoden används för att sätta sätet till rött (Bokat) och nollställer sätet till grönt om det avbokas.
      */
     public void colorStatus() {
         if(booked) {
@@ -63,7 +64,7 @@ public class Seat extends JButton implements ActionListener{
     }
 
     /**
-     * This is the icon swaping method. It was created to minimise code repeting
+     * Metoden som sköter ikon bytet
      */
     public void paint(ImageIcon c) {
         this.setIcon(c);
@@ -71,8 +72,8 @@ public class Seat extends JButton implements ActionListener{
     }
 
     /**
-     * This is a setter for setting this seats status.
-     * @param status Booleand: True/False,  The new status for the seat.
+     * Detta är en metod för att sätta statusen för ett säte
+     * @param status Boolean: True/False, Sätets status
      */
     public void setStatus(Boolean status) {
         this.booked = status;
@@ -81,22 +82,29 @@ public class Seat extends JButton implements ActionListener{
     }
 
     /**
-     * This is a getter for retriving this seats booking status. A boolean is returned.
+     * 
+     * @return Boolean, Sätets status
      */
     public Boolean getStatus() {
         return this.booked;
     }
 
     /**
-     * This is a getter for this seats name/number, a String is returned.
+     * @return String, Sätets namn
      */
     public String getSeat() {
         return this.seat;
     }
+    /**
+     * @return True om sätet är valt, annars false
+     */
     public Boolean getClick(){
         return this.clicked;
     }
     
+    /**
+     * Sätter sätet till "free" läget, dvs redo att klickas på
+     */
     public void setFree(){
         this.paint(free);
         this.clicked = !clicked;

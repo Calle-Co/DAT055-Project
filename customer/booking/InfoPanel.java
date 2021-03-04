@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import global.*;
 
 /**
+ * En klass vars instanser skapar en inforuta där man kan fylla i bokningsinformation för ett specifikt säte. 
  * @author Simon Länsberg, William Husar
  * @version 2021-02-22
  */
@@ -16,6 +17,10 @@ public class InfoPanel extends JPanel {
     private JTextField age = new JTextField();
     private ArrayList<String> info = new ArrayList<>();
     
+    /**
+     * En konstruktor som initsierar en InfoPanel tillhörade säte "nr".
+     * @param nr Sätes numert.
+     */
     public InfoPanel(String nr){
         Border blackline = BorderFactory.createLineBorder(Color.GRAY);
         this.setBorder(blackline);
@@ -56,10 +61,16 @@ public class InfoPanel extends JPanel {
         setVisible(true);
     }
 
+    /**
+     * @return Returnerar namnet som fyllts i.
+     */
     public String getName(){
         return name.getText();
     }
 
+    /**
+     * @return Returnerar åldern som fyllts i.
+     */
     public String getAge(){
         return age.getText();
     }
