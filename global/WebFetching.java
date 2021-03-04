@@ -4,10 +4,16 @@ import java.io.IOException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+
+/**
+ * Klassen används för att hämta dagens datum från en hemsida.
+ * @author Simon Länsberg
+ * @version 2021-02-26
+ */
 public class WebFetching {
     private String test;
 
-    public WebFetching(){
+    public WebFetching() {
         final String url = "https://www.calendardate.com/todays.htm";
         try {
             Document doc = Jsoup.connect(url).userAgent("mozzilla/17.0").get();
@@ -23,6 +29,9 @@ public class WebFetching {
         }
     }  
 
+    /**
+     * @return Dagens datum.
+     */
     public String getDat(){
         return this.test;
     }

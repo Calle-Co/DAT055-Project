@@ -1,8 +1,10 @@
 package global;
 
 /**
+ * Interfacet används av klasser som ska kunna
+ * bli observerade av andra klasser.
  * @author William Husar, Simon Länsberg
- * @version
+ * @version 2021-02-18
  */
 public interface Observable {
     public void addObserver(Observer observer);

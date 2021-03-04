@@ -5,19 +5,17 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
- * Denna klassen ansvarar för den panel som dyker upp varje gång något ska "ladda"
+ * Klassen används för att visuellt representera tillståndet 
+ * då programmet laddar.
  * @author Anna Manfredsson
  * @version 2021-02-23
  */
 @SuppressWarnings("serial")
 public class LoadingView extends JPanel {
 
-    /**
-     * Denna metod skapar själva panelen och all dess innehåll.
-     */
-    public LoadingView(){
-        
+    public LoadingView() {
         setSize(600, 600);
+        
         JPanel topPanel = new JPanel();
         topPanel.setBackground(Color.white);
         JLabel label = new JLabel("Loading...");
@@ -44,6 +42,5 @@ public class LoadingView extends JPanel {
         test.add(centerPanel, BorderLayout.CENTER);
         add(test, BorderLayout.CENTER);
         setVisible(true);
-          
     }
 } 

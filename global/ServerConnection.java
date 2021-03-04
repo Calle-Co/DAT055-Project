@@ -1,11 +1,11 @@
 package global;
+
 import java.sql.*;
 import java.util.Properties;
 
 /**
- * Denna klass hanterar kommunikationen med vår postgres server.
- * Det mesta av koden är taget från kursen "TDA357" på Chalmers.
- * 
+ * Klassen används för att skapa en anslutning till programmets databas.
+ * Koden är från en laboration i kursen Databaser TDA357.
  * @author Carl Classon
  * @version 2021-02-24
  */
@@ -15,16 +15,16 @@ public class ServerConnection {
     private static final String PASSWORD = "postgres";
     private Connection conn;
     
-
     public void DatabaseConnection() throws SQLException, ClassNotFoundException {
         DatabaseConnection(DATABASE, USERNAME, PASSWORD);  
     }
 
     /**
-     * 
-     * @param db Adressen till servern (databasen) som man vill komma åt
-     * @param user Användarnamnet som används för autentisering mot servern. 
-     * @param pwd Lösenordet -||-
+     * Konstruktorn skapar en anslutning till databasen med hjälp
+     * av 3 parametrar.
+     * @param db Adress till servern som databasen befinner sig på.
+     * @param user Användarnamn som används för autentisering mot servern. 
+     * @param pwd Lösenord som används för autentisering mot servern. 
      * @throws SQLException Om lösenordet eller användarnamet skulle vara fel.
      * @throws ClassNotFoundException Om klassen "org.postgresql.driver" inte skulle finnas.
      */
@@ -35,11 +35,10 @@ public class ServerConnection {
         props.setProperty("password", pwd);
         conn = DriverManager.getConnection(db, props);
     }
-
    
-    /** Detta är taget från Lab4 i kursen TDA357 (Databaser)
-     * 
-     * @param e ett SQLException som man vill printa.
+    /**
+     * Metoden skriver ut eventuella error på ett mer läsbart sätt.
+     * @param e Det SQLException som ska hanteras.
      * @return En string som förklarar SQL-error meddelandet.
      */
     public String getError(SQLException e){
@@ -50,6 +49,9 @@ public class ServerConnection {
         return message;
     }
 
+    /**
+     * @return Anslutning till databasen.
+     */
     public Connection getConn(){
         return this.conn;
     }
