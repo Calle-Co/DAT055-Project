@@ -2,34 +2,33 @@ package admin;
 
 import java.util.ArrayList;
 import java.util.Date;
-
+import javax.swing.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.*;
-
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.awt.event.ActionEvent;
-
 import java.awt.*;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
 import global.AllButtons;
 import global.WebFetching;
 import global.AllButtons.size;
 
-
+/**
+ * @author Anna Manfredsson
+ * @version 2021-03-04
+ */
 public class AdminMenuPanel extends JPanel{
-
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private final SimpleDateFormat clockFormat = new SimpleDateFormat("H:mm:ss");
     private WebFetching todaysDat;
     
+    /**
+     * Denna metod skapar en menypanel med datum, hemknapp, logga-utknapp och logga.
+     */
     public AdminMenuPanel(){
-
         todaysDat = new WebFetching();
-
         JLabel time = new JLabel();
         time.setBounds(5, 60, 100, 50);
         time.setFont(new Font(time.getFont().getName(), Font.BOLD, 18));
@@ -51,10 +50,6 @@ public class AdminMenuPanel extends JPanel{
         datepanel.setLayout(new BoxLayout(datepanel, BoxLayout.Y_AXIS));
         datepanel.add(date);
         datepanel.add(time);
-
-
-
-
         
         AllButtons homeButton = new AllButtons(size.MEDIUM, "Home");
         buttons.add(homeButton);
@@ -71,7 +66,6 @@ public class AdminMenuPanel extends JPanel{
         c.gridy = 0;
         add(datepanel, c);
 
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.anchor = GridBagConstraints.PAGE_START;
         c.weightx = 0.3;
         c.ipadx = 10;
@@ -79,17 +73,19 @@ public class AdminMenuPanel extends JPanel{
         c.gridy = 0;
         add(homeButton, c);
 
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 2;
         c.gridy = 0;
         add(logoutButton, c);
 
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.weightx = 0;
         c.gridx = 3;
         c.gridy = 0;
         add(logo, c);
         setVisible(true);
     }
+
+    /**
+     * @return En arraylist med alla knappar som ligger i view.
+     */
     public ArrayList<AllButtons> getButtons(){ return buttons; }
 }
