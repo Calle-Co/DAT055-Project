@@ -59,7 +59,7 @@ public class DestInfoView extends JPanel{
      * Lägger till alla destinationer i en panel
      * @param dest destinationer hämtade från databasen
      */
-    public void setUsers(ArrayList<Destination> dest){
+    public void setDestinations(ArrayList<Destination> dest){
         for(Destination name : dest){
             JPanel namePanel = new JPanel();
             namePanel.setLayout(new GridLayout(1,1));

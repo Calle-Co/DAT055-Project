@@ -1,9 +1,10 @@
 package global;
 
 /**
- * Simple way of representing a person who is a part of a booking
+ * Klassen används för att representera en
+ * person som ingår i en bokning
  * @author Simon Länsberg
- * @version 2021-02-22
+ * @version 2021-03-03
  */
 public class InfoHolding {
     private String owner = null;
@@ -13,10 +14,13 @@ public class InfoHolding {
     private String fid = null;
 
     /**
-     * The constructor is used to create a new representation of a person
-     * @param name Name of the person
-     * @param age Age of the person
-     * @param owner Username of the "main" person who peforms the booking
+     * Konstruktorn används för att skapa en person som
+     * ingår i en bokning med hjälp av flera parametrar.
+     * @param name Fullständigt namn på personen.
+     * @param age Ålder på personen.
+     * @param owner Användarnamn på den som bokat.
+     * @param seat Personens stolsnummer.
+     * @param fid Unikt id för flyget.
      */
     public InfoHolding(String name, String age, String owner, String seat, String fid) {
         this.name = name;
@@ -27,41 +31,36 @@ public class InfoHolding {
     }
 
     /**
-     * Getter funtion for the name
-     * @return Returns the name
+     * @return Fullständigt namn på personen.
      */
     public String getName(){
         return this.name;
     }
     
     /**
-     * Getter function for the age
-     * @return Returns the age
+     * @return Ålder på personen.
      */
     public String getAge(){
         return this.age;       
     }
 
+    /**
+     * @return Användarnamn på den som bokat.
+     */
     public String getOwner(){
         return this.owner;
     }
 
     /**
-     * Getter function for the seat number
-     * @return Returns the seatnumber
+     * @return Personens stolsnummer.
      */
     public String getSeat(){
         return this.seat;
     }
 
     /**
-     * a edited toString function that returns both name age and owner of this instance.
-     * @return
+     * @return Unikt id för flyget.
      */
-    public String toPrint(){
-        return ("Name : " + this.name+ " \nAge: "+this.age);
-    }
-
 	public String getFID() {
 		return this.fid;
 	}

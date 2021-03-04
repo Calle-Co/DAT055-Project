@@ -6,17 +6,15 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
-
 /**
  * En klass för applikationens alla knappar.
- * Knapparna kommer i tre olika storlekar, small, medium och large.
+ * Knapparna kommer i tre olika storlekar: small, medium och large.
  * Om man hovrar över knapparna så uppstår en liten effekt.
  * @author Carl Classon
- * @version 2021-02-16
+ * @version 2021-02-24
  */
 @SuppressWarnings("serial")
 public class AllButtons extends JButton{
-    
     public enum size{
         SMALL,
         MEDIUM,
@@ -26,20 +24,13 @@ public class AllButtons extends JButton{
     }
 
     /**
-     * A method for creating specific buttons. The buttons have a hover-effect when you mouse 
-     * over them.
-     * 
      * En metod för att skapa specifika knappar. Knapparna har en liten effekt när man 
      * för muspekaren över dem.
-     * 
-     * @param s Storleken du vill ha på din knapp, kan vara någon av : SMALL, MEDIUM, LARGE.
+     * @param s Storleken du vill ha på din knapp, kan vara någon av: SMALL, MEDIUM, LARGE.
      * @param title Texten du vill ha på din knapp
      */
-
     public AllButtons(size s, String title){
-        
         super(title);
-
         if(s == size.SMALL){
             addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -63,7 +54,6 @@ public class AllButtons extends JButton{
             });
             setPreferredSize(new Dimension(140,60));
             setFont(new Font("Arial", Font.BOLD,25));
-
         }
         else if(s == size.LARGE){
             addMouseListener(new java.awt.event.MouseAdapter() {
@@ -88,7 +78,6 @@ public class AllButtons extends JButton{
                 }
             });
             setBorderPainted(false);
-            
         }
         else if(s == size.CUSTOM){
             addMouseListener(new java.awt.event.MouseAdapter() {
@@ -99,10 +88,6 @@ public class AllButtons extends JButton{
                     setBackground(UIManager.getColor("control"));
                 }
             });
-
         }
-        
-    
     }
-
 }

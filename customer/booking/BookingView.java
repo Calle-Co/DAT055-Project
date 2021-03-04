@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
+ * Denna klass sköter all grafik och alla JOptionPanes som används i MVC:n bookings
  * @author Simon Länsberg, William Husar
  * @version 2021-03-03
  */
@@ -27,6 +28,10 @@ public class BookingView extends JPanel{
     private ArrayList<Seat> seats;
     private ArrayList<AllButtons> buttons;
    
+    /**
+     * Konstruktormetoden för BookingView.
+     * Initsierar alla listor, paneler samt meny knappar som som används i denna klassen
+     */
     public BookingView(){
         sPanel = new JPanel();
         iHolder = new JPanel();
@@ -71,6 +76,10 @@ public class BookingView extends JPanel{
         add(menuPanel);
     }
 
+    /**
+     * Metod som adderar en InfoPanel till den scrollbara panelen iHolder. Infopanelen är koppad till det sätet man klickade på.
+     * @param s Det valda sätets nummer
+     */
     public void addInfo(String s){
             InfoPanel ip = new InfoPanel(s);
             iHolder.add(ip);
@@ -79,6 +88,11 @@ public class BookingView extends JPanel{
             iHolder.revalidate();
     }
 
+    /**
+     * Motsattsen till "addInfo". Denna metoden tar bort en Infopanel för ett specifikt sätte 
+     * @param s Det föredetta valda sätets nummer
+     */
+
     public void removeInfo(String s){
         iHolder.remove(info.get(s));
         info.remove(s);
@@ -86,10 +100,17 @@ public class BookingView extends JPanel{
         iHolder.repaint();
     }
 
+    /**
+     * @return returnerar en arraylist med alla säten i
+     */
     public ArrayList<Seat> getSeats(){
         return seats;
     }
-
+    /**
+     * Initsierar en seats button för varje säte i flygplanet
+     * @param n Antalet säten flyget ska ha
+     * @param bookedSeats Lista med alla bokade säten så att de initsieras som röda, dvs bokade.
+     */
     public void initSeats(int n, ArrayList<String> bookedSeats) {
         clearPanels();
         sPanel.setLayout(new GridLayout((n/4),4));
@@ -134,6 +155,9 @@ public class BookingView extends JPanel{
         sPanel.repaint();
     }
 
+    /**
+     * Rensar alla paneler så att man ska kunna uppdatera dem med ny information
+     */
     public void clearPanels() {
         sPanel.removeAll();
         seats.clear();
@@ -145,6 +169,11 @@ public class BookingView extends JPanel{
         iHolder.repaint();
     }
 
+    /**
+     * Metoden som sköter skapandet av olika JOptionpanes som presenterar olika medelanden till användare. Vilket medelande som ska visas beror på inparametern "s". 
+     * @param s Avgör vilket medelande som ska visas.
+     * @return Returnerar sant om Ja eller OK alternativen i fönsterna klickas, Returnerar falskt om Nej alternativet väljs
+     */
     public boolean makeOPane(String s){
         if(s.equals("confirm")){
             text = "Are you sure you wish to book your selected seats?";
@@ -184,16 +213,25 @@ public class BookingView extends JPanel{
         return false;
         }
 
+    /**
+     * @return returnerar en hashmap som innehåller alla Infopaneler sorterade efter viket säte de tillhör
+     */
     public HashMap<String, InfoPanel> getInfo(){
         return info;
     }
     
+    /**
+     * Adderar en seatListner till varje enskilt säte i flygplanet
+     */
     public void addSeatListener(ActionListener al) {
         for(Seat s : seats) {
             s.addActionListener(al);
         }
     }
 
+    /**
+     * @return Returnerar en arraylist med alla knappar i bookingview
+     */
 	public ArrayList<AllButtons> getButtons() {
 		return buttons;
 	}

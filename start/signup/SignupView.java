@@ -9,7 +9,7 @@ import global.*;
 
 /**
  * En klass som är ansvarig för grafiken för Signup-delen av programmet.
- * @author Simon Länsberg & William Husar & Carl Classon
+ * @author Simon Länsberg, William Husar, Carl Classon
  * @version 2021-02-24
  */
 @SuppressWarnings("serial")

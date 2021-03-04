@@ -12,19 +12,24 @@ import global.WebFetching;
 import global.AllButtons.size;
 
 /**
+ * Denna klassen visar den grafiska delen av home-delen av programmet.
  * @author Kevin Hao, William Husar
  * @version 2021-03-02
  */
+@SuppressWarnings("serial")
 public class HomeView extends JPanel {
-    private JComboBox combobox1;
-    private JComboBox combobox2;
+    private JComboBox<String> combobox1;
+    private JComboBox<String> combobox2;
     private WebFetching todaysDat;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private JPanel centerPanel;
     private String[] choices;
-    private JComboBox tCombobox;
+    private JComboBox<String> tCombobox;
     private JFormattedTextField dateField = new JFormattedTextField(DateFormat.getDateInstance(DateFormat.SHORT));
     
+    /**
+     * Skapar Home-panelen och all dess innehåll.
+     */
     public HomeView() {
         setLayout(null);
         todaysDat = new WebFetching();
@@ -72,7 +77,7 @@ public class HomeView extends JPanel {
         centerPanel.add(searchButton);
 
         // BOOKEDPANEL main = 300, 120, 650, 450
-
+        /*
         JPanel bPanel = new JPanel();
         bPanel.setLayout(null);
         bPanel.setBounds(20, 120, 260, 450);
@@ -84,8 +89,6 @@ public class HomeView extends JPanel {
         bPanel.add(bfLabel);
         bfLabel.setFont(new Font("Verdana", 0, 20));
 
-        // CHEAPFLIGHTS PANEL main = 300, 120, 650, 450
-
         JPanel cPanel = new JPanel();
         cPanel.setLayout(null);
         cPanel.setBounds(970, 120, 190, 450);
@@ -96,6 +99,7 @@ public class HomeView extends JPanel {
         cfLabel.setBounds(20, 20, 170, 25);
         cPanel.add(cfLabel);
         cfLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
+        */
 
         MenuPanel menuPanel = new MenuPanel();
         menuPanel.setBounds(0, 0, 1200, 100);
@@ -105,8 +109,10 @@ public class HomeView extends JPanel {
         add(menuPanel);
     }
 
-    public ArrayList<AllButtons> getButtons() { return buttons; }
-
+    /**
+     * Lägger till alla destinationer i en två olika JCombobox:ar.
+     * @param dest destinationer hämtade från databasen
+     */
 	public void setDestinations(ArrayList<Destination> destinations) {
             choices = new String[destinations.size()];
             int n = 0;
@@ -123,6 +129,9 @@ public class HomeView extends JPanel {
             centerPanel.add(combobox2);
 	}
 
+    /**
+     * @param user Användarnamnet på den användare som har loggat in.
+     */
     public void setUser(String user){
         JLabel wLabel = new JLabel("Welcome " + user + "!");
         wLabel.setBounds(20, 20, 170, 25);
@@ -130,6 +139,9 @@ public class HomeView extends JPanel {
         wLabel.setFont(new Font("Verdana", 0, 20));
     }
 
+    /**
+     * @return En String-Array med alla sökparametrar från startsidan.
+     */
 	public String[] getSearchParam() {
         String[] param = new String[4];
         param[0] = combobox1.getSelectedItem().toString();
@@ -138,6 +150,11 @@ public class HomeView extends JPanel {
         param[3] = tCombobox.getSelectedItem().toString();
 		return param;
 	}
+
+    /**
+     * @return En lista med alla knappar som ligger i home-view.
+     */
+    public ArrayList<AllButtons> getButtons() { return buttons; }
 }
 
 
