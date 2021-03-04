@@ -13,7 +13,13 @@ public class SignupModel {
     private ServerConnection s;
 
     public SignupModel() {}
-    
+    /**
+     * Denna metod lägger till en användare i databasen.
+     * @param username användarnamnet som används för att registrera en användare.
+     * @param password lösenordet som användaren väljer.
+     * @throws SQLException Om något går fel med SQL-anropet.
+     * @throws ClassNotFoundException Om "ServerConnection.DatabaseConnection" skulle kalla på en klass som ej existerar.
+     */
     public void signUp(String username, String password) throws SQLException, ClassNotFoundException{
         s = new ServerConnection();
         s.DatabaseConnection();
@@ -25,8 +31,9 @@ public class SignupModel {
         }
         catch (SQLException e) {
             throw new SQLException();
-        }
-        s.getConn().close();   
+        } finally {
+            s.getConn().close();
+        }   
     }
 }
 

@@ -53,6 +53,7 @@ public class ClientsInfoController {
                 clientPopup(s);
             }); 
         } catch (Exception e) {
+            e.printStackTrace();
             //Måste tas om hand, men borde aldrig kunna inträffa.
         }
     }
@@ -68,6 +69,7 @@ public class ClientsInfoController {
             try {
                 model.deleteUser(username);
             } catch (Exception e){
+                e.printStackTrace();
                 //Måste tas om hand, men borde aldrig kunna inträffa.
             }    
         }

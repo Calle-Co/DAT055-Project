@@ -43,10 +43,9 @@ public class LoginModel {
             }    
         }
         catch (SQLException e) {
-            //throw new SQLException();
-            System.out.println(s.getError(e));
+            throw new SQLException();
+        } finally {
+            s.getConn().close();
         }
-        s.getConn().close();
-        return true;
     }
 }

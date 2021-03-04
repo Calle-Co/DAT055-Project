@@ -37,7 +37,8 @@ public class AdminLoginController {
     }
 
     /**
-     * 
+     * Denna metod kallar på den metod i model som jämnför det inskrivna lösenordet mot 
+     * det som ligger i databasen.
      * @param password Lösenordet som skrivit in när en admin försöker logga in.
      * @return Returnerar true om lösenordet är korrekt, annars false.
      */
@@ -50,9 +51,10 @@ public class AdminLoginController {
                 return false;
             }
         } catch (SQLException e) {    
-            e.printStackTrace();
+            view.errorPanel();
             return false;
         } catch (ClassNotFoundException e) {
+            //Måste tas om hand, men borde aldrig kunna inträffa.
             e.printStackTrace();
             return false;
         }

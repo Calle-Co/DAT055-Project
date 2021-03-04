@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 
 /**
+ * Denna klass sköter kommunikation mellan LoginModel och LoginView.
  * @author William Husar, Simon Länsberg, Carl Classon
  * @version 2021-02-24
  */
@@ -36,6 +37,13 @@ public class LoginController {
         passwordField.addKeyListener(kl);
     }
 
+    /**
+     * Denna metod kallas på en metod i model som jämnför det inskriva användarnamnet
+     * och lösenordet mot de som ligger i databasen.
+     * @param username det inskrivna användarnamnet
+     * @param password det inskrivna lösenordet
+     * @return true om inloggningen lyckades, annars false.
+     */
     public boolean userLogin(String username,String password){
         try{
             if(model.userLogin(username,password)){
@@ -45,12 +53,12 @@ public class LoginController {
                 return false;
             }
         } catch (SQLException e){    
-            e.printStackTrace();
+            view.errorPanel();
             return false;
         } catch (ClassNotFoundException e) {
+            //Måste tas om hand, men borde aldrig kunna inträffa.
             e.printStackTrace();
             return false;
         }
     }
-
 }
