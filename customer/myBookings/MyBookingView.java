@@ -14,6 +14,7 @@ public class MyBookingView extends JPanel{
     private JPanel bookingsPanel;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ArrayList<FlightInfoButton> flightButtons;
+    private JLabel reservations;
 
     public MyBookingView(){
         buttons = new ArrayList<>();
@@ -21,6 +22,9 @@ public class MyBookingView extends JPanel{
         setLayout(null);
         initMenu();
         initBookingsPanel();   
+        reservations= new JLabel("Your reservations:");
+        reservations.setFont(new Font("Verdana", Font.PLAIN, 20));
+        reservations.setAlignmentX(CENTER_ALIGNMENT);
     }  
 
     private void initBookingsPanel() {
@@ -38,9 +42,6 @@ public class MyBookingView extends JPanel{
             flightButtons.clear();
             bookingsPanel.removeAll();
         }
-        JLabel reservations = new JLabel("Your reservations:");
-        reservations.setFont(new Font("Verdana", Font.PLAIN, 20));
-        reservations.setAlignmentX(CENTER_ALIGNMENT);
         bookingsPanel.add(Box.createVerticalStrut(10));
         bookingsPanel.add(reservations);
         bookingsPanel.add(Box.createVerticalStrut(10));
