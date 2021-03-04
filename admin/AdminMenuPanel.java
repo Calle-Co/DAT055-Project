@@ -18,6 +18,7 @@ import global.AllButtons.size;
  * @author Anna Manfredsson
  * @version 2021-03-04
  */
+@SuppressWarnings("serial")
 public class AdminMenuPanel extends JPanel{
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");

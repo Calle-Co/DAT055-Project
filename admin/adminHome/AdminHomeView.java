@@ -18,6 +18,9 @@ import javax.swing.border.EmptyBorder;
 public class AdminHomeView extends JPanel{
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
+    /**
+     * Denna metod skapar AdminHomeView panelen och all dess innehåll. Knappar och dylikt.
+     */
     public AdminHomeView(){
 
         JPanel sidePanel = new JPanel();
