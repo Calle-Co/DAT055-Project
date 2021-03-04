@@ -4,7 +4,6 @@ import java.util.*;
 import global.AllButtons;
 import java.awt.event.*;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 
 /**
@@ -19,12 +18,21 @@ public class DestInfoController {
     private DestInfoView view;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
+    /**
+     * Skapar en instans av DestInfoModel och DestInfoView och instanserar en lista av alla knappar från view.
+     * @param m En DestInfoModel
+     * @param v En DestInfoView
+     */
     public DestInfoController(DestInfoModel m, DestInfoView v){
         this.model = m;
         this.view = v;
         buttons = view.getButtons();
     }
 
+    /**
+     * Denna metod lägger till en actionListener på alla knappar som hämtades från view.
+     * @param al En actionListener
+     */
     public void addButtonListener(ActionListener al) {
         for(JButton b : buttons) {
             b.addActionListener(al);

@@ -24,6 +24,9 @@ public class AdminFrame implements Observable {
         makeFrame();
     }
 
+    /**
+     * Denna metod skapar den JFrame som alla paneler sen skall ligga i.
+     */
     public void makeFrame() {
         adminFrame = new JFrame();
         adminFrame.setPreferredSize(new Dimension(1200, 800));
@@ -36,13 +39,19 @@ public class AdminFrame implements Observable {
         adminFrame.setTitle("CC Airlines - Admin");
     }
 
+    /**
+     * Denna metod skapar instanser av alla olika MVC:s.
+     */
     public void init() {
         initAdminHomeMVC();
         initClientsInfoMVC();   
         initDestInfoMVC();
-        initShowFlightsMVC();
+        initFlightsInfoMVC();
     }
 
+    /**
+     * Denna metod skapar MVC:et som tillhör adminHome paketet.
+     */
     public void initAdminHomeMVC() {
         AdminHomeView homeView = new AdminHomeView();
         AdminHomeController homeController = new AdminHomeController(homeView);
@@ -55,7 +64,7 @@ public class AdminFrame implements Observable {
         	    nextView(views.get("ClientsInfoView"));
             }
             if (s.equals("Flights")) {
-                nextView(views.get("ShowFlightsView"));
+                nextView(views.get("FlightsInfoView"));
             }
             if (s.equals("Logout")) {
                 notifyObservers("aLogout");
@@ -67,6 +76,9 @@ public class AdminFrame implements Observable {
         currentView = homeView;
     }
 
+    /**
+     * Denna metod skapar MVC:et som tillhör  paketet.
+     */
     public void initClientsInfoMVC() {
         ClientsInfoView clientsView = new ClientsInfoView();
         ClientsInfoModel clientsModel = new ClientsInfoModel();
@@ -87,6 +99,9 @@ public class AdminFrame implements Observable {
         views.put("ClientsInfoView", clientsView);
     }
     
+    /**
+     * Denna metod skapar MVC:et som tillhör destInfo paketet.
+     */
     public void initDestInfoMVC() {
         DestInfoView destView = new DestInfoView();
         DestInfoModel destModel = new DestInfoModel();
@@ -107,7 +122,10 @@ public class AdminFrame implements Observable {
         views.put("DestInfoView", destView);
     }
 
-    public void initShowFlightsMVC() {
+    /**
+     * Denna metod skapar MVC:et som tillhör  paketet.
+     */
+    public void initFlightsInfoMVC() {
         FlightsInfoView flightsView = new FlightsInfoView();
         FlightsInfoModel flightsModel = new FlightsInfoModel();
         FlightsInfoController flightsController = new FlightsInfoController(flightsModel, flightsView);
@@ -125,9 +143,14 @@ public class AdminFrame implements Observable {
                 flightsController.addFlight();
             }
         });
-        views.put("ShowFlightsView", flightsView);
+        views.put("FlightsInfoView", flightsView);
     }
 
+    /**
+    * Denna metod tar emot den view som skall visas härnäst och 
+    * byter ut den nyvarande med denna.
+    * @param view vyn som skall visas näst.
+    */
     public void nextView(JPanel view) {
         adminFrame.remove(currentView);
         currentView.setVisible(false);

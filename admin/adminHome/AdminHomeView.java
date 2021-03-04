@@ -1,7 +1,6 @@
 package admin.adminHome;
 
 import java.util.ArrayList;
-
 import global.AllButtons;
 import global.AllButtons.size;
 import admin.AdminMenuPanel;
@@ -19,6 +18,9 @@ import javax.swing.border.EmptyBorder;
 public class AdminHomeView extends JPanel{
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
+    /**
+     * Denna metod skapar AdminHomeView panelen och all dess innehåll. Knappar och dylikt.
+     */
     public AdminHomeView(){
 
         JPanel sidePanel = new JPanel();
@@ -51,6 +53,9 @@ public class AdminHomeView extends JPanel{
         setVisible(true); 
     }
 
+    /**
+     * @return en lista med alla knappar som ligger i vyn. 
+     */
     public ArrayList<AllButtons> getButtons() { return buttons; }
     
 }

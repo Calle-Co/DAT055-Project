@@ -70,5 +70,9 @@ public class DestInfoModel {
         }     
     }
 
+    /**
+     * Denna metod rensar alla destinationer ifrån listan för att undvika 
+     * duplicerade värden.
+     */
     public void clearDest(){ destinations.removeAll(destinations);}
 }
