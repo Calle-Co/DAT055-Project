@@ -13,9 +13,12 @@ import customer.MenuPanel;
 import java.awt.*;
 
 /**
+ * Klassen representerar view i det MVC som ansvarar
+ * för att hämta och visa flyg som passar kundens önskemål.
  * @author Simon Länsberg, William Husar
  * @version 2021-03-02
  */
+@SuppressWarnings("serial")
 public class FlightView extends JPanel {
     private ArrayList<FlightInfoButton> flightButtons;
     private ArrayList<JButton> menuButtons;
@@ -43,7 +46,11 @@ public class FlightView extends JPanel {
         add(menuPanel);
     }
 
-    public boolean makeOPane(){
+    /**
+     * Metoden skapar en pop-up panel om kundens sökresultat blev tomt.
+     * @return Sann när användaren fått meddelandet.
+     */
+    public boolean makeOPane() {
             JOptionPane.showConfirmDialog(null,
             "There is no such flight! We apologize for the inconvenience",
             "Sorry!",
@@ -52,6 +59,10 @@ public class FlightView extends JPanel {
             return true;    
     }
 
+    /**
+     * Metoden lägger in alla flyg från kundens sökresultat i en panel.
+     * @param infoButtons Lista med knappar som representerar flyg.
+     */
     public void initButtons(ArrayList<FlightInfoButton> infoButtons) {
         if(!flightButtons.isEmpty()) {
             flightButtons.clear();
@@ -74,6 +85,13 @@ public class FlightView extends JPanel {
         list.repaint();
     }
 
+    /**
+     * @return En lista med alla menyknappar.
+     */
     public ArrayList<JButton> getMenuButtons() { return menuButtons; }
+
+    /**
+     * @return En lista med alla knappar som representerar flyg.
+     */
     public ArrayList<FlightInfoButton> getFlightButtons() { return flightButtons; }
 }

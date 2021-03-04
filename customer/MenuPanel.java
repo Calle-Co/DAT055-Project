@@ -1,7 +1,6 @@
 package customer;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,9 +13,12 @@ import global.WebFetching;
 import global.AllButtons.size;
 
 /**
+ * Klassen används för att skapa en meny som kan användas
+ * i olika vyer.
  * @author Kevin Hao
  * @version 2021-02-26
  */
+@SuppressWarnings("serial")
 public class MenuPanel extends JPanel {
     private ArrayList<AllButtons> buttons;
     private ImageIcon logga = new ImageIcon("global/resources/smalllogga.PNG");
@@ -113,8 +115,10 @@ public class MenuPanel extends JPanel {
         setVisible(true);
     }
 
+    /**
+     * @return En lista med alla menyknappar.
+     */
     public ArrayList<AllButtons> getButtons() {
         return buttons;
     }
-
 }

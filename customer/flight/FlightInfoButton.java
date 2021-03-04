@@ -2,59 +2,44 @@ package customer.flight;
 
 import java.awt.Dimension;
 import java.awt.*;
-
 import javax.swing.*;
-import java.awt.event.*;
 
+/**
+ * Klassen används för att representera ett flyg som en knapp så att
+ * kunden kan trycka på det flyg som den vill boka.
+ * @author Simon Länsberg
+ * @version 2021-02-24
+ */
+@SuppressWarnings("serial")
 public class FlightInfoButton extends JButton {
     private String fID;
-    private String from_d;
-    private String to_d;
-    private String date_Of;
-    private String time_Of;
 
-    public FlightInfoButton(){
-        super();
-        fID = "420";
-        from_d = "GBG";
-        to_d = "AMS";
-        date_Of = "2021-04-20";
-        JLabel flightNr = new JLabel("Flight " + fID, JLabel.CENTER);
-        JLabel dest  = new JLabel(from_d + " -> " + to_d, JLabel.CENTER);
-        JLabel date_of = new JLabel(date_Of, JLabel.CENTER);
-        JLabel time_of = new JLabel(time_Of, JLabel.CENTER);
-        JPanel date = new JPanel();
-        date.setLayout(new GridLayout(1,2,0,0));
-        date.add(date_of);
-        date.add(time_of);
-
-        this.setLayout(new GridLayout(3,1,0,0));
-        this.add(flightNr);
-        this.add(dest);
-        this.add(date);
-        setPreferredSize(new Dimension(250,140));
-    }
-
-    public FlightInfoButton(String fID, String from_d, String to_d, String date_Of, String time_Of){
+    /**
+     * Konstruktorn används för att skapa en knapp och fylla den
+     * med information om flyget med hjälp av flera parametrar.
+     * @param fID Unikt id för flyget.
+     * @param from_d Avgående destination.
+     * @param to_d Ankommande destination.
+     * @param date_Of Datum för avgång.
+     * @param time_Of Tid för avgång.
+     */
+    public FlightInfoButton(String fID, String from_d, String to_d, String date_Of, String time_Of) {
         super();
         this.fID = fID;
-        this.from_d = from_d;
-        this.to_d = to_d;
-        this.date_Of = date_Of;
-        this.time_Of = time_Of;
         JLabel flightNr = new JLabel("Flight " + fID, JLabel.CENTER);
         JLabel dest  = new JLabel(from_d + " -> " + to_d, JLabel.CENTER);
         JLabel date = new JLabel(date_Of + " " + time_Of.substring(0,5), JLabel.CENTER);
-
-        this.setLayout(new GridLayout(3,1,0,0));
-        this.add(flightNr);
-        this.add(dest);
-        this.add(date);
+        setLayout(new GridLayout(3,1,0,0));
+        add(flightNr);
+        add(dest);
+        add(date);
         setPreferredSize(new Dimension(250,140));
     }
 
-    public String getFlightID(){
+    /**
+     * @return Unikt id för flyget.
+     */
+    public String getFlightID() {
         return this.fID;
     }
-    
 }

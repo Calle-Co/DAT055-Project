@@ -1,7 +1,6 @@
 package customer;
 
 import javax.swing.*;
-
 import global.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -14,6 +13,9 @@ import customer.booking.*;
 import customer.help.*;
 
 /**
+ * Klassen används för att skapa instanser av och initiera
+ * alla MVC som tillhör kundens gränssnitt i programmet. Den
+ * styr även logiken mellan dessa delar.
  * @author William Husar, Simon Länsberg
  * @version 2021-03-02
  */
@@ -36,6 +38,10 @@ public class CustomerFrame implements Observable {
         makeFrame();
     }
 
+    /**
+     * Metoden används för att skapa ett fönster där alla
+     * vyer kan visas.
+     */
     public void makeFrame() {
         customerFrame = new JFrame();
         customerFrame.setPreferredSize(new Dimension(1200, 800));
@@ -48,6 +54,9 @@ public class CustomerFrame implements Observable {
         customerFrame.setTitle("CC Airlines - Customer");
     }
 
+    /**
+     * Metoden används för att initiera alla MVC.
+     */
     public void init() {
         initHomeMVC();
         initMyBookingMVC();
@@ -57,6 +66,9 @@ public class CustomerFrame implements Observable {
         updateMyBookings();
     }
 
+    /**
+     * Metoden används för att initiera det MVC som ansvarar över startsidan.
+     */
     public void initHomeMVC() {
         homeView = new HomeView();
         homeView.setUser(currentUser);
@@ -91,6 +103,10 @@ public class CustomerFrame implements Observable {
         currentView = homeView;
     }
 
+    /**
+     * Metoden används för att initiera det MVC som ansvarar
+     * över sidan som visar kundens bokningar.
+     */
     public void initMyBookingMVC() {
         myBookingView = new MyBookingView();
         MyBookingModel myBookingModel = new MyBookingModel();
@@ -116,6 +132,10 @@ public class CustomerFrame implements Observable {
         views.put("Mybookings", myBookingView);
     }
 
+    /**
+     * Metoden används för att initiera det MVC som ansvarar
+     * över sidan som visar flyg från sökresultatet.
+     */
     public void initFlightMVC() {
         flightView = new FlightView();
         FlightModel flightModel = new FlightModel();
@@ -141,6 +161,10 @@ public class CustomerFrame implements Observable {
         views.put("FlightView", flightView);
     }
 
+    /**
+     * Metoden används för att initiera det MVC som ansvarar
+     * över sidan som visar stolar som kan bokas i ett flyg.
+     */
     public void initBookingMVC() {
         BookingView bookingView = new BookingView();
         BookingModel bookingModel = new BookingModel();
@@ -203,6 +227,10 @@ public class CustomerFrame implements Observable {
         views.put("BookingView", bookingView);
     }
 
+    /**
+     * Metoden används för att initiera det MVC som ansvarar
+     * över sidan som visar hjälpinstruktioner.
+     */
     public void initHelpMVC() {
         HelpView helpView = new HelpView();
         HelpModel helpModel = new HelpModel();
@@ -228,8 +256,15 @@ public class CustomerFrame implements Observable {
         views.put("HelpView", helpView);
     }
 
-    public void searchFlights(String a, String b, String c) {
-        flightController.flightSearch(a, b, c);
+    /**
+     * Metoden används för att söka efter flyg i databasen som passar
+     * kundens önskemål med hjälp av tre parametrar.
+     * @param from Avgående destination.
+     * @param to Ankommande destination.
+     * @param date Datum för avgång.
+     */
+    public void searchFlights(String from, String to, String date) {
+        flightController.flightSearch(from, to, date);
         flightController.addFlightButtonListener(e -> {
             FlightInfoButton fib = (FlightInfoButton) e.getSource();
             bookingController.setFlight(fib.getFlightID());
@@ -238,6 +273,10 @@ public class CustomerFrame implements Observable {
         });
     }
 
+    /**
+     * Metoden används för att hämta kundens önskemål och skicka
+     * dessa till den metod som söker efter flyg.
+     */
     public void search() {
         bookingController.setLimit(Integer.parseInt(homeView.getSearchParam()[3]));
         searchFlights(homeView.getSearchParam()[0], homeView.getSearchParam()[1], homeView.getSearchParam()[2]);
@@ -262,6 +301,11 @@ public class CustomerFrame implements Observable {
         t2.start();
     }
 
+    /**
+     * Metoden används för att byta från nuvarande vy
+     * och visa nästa vy.
+     * @param view Nästa vy.
+     */
     public void nextView(JPanel view) {
         customerFrame.remove(currentView);
         currentView.setVisible(false);
@@ -271,28 +315,48 @@ public class CustomerFrame implements Observable {
         currentView = view;
     }
 
+    /**
+     * Metoden används för att uppdatera listan med kundens bokade flyg.
+     */
     public void updateMyBookings() {
         myBookingController.getBookings(currentUser);
     }
 
+    /**
+     * @param user Användarnamn på den som loggat in.
+     */
     public void setUser(String user) {
         currentUser = user;
     }
 
+    /**
+     * @param b Om fönstret ska synas eller inte.
+     */
     public void frameSetVisible(Boolean b) {
         customerFrame.setVisible(b);
     }
 
+    /**
+     * Metoden används för att lägga till en observerare.
+     * @param observer En observerare.
+     */
     @Override
     public void addObserver(Observer observer) {
         this.observer = observer;
     }
 
+    /**
+     * Metoden används för att ta bort nuvarande observerare.
+     */
     @Override
     public void removeObserver() {
         this.observer = null;
     }
 
+    /**
+     * Metoden används för att skicka ett meddelande till alla observerare.
+     * @param message Ett meddelande.
+     */
     @Override
     public void notifyObservers(String message) {
         this.observer.update(message);
