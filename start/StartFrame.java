@@ -26,7 +26,6 @@ public class StartFrame implements Observable {
         views = new HashMap<>();
         user = "";
         makeFrame();
-        init();
     }
     
     public void makeFrame() {
@@ -42,6 +41,13 @@ public class StartFrame implements Observable {
     }
 
     public void init() {
+        initWelcomeMVC();
+        initLoginMVC();
+        initAdminMVC();
+        initSignupMVC();
+    }
+
+    public void initWelcomeMVC() {
         WelcomeView wView = new WelcomeView();
         WelcomeController wController = new WelcomeController(wView);
         wController.addButtonListener(e -> {
@@ -53,8 +59,13 @@ public class StartFrame implements Observable {
               nextView(views.get("AdminLoginView"));
             }
         });
+        views.put("WelcomeView", wView);
+        startFrame.add(wView);
+        startFrame.pack();
+        currentView = wView;
+    }
 
-        /*===================================LOGIN=====================================*/
+    public void initLoginMVC() {
         LoginView lView = new LoginView();
         LoginModel lModel = new LoginModel();
         LoginController lController = new LoginController(lModel, lView);
@@ -82,8 +93,10 @@ public class StartFrame implements Observable {
                 nextView(views.get("SignupView"));
             }
         });
+        views.put("LoginView", lView);
+    }
 
-        /*================================ADMIN-LOGIN=====================================*/
+    public void initAdminMVC() {
         AdminLoginView aView = new AdminLoginView();
         AdminLoginModel aModel = new AdminLoginModel();
         AdminLoginController aController = new AdminLoginController(aModel, aView);
@@ -106,8 +119,10 @@ public class StartFrame implements Observable {
             public void keyTyped(KeyEvent e) {}
             public void keyReleased(KeyEvent e) {}
         });
+        views.put("AdminLoginView", aView);
+    }
 
-        /*===================================SIGNUP=====================================*/
+    public void initSignupMVC() {
         SignupView sView = new SignupView();
         SignupModel suModel = new SignupModel();
         SignupController sController = new SignupController(suModel, sView);
@@ -136,15 +151,7 @@ public class StartFrame implements Observable {
                 nextView(views.get("LoginView"));
             }
         });
-
-        views.put("WelcomeView", wView);
-        views.put("LoginView", lView);
-        views.put("AdminLoginView", aView);
         views.put("SignupView", sView);
-
-        startFrame.add(wView);
-        startFrame.pack();
-        currentView = wView;
     }
 
     public void nextView(JPanel view) {

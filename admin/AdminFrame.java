@@ -22,7 +22,6 @@ public class AdminFrame implements Observable {
     public AdminFrame() {
         views = new HashMap<>();
         makeFrame();
-        init();
     }
 
     public void makeFrame() {
@@ -37,11 +36,17 @@ public class AdminFrame implements Observable {
         adminFrame.setTitle("CC Airlines - Admin");
     }
 
-    /*===================================HomePage=====================================*/
     public void init() {
-        AdminHomeView hView = new AdminHomeView();
-        AdminHomeController hController = new AdminHomeController(hView);
-        hController.addButtonListener(e -> {
+        initAdminHomeMVC();
+        initClientsInfoMVC();   
+        initDestInfoMVC();
+        initShowFlightsMVC();
+    }
+
+    public void initAdminHomeMVC() {
+        AdminHomeView homeView = new AdminHomeView();
+        AdminHomeController homeController = new AdminHomeController(homeView);
+        homeController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
             if (s.equals("Destinations")) {
                 nextView(views.get("DestInfoView"));
@@ -56,16 +61,21 @@ public class AdminFrame implements Observable {
                 notifyObservers("aLogout");
             }
         });
+        views.put("AdminHomeView", homeView);
+        adminFrame.add(homeView);
+        adminFrame.pack();
+        currentView = homeView;
+    }
 
-        /*===================================ClientsInfo=====================================*/
-        ClientsInfoView cView = new ClientsInfoView();
-        ClientsInfoModel cModel = new ClientsInfoModel();
-        ClientsInfoController cController = new ClientsInfoController(cModel,cView);
-        cController.listAllUsers();
-        cController.addButtonListener(e -> {
+    public void initClientsInfoMVC() {
+        ClientsInfoView clientsView = new ClientsInfoView();
+        ClientsInfoModel clientsModel = new ClientsInfoModel();
+        ClientsInfoController clientsController = new ClientsInfoController(clientsModel,clientsView);
+        clientsController.listAllUsers();
+        clientsController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText();
             if (s.equals("Update")) {
-                cController.listAllUsers();
+                clientsController.listAllUsers();
             }
             if (s.equals("Logout")) {
                 notifyObservers("aLogout");
@@ -73,17 +83,19 @@ public class AdminFrame implements Observable {
             if (s.equals("Home")) {
                 nextView(views.get("AdminHomeView"));
             }
-            });
-        
-        /*===================================DestInfo=====================================*/    
-        DestInfoView dView = new DestInfoView();
-        DestInfoModel dModel = new DestInfoModel();
-        DestInfoController dController = new DestInfoController(dModel, dView);
-        dController.listAllDestinations();
-        dController.addButtonListener(e -> {
+        });
+        views.put("ClientsInfoView", clientsView);
+    }
+    
+    public void initDestInfoMVC() {
+        DestInfoView destView = new DestInfoView();
+        DestInfoModel destModel = new DestInfoModel();
+        DestInfoController destController = new DestInfoController(destModel, destView);
+        destController.listAllDestinations();
+        destController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText();
             if (s.equals("Add destination!")) {
-                dController.addDestination();
+                destController.addDestination();
             }
             if (s.equals("Logout")) {
                 notifyObservers("aLogout");
@@ -92,14 +104,16 @@ public class AdminFrame implements Observable {
                 nextView(views.get("AdminHomeView"));
             }    
         });
+        views.put("DestInfoView", destView);
+    }
 
-        /*===================================FlightsInfo=====================================*/
-        FlightsInfoView fView = new FlightsInfoView();
-        FlightsInfoModel fModel = new FlightsInfoModel();
-        FlightsInfoController fController = new FlightsInfoController(fModel, fView);
-        fController.getDestinations();
-        fController.getModels();
-        fController.addButtonListener(e -> {
+    public void initShowFlightsMVC() {
+        FlightsInfoView flightsView = new FlightsInfoView();
+        FlightsInfoModel flightsModel = new FlightsInfoModel();
+        FlightsInfoController flightsController = new FlightsInfoController(flightsModel, flightsView);
+        flightsController.getDestinations();
+        flightsController.getModels();
+        flightsController.addButtonListener(e -> {
         String s = ((JButton) e.getSource()).getText();
             if (s.equals("Logout")) {
                 notifyObservers("aLogout");
@@ -108,20 +122,10 @@ public class AdminFrame implements Observable {
                 nextView(views.get("AdminHomeView"));
             }
             if (s.equals("Add Flight")) {
-                fController.addFlight();
+                flightsController.addFlight();
             }
         });
-
-        
-            
-        views.put("AdminHomeView", hView);
-        views.put("ClientsInfoView", cView);
-        views.put("DestInfoView", dView);
-        views.put("ShowFlightsView", fView);
-
-        adminFrame.add(hView);
-        adminFrame.pack();
-        currentView = hView;
+        views.put("ShowFlightsView", flightsView);
     }
 
     public void nextView(JPanel view) {

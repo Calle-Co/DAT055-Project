@@ -16,6 +16,7 @@ public class App implements Observer {
 
     public App() {
         startFrame = new StartFrame();
+        startFrame.init();
         startFrame.frameSetVisible(true);
     }
 
@@ -35,6 +36,7 @@ public class App implements Observer {
 
     private void adminLogin() {
         adminFrame = new AdminFrame();
+        adminFrame.init();
         adminFrame.addObserver(app);
         startFrame.frameSetVisible(false);
         adminFrame.frameSetVisible(true);
