@@ -2,7 +2,6 @@ package start.adminLogin;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
 import global.AllButtons;
 import java.awt.event.*;
 import java.sql.SQLException;
@@ -14,23 +13,35 @@ import java.util.ArrayList;
  * @version 2021-02-24
  */
 public class AdminLoginController {
-
     private AdminLoginModel model;
     private AdminLoginView view;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
+    /**
+     * Skapar en instans av AdminLoginView och AdminLoginModel och instanserar en lista av alla knappar från view.
+     * @param m En AdminLoginModel
+     * @param v En AdminLoginView
+     */
     public AdminLoginController(AdminLoginModel m, AdminLoginView v) {
         this.model = m;
         this.view = v;
         buttons = view.getButtons();
     }
 
+    /**
+     * Denna metod lägger till en actionListener på alla knappar som hämtades från view.
+     * @param al En actionListener
+     */
     public void addButtonListener(ActionListener al) {
         for(JButton b : buttons) {
             b.addActionListener(al);
         }
     }
 
+    /**
+     * Denna metod lägger till en keyListener på lösenordsrutan från view.
+     * @param kl En keyListener
+     */
     public void addKeyListener(KeyListener kl) {
         JTextField passwordField = view.getPasswordField();
         passwordField.addKeyListener(kl);

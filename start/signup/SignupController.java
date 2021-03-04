@@ -16,17 +16,31 @@ public class SignupController {
     private SignupView view;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
+    /**
+     * Skapar en instans av SignupView och SignupModel och instanserar en lista av alla knappar från view.
+     * @param m En SignupModel.
+     * @param v En SignupView.
+     */
     public SignupController(SignupModel m, SignupView v){
         this.model = m;
         this.view = v;
         buttons = view.getButtons();
     }
 
+    /**
+     * Denna metod lägger till en actionListener på alla knappar som hämtades från view.
+     * @param al En actionListener
+     */
     public void addButtonListener(ActionListener al) {
         for(JButton b : buttons) {
             b.addActionListener(al);
         }
     }
+
+    /**
+     * 
+     * @param kl
+     */
     public void addKeyListener(KeyListener kl) {
         JTextField passwordField = view.getPasswordField();
         passwordField.addKeyListener(kl);

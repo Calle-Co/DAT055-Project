@@ -14,11 +14,19 @@ public class WelcomeController {
     private WelcomeView view;
     private ArrayList<AllButtons> buttons;
 
+    /**
+     * Skapar en instans av WelcomeView och instanserar en lista av alla knappar från view.
+     * @param v En WelcomeView
+     */
     public WelcomeController(WelcomeView v){
         this.view = v;
         buttons = view.getButtons();
     }
 
+    /**
+     * Denna metod lägger till en actionListener på alla knappar som hämtades från view.
+     * @param al En actionListener
+     */
     public void addButtonListener(ActionListener al) {
         for(JButton b : buttons) {
             b.addActionListener(al);

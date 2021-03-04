@@ -49,6 +49,9 @@ public class WelcomeView extends JPanel{
 
         setVisible(true);
     }
-   
+    
+    /**
+     * @return En arraylist med alla knappar som ligger i view.
+     */
     public ArrayList<AllButtons> getButtons() { return buttons; }
 }

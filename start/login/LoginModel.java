@@ -11,11 +11,10 @@ import global.ServerConnection;
  * @version 2021-02-24
  */
 public class LoginModel {
-
     ServerConnection s = new ServerConnection();
 
     /**
-     * 
+     * En metod för att jämnföra det inskrivna lösenordet och användarnamnet med det som finns i databasen.
      * @param username användarnamnet som skrivs in i rutan.
      * @param password lösenordet som skrivs in i rutan.
      * @return returnerar true om det finns en användare med det lösenordet, annars false.

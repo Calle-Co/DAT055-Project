@@ -12,7 +12,6 @@ import global.ServerConnection;
 public class SignupModel {
     private ServerConnection s;
 
-    public SignupModel() {}
     /**
      * Denna metod lägger till en användare i databasen.
      * @param username användarnamnet som används för att registrera en användare.
@@ -36,4 +35,3 @@ public class SignupModel {
         }   
     }
 }
-

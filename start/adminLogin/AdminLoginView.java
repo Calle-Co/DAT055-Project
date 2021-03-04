@@ -75,7 +75,18 @@ public class AdminLoginView extends JPanel {
         JOptionPane.showMessageDialog(this, "Wrong password!\nTry again", "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * @return Det lösenord som användaren skrivit in.
+     */
     public String getPassword(){ return password.getText(); }
+
+    /**
+     * @return En arraylist med alla knappar som ligger i view.
+     */
     public ArrayList<AllButtons> getButtons() { return buttons; }
+
+    /**
+     * @return Ett textfält för lösenordet
+     */
     public JTextField getPasswordField() { return password; }
 }

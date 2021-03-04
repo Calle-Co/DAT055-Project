@@ -14,7 +14,6 @@ import global.*;
  */
 @SuppressWarnings("serial")
 public class LoginView extends JPanel{
-
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private JTextField username;
@@ -24,8 +23,6 @@ public class LoginView extends JPanel{
      * Denna metod skapar panelen med all dess innehåll.
      */
     public LoginView( ) {
-
-
         setSize(600, 600);
         Color c = new Color(211,211,211);
         setLayout(new BorderLayout());
@@ -105,8 +102,23 @@ public class LoginView extends JPanel{
         JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * @return Det lösenord som användaren skrivit in.
+     */
     public String getPassword(){ return password.getText(); }
+
+    /**
+     * @return Det användarnamn som användaren skrivit in.
+     */
     public String getUsername(){ return username.getText(); }
+
+    /**
+     * @return En arraylist med alla knappar som ligger i view.
+     */
     public ArrayList<AllButtons> getButtons() { return buttons; }
+
+    /**
+     * @return Ett textfält för lösenordet
+     */
     public JTextField getPasswordField() { return password; }
 }

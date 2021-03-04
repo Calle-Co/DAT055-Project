@@ -97,14 +97,28 @@ public class SignupView extends JPanel{
         JOptionPane.showMessageDialog(this, s, "Success!", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * @return Det lösenord som användaren skrivit in.
+     */
     public String getPassword(){
         return password.getText();
     }
+
+    /**
+     * @return Det användarnamnet som användaren skrivit in.
+     */
     public String getUsername(){
         return username.getText();
     }
 
+    /**
+     * @return En arraylist med alla knappar som ligger i view.
+     */
     public ArrayList<AllButtons> getButtons() { return buttons; }
+
+    /**
+     * @return Ett textfält för lösenordet
+     */
     public JTextField getPasswordField() { return password; }
 
 }
