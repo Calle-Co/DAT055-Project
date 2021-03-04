@@ -2,20 +2,17 @@ package customer.booking;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-
 import java.awt.*;
-import java.util.ArrayList;
-import global.*;
 
 /**
  * En klass vars instanser skapar en inforuta där man kan fylla i bokningsinformation för ett specifikt säte. 
  * @author Simon Länsberg, William Husar
  * @version 2021-02-22
  */
+@SuppressWarnings("serial")
 public class InfoPanel extends JPanel {
     private JTextField name = new JTextField();
     private JTextField age = new JTextField();
-    private ArrayList<String> info = new ArrayList<>();
     
     /**
      * En konstruktor som initsierar en InfoPanel tillhörade säte "nr".

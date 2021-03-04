@@ -3,12 +3,13 @@ package customer.booking;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+
 /**
  * Denna klass representerar de olika sätenas iconer och deras funktionalitet 
  * @author Simon Länsberg, William Husar
  * @version 2021-02-15
  */
-
+@SuppressWarnings("serial")
 public class Seat extends JButton implements ActionListener{
     private String seat;
     private Boolean booked;
@@ -82,7 +83,6 @@ public class Seat extends JButton implements ActionListener{
     }
 
     /**
-     * 
      * @return Boolean, Sätets status
      */
     public Boolean getStatus() {
@@ -95,6 +95,7 @@ public class Seat extends JButton implements ActionListener{
     public String getSeat() {
         return this.seat;
     }
+
     /**
      * @return True om sätet är valt, annars false
      */

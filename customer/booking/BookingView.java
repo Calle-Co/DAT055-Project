@@ -3,11 +3,8 @@ package customer.booking;
 import global.*;
 import global.AllButtons.size;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-
 import customer.MenuPanel;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ import java.util.HashMap;
  * @author Simon Länsberg, William Husar
  * @version 2021-03-03
  */
+@SuppressWarnings("serial")
 public class BookingView extends JPanel{
     private Seat currentSeat;
     private AllButtons bokaButton;
@@ -92,7 +90,6 @@ public class BookingView extends JPanel{
      * Motsattsen till "addInfo". Denna metoden tar bort en Infopanel för ett specifikt sätte 
      * @param s Det föredetta valda sätets nummer
      */
-
     public void removeInfo(String s){
         iHolder.remove(info.get(s));
         info.remove(s);
@@ -106,6 +103,7 @@ public class BookingView extends JPanel{
     public ArrayList<Seat> getSeats(){
         return seats;
     }
+
     /**
      * Initsierar en seats button för varje säte i flygplanet
      * @param n Antalet säten flyget ska ha

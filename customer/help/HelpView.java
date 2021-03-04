@@ -1,23 +1,26 @@
 package customer.help;
 
 import java.awt.Color;
-import java.awt.Dimension;
+//import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
-
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
+//import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-
 import customer.MenuPanel;
 import global.AllButtons;
 import global.AllButtons.size;
 
+/**
+ * @author Kevin Hao
+ * @version 2021-03-03
+ */
+@SuppressWarnings("serial")
 public class HelpView extends JPanel {
     private ArrayList<JButton> menuButtons;
     private JScrollPane helpScrollPane;

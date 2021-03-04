@@ -2,9 +2,6 @@ package customer.booking;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
-import javax.swing.text.View;
-
 import global.AllButtons;
 import global.InfoHolding;
 import java.awt.*;
