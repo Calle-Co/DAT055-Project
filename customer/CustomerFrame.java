@@ -34,7 +34,6 @@ public class CustomerFrame implements Observable {
     public CustomerFrame() {
         views = new HashMap<>();
         makeFrame();
-        init();
     }
 
     public void makeFrame() {
@@ -50,7 +49,17 @@ public class CustomerFrame implements Observable {
     }
 
     public void init() {
+        initHomeMVC();
+        initMyBookingMVC();
+        initFlightMVC();
+        initBookingMVC();
+        initHelpMVC();
+        updateMyBookings();
+    }
+
+    public void initHomeMVC() {
         homeView = new HomeView();
+        homeView.setUser(currentUser);
         HomeModel homeModel = new HomeModel();
         HomeController homeController = new HomeController(homeModel, homeView);
         homeController.getDestinations();
@@ -76,7 +85,13 @@ public class CustomerFrame implements Observable {
                 System.out.println("profile");
             }
         });
+        views.put("HomeView", homeView);
+        customerFrame.add(homeView);
+        customerFrame.pack();
+        currentView = homeView;
+    }
 
+    public void initMyBookingMVC() {
         myBookingView = new MyBookingView();
         MyBookingModel myBookingModel = new MyBookingModel();
         myBookingController = new MyBookingController(myBookingModel, myBookingView);
@@ -98,7 +113,10 @@ public class CustomerFrame implements Observable {
                 System.out.println("profile");
             }
         });
+        views.put("Mybookings", myBookingView);
+    }
 
+    public void initFlightMVC() {
         flightView = new FlightView();
         FlightModel flightModel = new FlightModel();
         flightController = new FlightController(flightModel, flightView);
@@ -120,10 +138,14 @@ public class CustomerFrame implements Observable {
                 System.out.println("profile");
             }
         });
+        views.put("FlightView", flightView);
+    }
 
+    public void initBookingMVC() {
         BookingView bookingView = new BookingView();
         BookingModel bookingModel = new BookingModel();
         bookingController = new BookingController(bookingModel, bookingView);
+        bookingController.setUser(currentUser);
         bookingController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
             if(s.equals("Logout")){
@@ -153,7 +175,7 @@ public class CustomerFrame implements Observable {
                                 }
                                 if(bookingView.makeOPane("BookingConfirm")){
                                     nextView(views.get("HomeView"));
-                                    myBookingController.getBookings(currentUser);
+                                    updateMyBookings();
                                 }
                             }   
                         });
@@ -178,7 +200,10 @@ public class CustomerFrame implements Observable {
                 System.out.println("profile");
             }
         });
+        views.put("BookingView", bookingView);
+    }
 
+    public void initHelpMVC() {
         HelpView helpView = new HelpView();
         HelpModel helpModel = new HelpModel();
         HelpController helpController = new HelpController(helpModel, helpView);
@@ -200,17 +225,7 @@ public class CustomerFrame implements Observable {
                 System.out.println("profile");
             }
         });
-
         views.put("HelpView", helpView);
-        views.put("HomeView", homeView);
-        views.put("FlightView", flightView);
-        views.put("BookingView", bookingView);
-        views.put("HelpView", helpView);
-        views.put("Mybookings", myBookingView);
-
-        customerFrame.add(homeView);
-        customerFrame.pack();
-        currentView = homeView;
     }
 
     public void searchFlights(String a, String b, String c) {
@@ -256,11 +271,12 @@ public class CustomerFrame implements Observable {
         currentView = view;
     }
 
+    public void updateMyBookings() {
+        myBookingController.getBookings(currentUser);
+    }
+
     public void setUser(String user) {
         currentUser = user;
-        myBookingController.getBookings(user);
-        homeView.setUser(user);
-        bookingController.setUser(user);
     }
 
     public void frameSetVisible(Boolean b) {
