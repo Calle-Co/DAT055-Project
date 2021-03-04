@@ -66,4 +66,17 @@ public class MyBookingModel{
         }
         return flights; 
     }
+
+	public void deleteBooking(String user, String fid) throws SQLException, ClassNotFoundException{
+        serverConnection = new ServerConnection();
+        serverConnection.DatabaseConnection();
+        try(PreparedStatement ps = serverConnection.getConn().prepareStatement("DELETE FROM Seats WHERE customer = ? AND flight_id = ?");){
+            ps.setString(1, user);
+            ps.setInt(2, Integer.parseInt(fid)); 
+            ps.executeUpdate();
+        }catch (SQLException e) {
+            throw new SQLException();
+        }
+        serverConnection.getConn().close(); 
+	}
 }

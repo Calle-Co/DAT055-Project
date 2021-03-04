@@ -1,12 +1,11 @@
 package customer.flight;
 
 import global.*;
-
-import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -58,7 +57,12 @@ public class FlightView extends JPanel {
             flightButtons.clear();
             list.removeAll();
         }
-        list.add(Box.createVerticalStrut(20));
+        JLabel choose = new JLabel("Choose a flight:");
+        choose.setFont(new Font("Verdana", Font.PLAIN, 20));
+        choose.setAlignmentX(CENTER_ALIGNMENT);
+        list.add(Box.createVerticalStrut(10));
+        list.add(choose);
+        list.add(Box.createVerticalStrut(10));
         for(FlightInfoButton fib : infoButtons) {
             flightButtons.add(fib);
             fib.setMaximumSize(new Dimension(600,100));

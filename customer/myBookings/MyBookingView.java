@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.awt.*;
 
 import global.AllButtons;
+import global.Flight;
 import customer.MenuPanel;
 import customer.flight.FlightInfoButton;
 
@@ -37,7 +38,12 @@ public class MyBookingView extends JPanel{
             flightButtons.clear();
             bookingsPanel.removeAll();
         }
-        bookingsPanel.add(Box.createVerticalStrut(20));
+        JLabel reservations = new JLabel("Your reservations:");
+        reservations.setFont(new Font("Verdana", Font.PLAIN, 20));
+        reservations.setAlignmentX(CENTER_ALIGNMENT);
+        bookingsPanel.add(Box.createVerticalStrut(10));
+        bookingsPanel.add(reservations);
+        bookingsPanel.add(Box.createVerticalStrut(10));
         for(FlightInfoButton fib : infoButtons) {
             flightButtons.add(fib);
             fib.setMaximumSize(new Dimension(600,100));
@@ -58,8 +64,20 @@ public class MyBookingView extends JPanel{
         add(menuPanel);
     }
 
+    public boolean BookingPopup(){
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        String s = "Do you want to delete your this trip?";
+        int dialogResult = JOptionPane.showConfirmDialog (null, s,"Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            return true;
+        } else {
+            return false;
+        } 
+    }
+
 
     public ArrayList<AllButtons> getButtons() { return buttons; }
+    public ArrayList<FlightInfoButton> getBookings() { return flightButtons; }
 
 
 }
