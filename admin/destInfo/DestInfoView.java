@@ -8,7 +8,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-
 import global.AllButtons;
 import global.Destination;
 import global.AllButtons.*;
@@ -27,7 +26,7 @@ public class DestInfoView extends JPanel{
     private String abbreviation;
 
     /**
-     * Denna metod skapar hela panelen.
+     * Denna metod skapar hela panelen med all denns innehåll.
      */
     public DestInfoView(){
         destPanel = new JPanel();
@@ -82,6 +81,9 @@ public class DestInfoView extends JPanel{
         destPanel.repaint();
     }
 
+    /**
+     * Tar bort allt innehåll i panelen
+     */
     public void clearDest(){
         destPanel.removeAll();
         destPanel.revalidate();
@@ -112,13 +114,27 @@ public class DestInfoView extends JPanel{
         }
     }
 
+    /**
+     * En errorpanel som visas om något gick fel när man försökte lägga till en destination.
+     */
     public void errorPanel(){
         java.awt.Toolkit.getDefaultToolkit().beep();
         String s = "Something went wrong, try again!\n";
         JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
     }    
     
+    /**
+     * @return En String som representerar namnet på den destinationen som man vill lägga till.
+     */
     public String getDest() { return destination; }
+
+    /**
+     * @return En String som representerar förkortningen av den destinationen som man vill lägga till.
+     */
     public String getAbbrev() { return abbreviation; }
+
+    /**
+     * @return En ArrayList med alla knappar som ligger i view.
+     */
     public ArrayList<AllButtons> getButtons() { return buttons; }
 }

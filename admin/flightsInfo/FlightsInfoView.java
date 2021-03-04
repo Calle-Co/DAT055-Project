@@ -3,21 +3,22 @@ package admin.flightsInfo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.awt.*;
-import java.awt.event.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-
 import javax.swing.*;
-import javax.swing.event.*;
 import admin.AdminMenuPanel;
-
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import global.WebFetching;
 import global.*;
 
+/**
+ * Denna klass sköter grafikdelen av FlightsInfo-delen av programmet.
+ * @author Anna Manfredsson
+ * @version 2021-03-04
+ */
+@SuppressWarnings("serial")
 public class FlightsInfoView extends JPanel {
     private JPanel destPanel1;
     private JPanel destPanel2;
@@ -36,6 +37,9 @@ public class FlightsInfoView extends JPanel {
     private JFormattedTextField timeField = new JFormattedTextField(new SimpleDateFormat("HH:mm:ss"));
    
 
+    /**
+     * Denna metod skapar panelen och all dess innehåll.
+     */
     public FlightsInfoView(){
 
         setLayout(new BorderLayout());
@@ -98,16 +102,29 @@ public class FlightsInfoView extends JPanel {
         setVisible(true);
     }
 
+    /**
+     * Denna metod skapar ett popup fönster med ett error meddelande, 
+     * spelar även upp ett litet ljud.
+     */
     public void errorPanel(){
         java.awt.Toolkit.getDefaultToolkit().beep();
         String s = "Something went wrong, try again!\n";
         JOptionPane.showMessageDialog(this, s, "Error!", JOptionPane.ERROR_MESSAGE);
     }
+
+    /**
+     * Denna metod skapar ett popup fönster med ett meddelande, 
+     */
     public void successPanel(){
         String s = "Flight added!\n";
         JOptionPane.showMessageDialog(this, s, "Success!", JOptionPane.INFORMATION_MESSAGE);
     }
     
+    /**
+     * Denna metod lägger till alla destinationer, hämtade från databasen, 
+     * i två st Jcombobox 
+     * @param destinations listan med alla destinationer hämtade från databasen.
+     */
     public void setDestinations(ArrayList<Destination> destinations) {
         choices = new String[destinations.size()];
         int n = 0;
@@ -123,6 +140,10 @@ public class FlightsInfoView extends JPanel {
 
     }
 
+    /**
+     * Denna metod lägger till alla olika flygplansmodeler i en Jcombobox.
+     * @param planeModels listan av alla modeler hämtade från databasen
+     */
     public void setPlaneModels(ArrayList<Flight> planeModels) {
         choices1 = new String[planeModels.size()];
         int n = 0;
@@ -134,13 +155,35 @@ public class FlightsInfoView extends JPanel {
         modelPanel.add(combobox3);
         modelPanel.setVisible(true);
     }
-    
 
+    /**
+     * @return En arraylist med alla knappar som ligger i view.
+     */
     public ArrayList<AllButtons> getButtons(){ return buttons; }
-    public String getFrom(){ return combobox1.getSelectedItem().toString(); }
-    public String getTo(){ return combobox2.getSelectedItem().toString(); }
+    
+    /**
+     * @return String-värdet från combobox1 (vartifrån man vill att flyget ska åka)
+     */
+     public String getFrom(){ return combobox1.getSelectedItem().toString(); }
+    
+    /**
+     * @return String värdet från combobox2 (vart man vill att flyget ska åka)
+     */
+     public String getTo(){ return combobox2.getSelectedItem().toString(); }
+    
+    /**
+     * @return En string som representerar datumet man vill att flyget ska åka.
+     */
     public String getDate(){ return dateField.getText(); }
+    
+    /**
+     * @return En string som representerar tiden som man vill att flyget ska åka.
+     */
     public String getTime(){ return timeField.getText(); }
+    
+    /**
+     * @return En string som representerar modelen man vill att planet skall vara.
+     */
     public String getPlaneModel(){ return combobox3.getSelectedItem().toString(); }
     
 }

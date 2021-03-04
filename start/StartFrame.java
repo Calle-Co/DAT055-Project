@@ -4,7 +4,6 @@ import start.login.*;
 import start.adminLogin.*;
 import start.signup.*;
 import start.welcome.*;
-
 import javax.swing.*;
 import global.*;
 import java.awt.*;
@@ -12,7 +11,9 @@ import java.awt.event.*;
 import java.util.HashMap;
 
 /**
- * @author William Husar, Simon Länsberg
+ * Denna klass har huvudansvaret för 'start' delen av programmet. Den sköter kommunkationen
+ * mellan de olika delarna i start och även kommunikationen med de andra huvuddelarna av programmet.
+ * @author William Husar, Simon Länsberg, Carl Classon
  * @version 2021-02-24
  */
 public class StartFrame implements Observable {
@@ -28,6 +29,9 @@ public class StartFrame implements Observable {
         makeFrame();
     }
     
+    /**
+     * Denna metod skapar den JFrame som alla paneler sen skall ligga i.
+     */
     public void makeFrame() {
         startFrame = new JFrame();
         startFrame.setPreferredSize(new Dimension(600, 600));
@@ -40,6 +44,9 @@ public class StartFrame implements Observable {
         startFrame.setTitle("CC Airlines");
     }
 
+    /**
+     * Denna metod skapar instanser av alla olika MVC:s.
+     */
     public void init() {
         initWelcomeMVC();
         initLoginMVC();
@@ -47,6 +54,9 @@ public class StartFrame implements Observable {
         initSignupMVC();
     }
 
+    /**
+     * Denna metod skapar MVC:et som tillhör Welcome paketet.
+     */
     public void initWelcomeMVC() {
         WelcomeView wView = new WelcomeView();
         WelcomeController wController = new WelcomeController(wView);
@@ -65,6 +75,9 @@ public class StartFrame implements Observable {
         currentView = wView;
     }
 
+    /**
+     * Denna metod skapar MVC:et som tillhör Login paketet.
+     */
     public void initLoginMVC() {
         LoginView lView = new LoginView();
         LoginModel lModel = new LoginModel();
@@ -96,6 +109,10 @@ public class StartFrame implements Observable {
         views.put("LoginView", lView);
     }
 
+    
+    /**
+     * Denna metod skapar MVC:et som tillhör Admin paketet.
+     */
     public void initAdminMVC() {
         AdminLoginView aView = new AdminLoginView();
         AdminLoginModel aModel = new AdminLoginModel();
@@ -122,6 +139,10 @@ public class StartFrame implements Observable {
         views.put("AdminLoginView", aView);
     }
 
+    
+    /**
+     * Denna metod skapar MVC:et som tillhör Signup paketet.
+     */
     public void initSignupMVC() {
         SignupView sView = new SignupView();
         SignupModel suModel = new SignupModel();
@@ -154,6 +175,11 @@ public class StartFrame implements Observable {
         views.put("SignupView", sView);
     }
 
+    /**
+     * Denna metod tar emot den view som skall visas härnäst och 
+     * byter ut den nyvarande med denna.
+     * @param view vyn som skall visas näst.
+     */
     public void nextView(JPanel view) {
         startFrame.remove(currentView);
         currentView.setVisible(false);
@@ -212,6 +238,10 @@ public class StartFrame implements Observable {
         }
     }
 
+    /**
+     * getter metod som hämtar användarnamnet på den som har loggat in.
+     * @return användarnamnet på den som har loggat in.
+     */
     public String getUser() {
         return this.user;
     }

@@ -6,7 +6,8 @@ import java.awt.event.*;
 import javax.swing.JButton;
 
 /**
- * Kontroller för ClientsInfo-panelen.
+ * Denna klass är en kontroller för ClientsInfo-panelen, sköter kommunkationen mellan 
+ * model och view lägger till lyssnare på alla knappar.
  * @author Carl Classon
  * @version 2021-02-26
  */
