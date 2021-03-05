@@ -235,9 +235,26 @@ public class CustomerFrame implements Observable {
         HelpView helpView = new HelpView();
         HelpModel helpModel = new HelpModel();
         HelpController helpController = new HelpController(helpModel, helpView);
-        helpController.addMenuButtonListener(e -> {
+        final JViewport viewport = customer.help.HelpView.helpScrollPane.getViewport();
+        
+        helpController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText(); 
-            if(s.equals("Logout")){
+            if(s.equals("1.1 destination")){
+                viewport.setViewPosition(new Point(0, 60));
+            }
+            else if (s.equals("1.2 flight")){
+                viewport.setViewPosition(new Point(0, 650));
+            }
+            else if (s.equals("1.3 seats")){
+                viewport.setViewPosition(new Point(0, 1210));
+            }
+            else if (s.equals("2.1 check booked flights")){
+                viewport.setViewPosition(new Point(0, 2400));
+            }
+            else if (s.equals("2.2 cancel booked flights")){
+                viewport.setViewPosition(new Point(0, 3000));
+            }
+            else if(s.equals("Logout")){
                 notifyObservers("cLogout");
             }
             else if(s.equals("Home")){
