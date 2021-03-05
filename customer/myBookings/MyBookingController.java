@@ -19,7 +19,6 @@ public class MyBookingController {
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ArrayList<FlightInfoButton> bookings = new ArrayList<>();
 
-
     /**
      * Skapar en instans av DestInfoModel och DestInfoView och instanserar en lista av alla knappar från view.
      * @param m En MyBookingModel

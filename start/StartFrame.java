@@ -22,10 +22,15 @@ public class StartFrame implements Observable {
     private HashMap<String, JPanel> views;
     private Observer observer;
     private String user;
+    private String password;
 
+    /**
+     * Metod som initierar makeframe och user och skapar en hashmap med alla vyer.
+     */
     public StartFrame() {
         views = new HashMap<>();
         user = "";
+        password = "";
         makeFrame();
     }
     
@@ -108,7 +113,6 @@ public class StartFrame implements Observable {
         });
         views.put("LoginView", lView);
     }
-
     
     /**
      * Denna metod skapar MVC:et som tillhör Admin paketet.
@@ -139,7 +143,6 @@ public class StartFrame implements Observable {
         views.put("AdminLoginView", aView);
     }
 
-    
     /**
      * Denna metod skapar MVC:et som tillhör Signup paketet.
      */
@@ -198,6 +201,7 @@ public class StartFrame implements Observable {
     public void tryLogin(LoginController lController, LoginView lView){
         if(lController.userLogin(lView.getUsername(), lView.getPassword())) {
             user = lView.getUsername();
+            password = lView.getPassword();
             nextView(new LoadingView());       
             Thread t2 = new Thread(new Runnable(){
                 @Override
@@ -214,7 +218,7 @@ public class StartFrame implements Observable {
         }
     }
 
-        /**
+    /**
      * Denna metod försöker logga in en admin. Om det lyckas så startas
      * loadingview och sen loggas man in till admin delen av programmet.
      * @param lController en adminLoginController
@@ -239,27 +243,44 @@ public class StartFrame implements Observable {
     }
 
     /**
-     * getter metod som hämtar användarnamnet på den som har loggat in.
+     * Metod som hämtar användarnamnet på den som har loggat in.
      * @return användarnamnet på den som har loggat in.
      */
     public String getUser() {
         return this.user;
     }
 
+    public String getPassword(){
+        return this.password;
+    }
+    
+    /**
+     * 
+     * @param b 
+     */
     public void frameSetVisible(Boolean b) {
         startFrame.setVisible(b);
     }
 
+    /**
+     * 
+     */
     @Override
     public void addObserver(Observer observer) {
         this.observer = observer;
     }
-
+    /**
+     * 
+     */
     @Override
     public void removeObserver() {
         this.observer = null;
     }
 
+    /**
+     * Metod för att uppdatera observern med ett meddelande
+     * @param message 
+     */
     @Override
     public void notifyObservers(String message) {
         this.observer.update(message);

@@ -42,6 +42,17 @@ public class ClientsInfoModel{
         return users; 
     }
 
+    public void deleteBookings(String username) throws SQLException, ClassNotFoundException{
+        s = new ServerConnection();
+        s.DatabaseConnection();
+        try(PreparedStatement ps = s.getConn().prepareStatement("DELETE FROM Seats WHERE customer = ?");){
+            ps.setString(1, username);
+            ps.executeUpdate();
+        }catch (SQLException e) {
+            throw new SQLException();
+        }
+        s.getConn().close(); 
+	}
 
     /**
      * Denna metod har som uppgift att ta bort en användare från databasen.

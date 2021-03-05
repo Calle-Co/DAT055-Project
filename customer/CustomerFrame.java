@@ -11,6 +11,8 @@ import customer.myBookings.MyBookingView;
 import customer.flight.*;
 import customer.booking.*;
 import customer.help.*;
+import customer.profile.*;
+
 
 /**
  * Klassen används för att skapa instanser av och initiera
@@ -30,8 +32,10 @@ public class CustomerFrame implements Observable {
     private FlightView flightView;
     private String currentFlight;
     private String currentUser;
+    private String currentPassword;
     private MyBookingView myBookingView;
     private MyBookingController myBookingController;
+    private ProfileView ProfileView;
     
     public CustomerFrame() {
         views = new HashMap<>();
@@ -63,6 +67,7 @@ public class CustomerFrame implements Observable {
         initFlightMVC();
         initBookingMVC();
         initHelpMVC();
+        initProfileMVC();
         updateMyBookings();
     }
 
@@ -94,7 +99,7 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HelpView"));
             }
             else if(s.equals("Profile")){
-                System.out.println("profile");
+                nextView(views.get("ProfileView"));
             }
         });
         views.put("HomeView", homeView);
@@ -126,7 +131,7 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HelpView"));
             }
             else if(s.equals("Profile")){
-                System.out.println("profile");
+                nextView(views.get("ProfileView"));
             }
         });
         views.put("Mybookings", myBookingView);
@@ -155,7 +160,7 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HelpView"));
             }
             else if(s.equals("Profile")){
-                System.out.println("profile");
+                nextView(views.get("ProfileView"));
             }
         });
         views.put("FlightView", flightView);
@@ -221,7 +226,7 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HelpView"));
             }
             else if(s.equals("Profile")){
-                System.out.println("profile");
+                nextView(views.get("ProfileView"));
             }
         });
         views.put("BookingView", bookingView);
@@ -267,10 +272,42 @@ public class CustomerFrame implements Observable {
                 nextView(views.get("HelpView"));
             }
             else if(s.equals("Profile")){
-                System.out.println("profile");
+                nextView(views.get("ProfileView"));
             }
         });
         views.put("HelpView", helpView);
+    }
+
+    /**
+     * Metoden används för att initiera det MVC som ansvarar över profilsidan.
+     */
+    public void initProfileMVC() {
+        ProfileView = new ProfileView();
+        ProfileView.setUser(currentUser, currentPassword);
+        ProfileModel ProfileModel = new ProfileModel();
+        ProfileController ProfileController = new ProfileController(ProfileModel, ProfileView);
+        ProfileController.addButtonListener(e -> {
+            String s = ((JButton) e.getSource()).getText(); 
+            if(s.equals("Delete my profile")){
+                if(ProfileController.userPopup(currentUser)){
+                    notifyObservers("cLogout");
+                }
+                
+            }
+            else if(s.equals("Logout")){
+                notifyObservers("cLogout");
+            }
+            else if(s.equals("Home")){
+                nextView(views.get("HomeView"));
+            }
+            else if(s.equals("Bookings")){
+                nextView(views.get("Mybookings"));
+            }
+            else if(s.equals("Help")){
+                nextView(views.get("HelpView"));
+            }
+        });
+        views.put("ProfileView", ProfileView);
     }
 
     /**
@@ -341,9 +378,11 @@ public class CustomerFrame implements Observable {
 
     /**
      * @param user Användarnamn på den som loggat in.
+     * @param password Lösenordet på den som loggat in.
      */
-    public void setUser(String user) {
+    public void setUser(String user, String password) {
         currentUser = user;
+        currentPassword = password;
     }
 
     /**

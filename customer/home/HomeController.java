@@ -42,7 +42,7 @@ public class HomeController {
         } 
     }
 
-     /**
+    /**
      * Denna metod lägger till en actionListener på alla knappar som hämtades från view.
      * @param al En actionListener
      */

@@ -40,7 +40,7 @@ public class App implements Observer {
      */
     private void customerLogin() {
         customerFrame = new CustomerFrame();
-        customerFrame.setUser(startFrame.getUser());
+        customerFrame.setUser(startFrame.getUser(), startFrame.getPassword());
         customerFrame.init();
         customerFrame.addObserver(app);
         startFrame.frameSetVisible(false);
