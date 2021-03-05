@@ -25,7 +25,7 @@ public class WelcomeView extends JPanel{
         Color c = new Color(211,211,211);
         setLayout(new BorderLayout());     
 
-        AllButtons bokaButton = new AllButtons(size.LARGE, "Boka!");
+        AllButtons bokaButton = new AllButtons(size.LARGE, "Book!");
         buttons.add(bokaButton);
      
         JLabel logo = new JLabel(logga, JLabel.CENTER);
