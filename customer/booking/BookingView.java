@@ -38,7 +38,7 @@ public class BookingView extends JPanel{
         seats = new ArrayList<>();
         buttons = new ArrayList<>();
 
-        bokaButton = new AllButtons(size.MEDIUM, "Boka!");
+        bokaButton = new AllButtons(size.MEDIUM, "Book!");
         AllButtons cancelButton = new AllButtons(size.MEDIUM, "cancel");
         buttons.add(bokaButton);
         buttons.add(cancelButton);
