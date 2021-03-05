@@ -67,7 +67,7 @@ public class StartFrame implements Observable {
         WelcomeController wController = new WelcomeController(wView);
         wController.addButtonListener(e -> {
             String s = ((JButton) e.getSource()).getText();
-            if (s.equals("Boka!")){
+            if (s.equals("Book!")){
               nextView(views.get("LoginView"));
             }
             if (s.equals("Admin")) {

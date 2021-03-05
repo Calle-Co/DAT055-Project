@@ -180,7 +180,7 @@ public class CustomerFrame implements Observable {
             if(s.equals("Logout")){
                 notifyObservers("cLogout");
             }
-            else if(s.equals("Boka!")){
+            else if(s.equals("Book!")){
                 bookingController.initBooking();
                 if(bookingController.returnToHome()) {
                     Boolean goHome = true;
