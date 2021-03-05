@@ -12,12 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JViewport;
 import javax.swing.SwingConstants;
 import customer.MenuPanel;
 import global.AllButtons;
 import global.AllButtons.size;
-import customer.help.EmptyLabel.*;
 
 /**
  * @author Kevin Hao
@@ -33,8 +31,7 @@ public class HelpView extends JPanel {
     private ImageIcon dest31helpIcon = new ImageIcon("global/Resources/dest31help.PNG");
     private ImageIcon booked1helpIcon = new ImageIcon("global/Resources/booked1help.PNG");
     private ImageIcon booked12helpIcon = new ImageIcon("global/Resources/booked12help.PNG");
-
-    JLabel oneLabel;
+    private JLabel oneLabel;
 
     public HelpView(){
         setLayout(null);
@@ -294,6 +291,7 @@ public class HelpView extends JPanel {
         
         helpScrollPane = new JScrollPane(componentPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         helpScrollPane.setBounds(340, 120, 830, 500);
+        helpScrollPane.getVerticalScrollBar().setUnitIncrement(16);
         add(helpScrollPane);
 
 
