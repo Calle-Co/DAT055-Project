@@ -3,6 +3,7 @@ package customer.help;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JViewport;
 import javax.swing.WindowConstants;
 
 

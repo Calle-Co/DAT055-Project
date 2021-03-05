@@ -11,16 +11,16 @@ import java.awt.event.*;
 public class HelpController {
     //private HelpModel model;
     private HelpView view;
-    private ArrayList<JButton> menuButtons;
+    private ArrayList<JButton> buttons;
 
     public HelpController(HelpModel m, HelpView v){
         //this.model = m;
         this.view = v;
-        menuButtons = view.getMenuButtons();
+        buttons = view.getButtons();
     }
 
-    public void addMenuButtonListener(ActionListener al) {
-        for(JButton b : menuButtons) {
+    public void addButtonListener(ActionListener al) {
+        for(JButton b : buttons) {
             b.addActionListener(al);
         }
     }
