@@ -61,7 +61,7 @@ public class FlightsInfoView extends JPanel {
         to = new JLabel("To");
         model = new JLabel("Model");
 
-        dateField.setText(new WebFetching().getDat());
+        dateField.setText(new WebFetching().getDate());
         Date tid = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
