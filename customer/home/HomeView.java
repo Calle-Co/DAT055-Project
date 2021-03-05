@@ -53,7 +53,7 @@ public class HomeView extends JPanel {
         centerPanel.add(to);
 
         // Datefield
-        dateField.setText(todaysDat.getDat());
+        dateField.setText(todaysDat.getDate());
         dateField.setBounds(50, 220, 80, 35);
         centerPanel.add(dateField);
 

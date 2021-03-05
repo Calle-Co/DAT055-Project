@@ -10,13 +10,13 @@ import java.util.Properties;
  * @version 2021-02-24
  */
 public class ServerConnection {
-    private static final String DATABASE = "jdbc:postgresql://dat055-db-4930.postgresql.dbs.scalingo.com:32956/dat055_db_4930";
-    private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "postgres";
+    private static final String database = "jdbc:postgresql://dat055-db-4930.postgresql.dbs.scalingo.com:32956/dat055_db_4930";
+    private static final String username = "postgres";
+    private static final String password = "postgres";
     private Connection conn;
     
     public void DatabaseConnection() throws SQLException, ClassNotFoundException {
-        DatabaseConnection(DATABASE, USERNAME, PASSWORD);  
+        databaseConnection(database, username, password);  
     }
 
     /**
@@ -28,7 +28,7 @@ public class ServerConnection {
      * @throws SQLException Om lösenordet eller användarnamet skulle vara fel.
      * @throws ClassNotFoundException Om klassen "org.postgresql.driver" inte skulle finnas.
      */
-    public void DatabaseConnection(String db, String user, String pwd) throws SQLException, ClassNotFoundException {
+    public void databaseConnection(String db, String user, String pwd) throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
         Properties props = new Properties();
         props.setProperty("user", user);

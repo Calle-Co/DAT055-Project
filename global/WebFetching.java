@@ -11,7 +11,7 @@ import org.jsoup.nodes.Element;
  * @version 2021-02-26
  */
 public class WebFetching {
-    private String test;
+    private String date;
 
     public WebFetching() {
         final String url = "https://www.calendardate.com/todays.htm";
@@ -21,7 +21,7 @@ public class WebFetching {
             for(Element row : doc.select("table.todreg tr")){
                 n++;
               if(n == 8){
-                   test = row.select("tr#indtod > td").text().substring(12);
+                   date = row.select("tr#indtod > td").text().substring(12);
               }
             }
         } catch (IOException e) {
@@ -32,7 +32,7 @@ public class WebFetching {
     /**
      * @return Dagens datum.
      */
-    public String getDat(){
-        return this.test;
+    public String getDate(){
+        return this.date;
     }
 }

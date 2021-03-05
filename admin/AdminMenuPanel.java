@@ -44,7 +44,7 @@ public class AdminMenuPanel extends JPanel{
 
         JLabel date = new JLabel();
         date.setBounds(5, 5, 100, 50);
-        date.setText(todaysDat.getDat());
+        date.setText(todaysDat.getDate());
         date.setFont(new Font(date.getFont().getName(), Font.BOLD, 18));
 
         JPanel datepanel = new JPanel();

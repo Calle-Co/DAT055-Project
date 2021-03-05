@@ -3,13 +3,12 @@ package customer.myBookings;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.*;
-
 import global.AllButtons;
 import customer.MenuPanel;
 import customer.flight.FlightInfoButton;
 
 @SuppressWarnings("serial")
-public class MyBookingView extends JPanel{
+public class MyBookingView extends JPanel {
     private JPanel bookingsPanel;
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private ArrayList<FlightInfoButton> flightButtons;

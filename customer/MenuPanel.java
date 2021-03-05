@@ -96,7 +96,7 @@ public class MenuPanel extends JPanel {
         timer.start();
 
         JLabel dateLabel = new JLabel();
-        dateLabel.setText(todaysDat.getDat());
+        dateLabel.setText(todaysDat.getDate());
         dateLabel.setFont(new Font(dateLabel.getFont().getName(), Font.BOLD, 18));
         dateLabel.setBounds(37, 10, 120, 40);
         timePanel.add(dateLabel);
