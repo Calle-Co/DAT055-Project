@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import global.ServerConnection;
 
 /**
- * En klass för kommunikation mellan programet och databasen.
+ * En klass för kommunikation mellan programet och databasen, 
+ * specifikt så är den ansvarig för att hämta information om alla registrerade användare.
  * @author Carl Classon
  * @version 2021-02-26
  */ 

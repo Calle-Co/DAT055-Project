@@ -15,6 +15,8 @@ import global.WebFetching;
 import global.AllButtons.size;
 
 /**
+ * Denna klass representerar en menupanel för admin-delen
+ * av programmet. 
  * @author Anna Manfredsson
  * @version 2021-03-04
  */

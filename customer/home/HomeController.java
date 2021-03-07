@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Denna klass är en kontroller för Home-panelen, sköter kommunkationen mellan 
- * model och view lägger till lyssnare på alla knappar.
+ * model och view lägger till lyssnare på alla knappar i view.
  * @author Simon Länsberg & William Husar
  * @version 2021-02-26
  */

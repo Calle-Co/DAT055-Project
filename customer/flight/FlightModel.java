@@ -6,7 +6,8 @@ import global.ServerConnection;
 
 /**
  * Klassen representerar model i det MVC som ansvarar
- * för att hämta och visa flyg som passar kundens önskemål.
+ * för att hämta och visa flyg som passar kundens önskemål. Specifikt så
+ * sköter den kommunkationen med databasen.
  * @author William Husar, Simon Länsberg
  * @version 2021-03-02
  */

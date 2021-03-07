@@ -7,6 +7,7 @@ import global.Destination;
 
 /**
  * En klass för kommunkation mellan programmet och databasen.
+ * Specifikt hämta alla destinationer som finns i databasen.
  * @author William Husar & Simon Länsberg
  * @version 2021-02-26
  */

@@ -8,6 +8,8 @@ import global.ServerConnection;
 
 /**
  * En klass för kommunkation mellan programmet och databasen.
+ * Specifikt så är den ansvarig för att hämta information om alla destinationer 
+ * och även addera nya sådana.
  * @author Carl Classon
  * @version 2021-03-02
  */

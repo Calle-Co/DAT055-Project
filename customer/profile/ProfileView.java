@@ -3,16 +3,14 @@ package customer.profile;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.awt.*;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import customer.MenuPanel;
 import global.AllButtons;
 
 /**
- * 
+ * Denna klass sköter grafiken för profil-delen av programmet.
  * @author Anna Manfredsson
  * @version 2021-03-05
  */

@@ -2,11 +2,10 @@ package customer.profile;
 
 import java.awt.event.*;
 import java.util.ArrayList;
-
-import customer.myBookings.MyBookingController;
 import global.AllButtons;
 
 /**
+ * Sköter kommunikationen mellan ProfileModel och ProfileView
  * @author Anna Manfredsson
  * @version 2021-03-05
  */

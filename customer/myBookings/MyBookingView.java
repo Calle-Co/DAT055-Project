@@ -7,6 +7,11 @@ import global.AllButtons;
 import customer.MenuPanel;
 import customer.flight.FlightInfoButton;
 
+/**
+ * Klassen sköter grafiken för MyBookings-delen av programmet.
+ * @author Simon Länsberg & William Husar
+ * @version 2021-03-04
+ */
 @SuppressWarnings("serial")
 public class MyBookingView extends JPanel {
     private JPanel bookingsPanel;

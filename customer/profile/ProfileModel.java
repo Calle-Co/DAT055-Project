@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import global.ServerConnection;
 
 /**
+ * Denna klass sköter kommunkationen mellan programmet och databasen,
+ * specifikt så raderar den en användare och dess bokningar från databasen.
  * @author Anna Manfredsson
  * @version 2021-03-05
  */

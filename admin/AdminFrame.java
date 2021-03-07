@@ -10,6 +10,8 @@ import admin.destInfo.*;
 import admin.clientsInfo.*;
 
 /**
+ * Denna klass har huvudansvaret för 'admin' delen av programmet. Den sköter kommunkationen
+ * mellan de olika delarna i adminpaketet och även kommunikationen med de andra huvuddelarna av programmet.
  * @author William Husar & Carl Classon
  * @version 2021-02-24
  */

@@ -2,11 +2,15 @@ package customer.myBookings;
 
 import java.sql.*;
 import java.util.ArrayList;
-
 import customer.flight.FlightInfoButton;
 import global.ServerConnection;
 
-
+/**
+ * En klass för kommunkation mellan programmet och databasen. 
+ * Specifikt hämta alla flygningar och bokningar som finns i databasen.
+ * @author Simon Länsberg & William Husar
+ * @version 2021-03-04
+ */
 public class MyBookingModel{
     private ServerConnection serverConnection;
 
