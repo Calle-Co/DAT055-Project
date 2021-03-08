@@ -15,6 +15,7 @@ import global.AllButtons.size;
 @SuppressWarnings("serial")
 public class WelcomeView extends JPanel{
     private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
+    //private ImageIcon logga = new ImageIcon(getClass().getClassLoader().getResource("global/Resources/logga.PNG"));
     private ArrayList<AllButtons> buttons = new ArrayList<>();
 
     /**

@@ -14,7 +14,7 @@ import global.*;
  */
 @SuppressWarnings("serial")
 public class AdminLoginView extends JPanel {
-    private ImageIcon logga = new ImageIcon("global/Resources/logga.PNG");
+    private ImageIcon logga = new ImageIcon(getClass().getClassLoader().getResource("global/Resources/logga.PNG"));
     private ArrayList<AllButtons> buttons = new ArrayList<>();
     private JTextField password;
 
