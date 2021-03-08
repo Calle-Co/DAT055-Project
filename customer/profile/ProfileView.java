@@ -14,6 +14,7 @@ import global.AllButtons;
  * @author Anna Manfredsson
  * @version 2021-03-05
  */
+@SuppressWarnings("serial")
 public class ProfileView extends JPanel {
 
     private ArrayList<AllButtons> buttons;

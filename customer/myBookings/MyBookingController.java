@@ -47,8 +47,8 @@ public class MyBookingController {
                 BookingPopup(s, user);
             }); 
         } catch (Exception e) {
-            //TODO: handle exception
-            // Gör typ som destInfoController.
+            //Måste tas om hand, men borde aldrig kunna inträffa.
+            e.printStackTrace();
             return -1;
         }
         return 0;
@@ -67,7 +67,8 @@ public class MyBookingController {
             try {
                 model.deleteBooking(user, trip);
             } catch (Exception e){
-                //TODO: handle exception
+            //Måste tas om hand, men borde aldrig kunna inträffa.
+            e.printStackTrace();
             }    
         }
         getBookings(user);
