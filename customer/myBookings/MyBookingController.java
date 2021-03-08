@@ -31,6 +31,14 @@ public class MyBookingController {
         bookings = view.getBookings();
     }
     
+    /**
+     * Denna metod fungerar som en mellanhand mellan modellen och vyn.
+     * Den ser till att model-klassen hämtar hem de bokade flygen för den nuvarande användaren från databasen 
+     * sedan skickar den en lista av alla dem hämtade flygen till initbuttons() i vyn. 
+     * Den lyssnar även efter knapptryckningar på flygknapparna och initierar isåfall en popupruta i vyn.
+     * @param user En användare vars flyg ska visas.
+     * @return -1 om exception har förekommit, annars 0.
+     */
     public int getBookings(String user){
         try {
             view.initButtons(model.getFlight(model.getBookings(user)));
@@ -46,6 +54,14 @@ public class MyBookingController {
         return 0;
     }
 
+    /**
+     * Denna metod fungerar som en mellanhand mellan modellen och vyn.
+     * Den ser till att view visar en popup ruta där användaren kan välja att ta bort en av sina bokningar. 
+     * Om användaren klickar på YES så skickas det specifika flyget och användaren till model för att ta bort bokningen från databasen.
+     * vidare till model-klassen.
+     * @param trip Id för det flyget som ska hanteras.
+     * @param user  En användare vars flyg ska tas bort.
+     */
     public void BookingPopup(String trip, String user){
         if(view.BookingPopup()){
             try {

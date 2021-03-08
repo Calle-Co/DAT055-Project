@@ -238,8 +238,7 @@ public class CustomerFrame implements Observable {
      */
     public void initHelpMVC() {
         HelpView helpView = new HelpView();
-        HelpModel helpModel = new HelpModel();
-        HelpController helpController = new HelpController(helpModel, helpView);
+        HelpController helpController = new HelpController(helpView);
         final JViewport viewport = customer.help.HelpView.helpScrollPane.getViewport();
         
         helpController.addButtonListener(e -> {

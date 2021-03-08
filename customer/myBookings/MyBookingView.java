@@ -19,6 +19,9 @@ public class MyBookingView extends JPanel {
     private ArrayList<FlightInfoButton> flightButtons;
     private JLabel reservations;
 
+    /**
+     * Initierar listor och metoder som i sin tur skapar MyBooking-panelen och all dess innehåll.
+     */
     public MyBookingView(){
         buttons = new ArrayList<>();
         flightButtons = new ArrayList<>();
@@ -30,6 +33,9 @@ public class MyBookingView extends JPanel {
         reservations.setAlignmentX(CENTER_ALIGNMENT);
     }  
 
+    /**
+     * Skapar huvudpanelen och gör en scrollpanel.
+     */
     private void initBookingsPanel() {
         bookingsPanel = new JPanel();
         bookingsPanel.setLayout(new BoxLayout(bookingsPanel, BoxLayout.Y_AXIS));
@@ -40,6 +46,10 @@ public class MyBookingView extends JPanel {
         add(scrollPane);
     }
 
+    /**
+     * Denna metod initierar alla flygknappar i vyn
+     * @param infoButtons En lista av knappar med flyg som användaren bokat
+     */
     public void initButtons(ArrayList<FlightInfoButton> infoButtons) {
         if(!flightButtons.isEmpty()) {
             flightButtons.clear();
@@ -59,6 +69,9 @@ public class MyBookingView extends JPanel {
         bookingsPanel.repaint();
     }
 
+    /**
+     * Denna metoden skapar menupanelen och lägger till den i vyn.
+     */
     public void initMenu() {
         MenuPanel menuPanel = new MenuPanel();
         menuPanel.setBounds(0, 0, 1200, 100);
@@ -68,6 +81,10 @@ public class MyBookingView extends JPanel {
         add(menuPanel);
     }
 
+    /**
+     * En metod som popar ut en ruta om användaren vill ta bort ett av sina bokade flyg.
+     * @return true om användare trycker på "YES"-knappen, annars false.
+     */
     public boolean BookingPopup(){
         int dialogButton = JOptionPane.YES_NO_OPTION;
         String s = "Do you want to delete your this trip?";
@@ -79,8 +96,14 @@ public class MyBookingView extends JPanel {
         } 
     }
 
-
+    /**
+     * @return En lista med alla knappar som ligger i MyBooking-view.
+     */
     public ArrayList<AllButtons> getButtons() { return buttons; }
+
+    /**
+     * @return En lista med alla flygknappar som ligger i MyBooking-view.
+     */
     public ArrayList<FlightInfoButton> getBookings() { return flightButtons; }
 
 

@@ -18,6 +18,7 @@ import global.AllButtons;
 import global.AllButtons.size;
 
 /**
+ * Denna klassen visar den grafiska delen av help-delen av programmet.
  * @author Kevin Hao
  * @version 2021-03-03
  */
@@ -33,6 +34,9 @@ public class HelpView extends JPanel {
     private ImageIcon booked12helpIcon = new ImageIcon("global/Resources/booked12help.PNG");
     private JLabel oneLabel;
 
+    /**
+     * Skapar Home-panelen och all dess innehåll.
+     */
     public HelpView(){
         setLayout(null);
 
@@ -107,11 +111,9 @@ public class HelpView extends JPanel {
         profilehelpLabel.setFont(new Font("Arial", 1, 18));
         helpmenuPanel.add(profilehelpLabel);
 
-
         // COMPONENT PANEL
 
         //1.0 + 1.1
-
         JPanel componentPanel = new JPanel();
         componentPanel.setBackground(Color.WHITE);
         componentPanel.setLayout(new BoxLayout(componentPanel, BoxLayout.Y_AXIS));
@@ -148,7 +150,6 @@ public class HelpView extends JPanel {
         componentPanel.add(new EmptyLabel(2));
 
         //1.2
-
         JLabel oneptwoLabel = new JLabel("1.2 flight");
         oneptwoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         oneptwoLabel.setFont(new Font("Arial", 1, 17));
@@ -173,7 +174,6 @@ public class HelpView extends JPanel {
         componentPanel.add(new EmptyLabel(2));
 
         //1.3
-
         JLabel onepthreeLabel = new JLabel("1.3 seats");
         onepthreeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         onepthreeLabel.setFont(new Font("Arial", 1, 17));
@@ -214,7 +214,6 @@ public class HelpView extends JPanel {
         componentPanel.add(new EmptyLabel(2));
 
         //2.0 + 2.1
-
         JLabel twoLabel = new JLabel("2. Bookings");
         twoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         twoLabel.setFont(new Font("Arial", 1, 20));
@@ -246,7 +245,6 @@ public class HelpView extends JPanel {
         componentPanel.add(new EmptyLabel(2));
 
         //2.2
-
         JLabel twoptwoLabel = new JLabel("2.2 cancel booked flights");
         twoptwoLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         twoptwoLabel.setFont(new Font("Arial", 1, 17));
@@ -270,8 +268,6 @@ public class HelpView extends JPanel {
         componentPanel.add(taTwoptwo);
         componentPanel.add(new EmptyLabel(2));
 
-
-
         //change formatshere
 
         /*JLabel destpicLabel = new JLabel(dest3helpIcon);
@@ -288,19 +284,17 @@ public class HelpView extends JPanel {
         componentPanel.add(taOnepthree);
         componentPanel.add(new EmptyLabel(2));*/
         
-        
         helpScrollPane = new JScrollPane(componentPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         helpScrollPane.setBounds(340, 120, 830, 500);
         helpScrollPane.getVerticalScrollBar().setUnitIncrement(16);
         add(helpScrollPane);
 
-
-
-
         //add(instructionPanel);
         //final JViewport viewport = helpScrollPane.getViewport();
-
     }
 
+    /**
+     * @return En lista med alla knappar som ligger i Help-view.
+     */
     public ArrayList<JButton> getButtons() { return buttons; }
 }

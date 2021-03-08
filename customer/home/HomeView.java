@@ -76,31 +76,6 @@ public class HomeView extends JPanel {
         buttons.add(searchButton);
         centerPanel.add(searchButton);
 
-        // BOOKEDPANEL main = 300, 120, 650, 450
-        /*
-        JPanel bPanel = new JPanel();
-        bPanel.setLayout(null);
-        bPanel.setBounds(20, 120, 260, 450);
-        bPanel.setBackground(Color.white);
-        add(bPanel);
-
-        JLabel bfLabel = new JLabel("Booked Flights");
-        bfLabel.setBounds(20, 20, 170, 25);
-        bPanel.add(bfLabel);
-        bfLabel.setFont(new Font("Verdana", 0, 20));
-
-        JPanel cPanel = new JPanel();
-        cPanel.setLayout(null);
-        cPanel.setBounds(970, 120, 190, 450);
-        cPanel.setBackground(Color.white);
-        add(cPanel);
-
-        JLabel cfLabel = new JLabel("Cheap Flights");
-        cfLabel.setBounds(20, 20, 170, 25);
-        cPanel.add(cfLabel);
-        cfLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
-        */
-
         MenuPanel menuPanel = new MenuPanel();
         menuPanel.setBounds(0, 0, 1200, 100);
         for(AllButtons b : menuPanel.getButtons()) {

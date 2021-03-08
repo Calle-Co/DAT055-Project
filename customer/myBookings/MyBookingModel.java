@@ -14,10 +14,14 @@ import global.ServerConnection;
 public class MyBookingModel{
     private ServerConnection serverConnection;
 
-    public MyBookingModel(){
-       
-    }
-
+    /**
+     * Denna metod kommunicerar med databasen, den hämtar hem alla flyg med ett specifikt id
+     * och returnernar dem som en lista av FlightInfoButtons.
+     * @param flight_ids Det id av flyg som ska hämtas
+     * @return null om databasen inte har några flyg med det specifika id. Om inget exception förekommit returneras listan med hämtade flyg. 
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ArrayList<FlightInfoButton> getFlight(ArrayList<String> flight_ids) throws SQLException, ClassNotFoundException{
         ArrayList<FlightInfoButton> flights = new ArrayList<>();
         serverConnection = new ServerConnection();
@@ -49,6 +53,14 @@ public class MyBookingModel{
         return flights;
     }
 
+    /**
+     * Denna metod kommunicerar med databasen, den hämtar hem alla bokningar för en specifik användare
+     * och returnernar alla flygid i en lista.
+     * @param user En användare vars bokningar ska hämtas.
+     * @return listan av flyg som hämtats.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public ArrayList<String> getBookings(String user) throws SQLException, ClassNotFoundException{
         serverConnection = new ServerConnection();
         serverConnection.DatabaseConnection();
@@ -71,6 +83,13 @@ public class MyBookingModel{
         return flights; 
     }
 
+    /**
+     * Denna metod kommunicerar med databasen, den tar bort alla bokade flyg för den valda användaren med det valda id:t.
+     * @param user Den användare vars bokade flyg ska tas bort.
+     * @param fid Det flygid:t som ska tas bort.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 	public void deleteBooking(String user, String fid) throws SQLException, ClassNotFoundException{
         serverConnection = new ServerConnection();
         serverConnection.DatabaseConnection();
